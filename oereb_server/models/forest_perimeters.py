@@ -10,7 +10,7 @@ is not easily made you need to make your own classes and adapt them to your data
 """
 import sqlalchemy as sa
 from pyramid_oereb.standard.models import NAMING_CONVENTION
-from pyramid_oereb import srid
+from pyramid_oereb.lib.config import Config
 from sqlalchemy.ext.declarative import declarative_base
 from geoalchemy2.types import Geometry as GeoAlchemyGeometry
 from sqlalchemy.orm import relationship
@@ -19,8 +19,7 @@ from sqlalchemy_utils import JSONType
 metadata = sa.MetaData(naming_convention=NAMING_CONVENTION)
 Base = declarative_base()
 
-if not srid:
-    srid = 2056
+srid = Config.get('srid')
 
 
 class Availability(Base):
@@ -262,7 +261,7 @@ class ViewService(Base):
     __tablename__ = 'view_service'
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     reference_wms = sa.Column(sa.String, nullable=False)
-    legend_at_web = sa.Column(sa.String, nullable=True)
+    legend_at_web = sa.Column(JSONType, nullable=True)
     liefereinheit = sa.Column(sa.Integer, nullable=True)
 
 
@@ -301,7 +300,7 @@ class LegendEntry(Base):
     type_code = sa.Column(sa.String(40), nullable=False)
     type_code_list = sa.Column(sa.String, nullable=False)
     topic = sa.Column(sa.String, nullable=False)
-    sub_theme = sa.Column(sa.String, nullable=True)
+    sub_theme = sa.Column(JSONType, nullable=True)
     other_theme = sa.Column(sa.String, nullable=True)
     view_service_id = sa.Column(
         sa.String,
@@ -348,7 +347,7 @@ class PublicLawRestriction(Base):
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     information = sa.Column(JSONType, nullable=False)
     topic = sa.Column(sa.String, nullable=False)
-    sub_theme = sa.Column(sa.String, nullable=True)
+    sub_theme = sa.Column(JSONType, nullable=True)
     other_theme = sa.Column(sa.String, nullable=True)
     type_code = sa.Column(sa.String(40), nullable=True)
     type_code_list = sa.Column(sa.String, nullable=True)

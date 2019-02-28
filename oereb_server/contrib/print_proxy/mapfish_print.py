@@ -12,10 +12,11 @@ class BERenderer(Renderer):
         # Zunächst für die einzelnen ÖREB-Seiten
         for plr in ed['RealEstate_RestrictionOnLandownership']:
             for lyr in plr['baseLayers']['layers']:
-                if 'geodb.mopube_bbf' in lyr['layers']:
-                    lyr['customParams']['map'] = 'oerebav_de'
-                else:
-                    lyr['customParams']['map'] = 'oereb_de'
+                if 'https://oerebservice.apps.be.ch' in lyr['baseURL'] or 'https://oerebservice-test.apps.be.ch' in lyr['baseURL']:
+                    if 'geodb.mopube_lif' in lyr['layers']:
+                        lyr['customParams']['map'] = 'oerebav_de'
+                    else:
+                        lyr['customParams']['map'] = 'oereb_de'
         
 
         # Und hier noch für die Titelseite

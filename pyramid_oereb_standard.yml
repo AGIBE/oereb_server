@@ -58,6 +58,9 @@ pyramid_oereb:
     # service and returns the result to the user.
     renderer: oereb_server.contrib.print_proxy.mapfish_print.BERenderer
     # The minimum buffer in pixel at 72 DPI between the real estate and the map's border.
+    # Die Buffer-Grösse ist nur für die WMS-URLs im JSON/XML relevant.
+    # Der Buffer für den PDF-Auszug muss in oereb_server_print (config.yaml => ZoomToFeatures)
+    # separat eingestellt werden.
     buffer: 30
     # The map size in pixel at 72 DPI (width, height), This is the defined size of a map image
     # (requested in wms urls) inside the static extract. On a pdf report, tha map size will
@@ -192,7 +195,7 @@ pyramid_oereb:
   real_estate:
     plan_for_land_register:
       # WMS URL to query the plan for land register used for all themes pages
-      reference_wms: https://oerebservice.apps.be.ch/cgi-bin/mapserv.fcgi?map=oerebav_de&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:2056&BBOX=2599595.8065759023,1199773.2348658578,2600124.1262757038,1200103.1093582213&WIDTH=1624&HEIGHT=1014&LAYERS=geodb.mopube_bbf,geodb.mopube_bbprjf,geodb.mopube_eof,geodb.mopube_rlf,geodb.mopube_liprjf,geodb.mopube_lisrprjf,geodb.mopube_lif,geodb.mopube_lisrf,geodb.mopube_hgf,geodb.mopube_hohk,geodb.mopube_rll,geodb.mopube_eol,geodb.mopube_eop,geodb.mopube_hgprjf,geodb.mopube_hgabschl,geodb.mopube_hoehep,geodb.mopube_hgp,geodb.mopube_ligp,geodb.mopube_fixp,geodb.mopube_rlltxt,geodb.mopube_rlftxt,geodb.mopube_bbprjtxt,geodb.mopube_bbtxt,geodb.mopube_gastrnat,geodb.mopube_nonamtxt,geodb.mopube_eoftxt,geodb.mopube_eoltxt,geodb.mopube_eoptxt,geodb.mopube_gaeintxt,geodb.mopube_lisrprjt,geodb.mopube_liprjtxt,geodb.mopube_lisrtxt,geodb.mopube_litxt&STYLES=,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,&EXCEPTIONS=XML&FORMAT=image/png&BGCOLOR=0xFEFFFF&TRANSPARENT=TRUE
+      reference_wms: https://oerebservice.apps.be.ch/cgi-bin/mapserv.fcgi?map=oerebav_de&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:2056&BBOX=2599595.8065759023,1199773.2348658578,2600124.1262757038,1200103.1093582213&WIDTH=1624&HEIGHT=1014&LAYERS=geodb.mopube_bbf_ohnefl,geodb.mopube_bbprjf,geodb.mopube_eof_ohnefl,geodb.mopube_rlf,geodb.mopube_liprjf,geodb.mopube_lisrprjf,geodb.mopube_lif,geodb.mopube_lisrf,geodb.mopube_hgf,geodb.mopube_hohk,geodb.mopube_rll,geodb.mopube_eol,geodb.mopube_eop,geodb.mopube_hgprjf,geodb.mopube_hgabschl,geodb.mopube_hoehep,geodb.mopube_hgp,geodb.mopube_ligp,geodb.mopube_fixp,geodb.mopube_rlltxt,geodb.mopube_rlftxt,geodb.mopube_bbprjtxt,geodb.mopube_bbtxt,geodb.mopube_gastrnat,geodb.mopube_nonamtxt,geodb.mopube_eoftxt,geodb.mopube_eoltxt,geodb.mopube_eoptxt,geodb.mopube_gaeintxt,geodb.mopube_lisrprjt,geodb.mopube_liprjtxt,geodb.mopube_lisrtxt,geodb.mopube_litxt&STYLES=,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,&EXCEPTIONS=XML&FORMAT=image/png&BGCOLOR=0xFEFFFF&TRANSPARENT=TRUE
       layer_index: 0
       layer_opacity: 1.0
     plan_for_land_register_main_page:
@@ -346,6 +349,29 @@ pyramid_oereb:
 
     - name: plr73
       code: LandUsePlans
+      # Es sind sowohl die deutschen als auch die französischen Subthemen-Titel aufgeführt.
+      # Damit sollte die Sortierung auch funktionieren, wenn das Subthema mehrsprachig ist.
+      # Achtung: die Titel müssen genau den in den Daten enthaltenen Titeln entsprechen.
+      sub_themes:
+        sorter:
+          module: pyramid_oereb.contrib.print_proxy.sub_themes.sorting
+          class_name: ListSort
+          params:
+            list:
+              - Zonenflächen der Grundnutzung
+              - Zonenflächen Grundnutzung (Nutzungszonen)
+              - Zonenflächen Grundnutzung (Bauklassen)
+              - Überlagernde Zonenflächen
+              - Andere flächenbezogene Festlegungen
+              - Linienbezogene Festlegungen
+              - Punktbezogene Festlegungen
+              - Surfaces de zones de l’affectation primaire
+              - Surfaces de zones de l’affectation primaire (Type de zone d'affectation)
+              - Surfaces de zones de l’affectation primaire (Classe de construction)
+              - Zones superposées
+              - Autres périmètres superposés
+              - Contenus linéaires
+              - Contenus ponctuels
       geometry_type: GEOMETRYCOLLECTION
       # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
       # and not as calculation errors (false trues) due to topological imperfections
@@ -981,6 +1007,93 @@ pyramid_oereb:
         params:
           db_connection: *main_db_connection
           models: oereb_server.models.cantonal_street_building_lines
+      hooks:
+        get_symbol: pyramid_oereb.standard.hook_methods.get_symbol
+        get_symbol_ref: pyramid_oereb.standard.hook_methods.get_symbol_ref
+      law_status:
+        in_force: inForce
+        running_modifications: runningModifications
+
+    - name: plr0086
+      code: cantonal_nature_reserves
+      geometry_type: MULTIPOLYGON
+      thresholds:
+        length:
+          limit: 1.0
+        area:
+          limit: 1.0
+      text:
+        de: Kantonale Naturschutzgebiete
+        fr: Zones cantonales de protection de la nature
+      language: de
+      federal: false
+      standard: true
+      view_service:
+        layer_index: 1
+        layer_opacity: 0.75
+      source:
+        class: pyramid_oereb.standard.sources.plr.DatabaseSource
+        params:
+          db_connection: *main_db_connection
+          models: oereb_server.models.cantonal_nature_reserves
+      hooks:
+        get_symbol: pyramid_oereb.standard.hook_methods.get_symbol
+        get_symbol_ref: pyramid_oereb.standard.hook_methods.get_symbol_ref
+      law_status:
+        in_force: inForce
+        running_modifications: runningModifications
+
+    - name: plr0085
+      code: regional_protected_botanical_objects
+      geometry_type: GEOMETRYCOLLECTION
+      thresholds:
+        length:
+          limit: 1.0
+        area:
+          limit: 1.0
+      text:
+        de: Geschützte botanische Objekte regionaler Bedeutung
+        fr: Zones cantonales de protection de la nature
+      language: de
+      federal: false
+      standard: true
+      view_service:
+        layer_index: 1
+        layer_opacity: 0.75
+      source:
+        class: pyramid_oereb.standard.sources.plr.DatabaseSource
+        params:
+          db_connection: *main_db_connection
+          models: oereb_server.models.regional_protected_botanical_objects
+      hooks:
+        get_symbol: pyramid_oereb.standard.hook_methods.get_symbol
+        get_symbol_ref: pyramid_oereb.standard.hook_methods.get_symbol_ref
+      law_status:
+        in_force: inForce
+        running_modifications: runningModifications
+
+    - name: plr0084
+      code: regional_protected_geological_objects
+      geometry_type: POINT
+      thresholds:
+        length:
+          limit: 1.0
+        area:
+          limit: 1.0
+      text:
+        de: Geschützte geologische Objekte regionaler Bedeutung
+        fr: Objets protégés géologiques d’importance régionale
+      language: de
+      federal: false
+      standard: true
+      view_service:
+        layer_index: 1
+        layer_opacity: 0.75
+      source:
+        class: pyramid_oereb.standard.sources.plr.DatabaseSource
+        params:
+          db_connection: *main_db_connection
+          models: oereb_server.models.regional_protected_geological_objects
       hooks:
         get_symbol: pyramid_oereb.standard.hook_methods.get_symbol
         get_symbol_ref: pyramid_oereb.standard.hook_methods.get_symbol_ref

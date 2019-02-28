@@ -1,7 +1,7 @@
 """
 This is a full representation of the data model defined by the federal definition.
 
-**It is representing the topic: Noise Sensitivity Levels**
+**It is representing the topic: Cantonal Nature Reserves**
 
 You can use it to
 produce a own new topic for the oereb eco system in the specifications shape. To be able to adapt this
@@ -34,7 +34,7 @@ class Availability(Base):
             municipality or not.  This field has direct influence on the applications
             behaviour. See documentation for more info.
     """
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     __tablename__ = 'availability'
     fosnr = sa.Column(sa.String, primary_key=True, autoincrement=False)
     available = sa.Column(sa.Boolean, nullable=False, default=False)
@@ -59,7 +59,7 @@ class Office(Base):
         postal_code (int): The ZIP-code.
         city (str): The name of the city.
     """
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     __tablename__ = 'office'
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     name = sa.Column(JSONType, nullable=False)
@@ -84,10 +84,10 @@ class DataIntegration(Base):
             you  don't like it - don't care about.
         date (datetime.date): The date when this data set was delivered.
         office_id (int): A foreign key which points to the actual office instance.
-        office (pyramid_oereb.standard.models.noise_sensitivity_levels.Office):
+        office (pyramid_oereb.standard.models.cantonal_nature_reserves.Office):
             The actual office instance which the id points to.
     """
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     __tablename__ = 'data_integration'
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     date = sa.Column(sa.DateTime, nullable=False)
@@ -109,10 +109,10 @@ class ReferenceDefinition(Base):
         canton (str): The canton this definition is related to.
         municipality (int): The municipality this definition is related to.
         office_id (int): The foreign key constraint which the definition is related to.
-        responsible_office (pyramid_oereb.standard.models.noise_sensitivity_levels.Office):
+        responsible_office (pyramid_oereb.standard.models.cantonal_nature_reserves.Office):
             The dedicated relation to the office instance from database.
     """
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     __tablename__ = 'reference_definition'
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     topic = sa.Column(sa.String, nullable=True)
@@ -141,7 +141,7 @@ class DocumentBase(Base):
         type (str): This is a sqlalchemy related attribute to provide database table
             inheritance.
     """
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     __tablename__ = 'document_base'
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     text_at_web = sa.Column(JSONType, nullable=True)
@@ -176,10 +176,10 @@ class Document(DocumentBase):
         file (str): The document itself as a binary representation (PDF). It is string but
             BaseCode64 encoded.
         office_id (int): The foreign key to the office which is in charge for this document.
-        responsible_office (pyramid_oereb.standard.models.noise_sensitivity_levels.Office):
+        responsible_office (pyramid_oereb.standard.models.cantonal_nature_reserves.Office):
             The dedicated relation to the office instance from database.
     """
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     __tablename__ = 'document'
     __mapper_args__ = {
         'polymorphic_identity': 'document'
@@ -218,10 +218,10 @@ class Article(DocumentBase):
         number (str): The number which identifies this article in its parent document.
         text (dict): A simple multilingual string to describe the article or give some related info.
         document_id (int): The foreign key to the document this article is taken from.
-        document_id (pyramid_oereb.standard.models.noise_sensitivity_levels.Document):
+        document_id (pyramid_oereb.standard.models.cantonal_nature_reserves.Document):
             The dedicated relation to the document instance from database.
     """
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     __tablename__ = 'article'
     __mapper_args__ = {
         'polymorphic_identity': 'article'
@@ -257,7 +257,7 @@ class ViewService(Base):
         reference_wms (str): The actual url which leads to the desired cartographic representation.
         legend_at_web (str): A link leading to a wms describing document (png).
     """
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     __tablename__ = 'view_service'
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     reference_wms = sa.Column(sa.String, nullable=False)
@@ -268,7 +268,7 @@ class ViewService(Base):
 class LegendEntry(Base):
     """
     A class based legend system which is directly related to
-    :class:`pyramid_oereb.standard.models.noise_sensitivity_levels.ViewService`.
+    :class:`pyramid_oereb.standard.models.cantonal_nature_reserves.ViewService`.
 
     Attributes:
         id (int): The identifier. This is used in the database only and must not be set manually. If
@@ -288,10 +288,10 @@ class LegendEntry(Base):
             the official two letters short version (e.g.'BE') {topic} as the name of the
             topic and {bfsnr} as the municipality id of the federal office of statistics.
         view_service_id (int): The foreign key to the view service this legend entry is related to.
-        view_service (pyramid_oereb.standard.models.noise_sensitivity_levels.ViewService):
+        view_service (pyramid_oereb.standard.models.cantonal_nature_reserves.ViewService):
             The dedicated relation to the view service instance from database.
     """
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     __tablename__ = 'legend_entry'
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     symbol = sa.Column(sa.String, nullable=False)
@@ -335,14 +335,14 @@ class PublicLawRestriction(Base):
             generation.
         view_service_id (int): The foreign key to the view service this public law restriction is
             related to.
-        view_service (pyramid_oereb.standard.models.noise_sensitivity_levels.ViewService):
+        view_service (pyramid_oereb.standard.models.cantonal_nature_reserves.ViewService):
             The dedicated relation to the view service instance from database.
         office_id (int): The foreign key to the office which is responsible to this public law
             restriction.
-        responsible_office (pyramid_oereb.standard.models.noise_sensitivity_levels.Office):
+        responsible_office (pyramid_oereb.standard.models.cantonal_nature_reserves.Office):
             The dedicated relation to the office instance from database.
     """
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     __tablename__ = 'public_law_restriction'
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     information = sa.Column(JSONType, nullable=False)
@@ -386,24 +386,24 @@ class Geometry(Base):
             machine  readable response format (XML).
         public_law_restriction_id (int): The foreign key to the public law restriction this geometry
             is  related to.
-        public_law_restriction (pyramid_oereb.standard.models.noise_sensitivity_levels
+        public_law_restriction (pyramid_oereb.standard.models.cantonal_nature_reserves
             .PublicLawRestriction): The dedicated relation to the public law restriction instance from
             database.
         office_id (int): The foreign key to the office which is responsible to this public law
             restriction.
-        responsible_office (pyramid_oereb.standard.models.noise_sensitivity_levels.Office):
+        responsible_office (pyramid_oereb.standard.models.cantonal_nature_reserves.Office):
             The dedicated relation to the office instance from database.
         geom (geoalchemy2.types.Geometry): The geometry it's self. For type information see
             geoalchemy docs (https://geoalchemy-2.readthedocs.io/en/0.4.2/types.html) dependent on the
             configured type.  This concrete one is POLYGON
     """
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     __tablename__ = 'geometry'
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     law_status = sa.Column(sa.String, nullable=False)
     published_from = sa.Column(sa.Date, nullable=False)
     geo_metadata = sa.Column(sa.String, nullable=True)
-    geom = sa.Column(GeoAlchemyGeometry('POLYGON', srid=srid), nullable=False)
+    geom = sa.Column(GeoAlchemyGeometry('MULTIPOLYGON', srid=srid), nullable=False)
     public_law_restriction_id = sa.Column(
         sa.String,
         sa.ForeignKey(PublicLawRestriction.id),
@@ -434,13 +434,13 @@ class PublicLawRestrictionBase(Base):
             on another  public law restriction.
         public_law_restriction_base_id (int): The foreign key to the public law restriction which is
             the  base for the public law restriction.
-        plr (pyramid_oereb.standard.models.noise_sensitivity_levels.PublicLawRestriction):
+        plr (pyramid_oereb.standard.models.cantonal_nature_reserves.PublicLawRestriction):
             The dedicated relation to the public law restriction (which bases on) instance from  database.
-        base (pyramid_oereb.standard.models.noise_sensitivity_levels.PublicLawRestriction):
+        base (pyramid_oereb.standard.models.cantonal_nature_reserves.PublicLawRestriction):
             The dedicated relation to the public law restriction (which is the base) instance from database.
     """
     __tablename__ = 'public_law_restriction_base'
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     public_law_restriction_id = sa.Column(
         sa.String,
@@ -476,13 +476,13 @@ class PublicLawRestrictionRefinement(Base):
             refined by  another public law restriction.
         public_law_restriction_refinement_id (int): The foreign key to the public law restriction
             which is  the refinement of the public law restriction.
-        plr (pyramid_oereb.standard.models.noise_sensitivity_levels.PublicLawRestriction):
+        plr (pyramid_oereb.standard.models.cantonal_nature_reserves.PublicLawRestriction):
             The dedicated relation to the public law restriction (which refines) instance from  database.
-        base (pyramid_oereb.standard.models.noise_sensitivity_levels.PublicLawRestriction):
+        base (pyramid_oereb.standard.models.cantonal_nature_reserves.PublicLawRestriction):
             The dedicated relation to the public law restriction (which is refined) instance from database.
     """
     __tablename__ = 'public_law_restriction_refinement'
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     public_law_restriction_id = sa.Column(
         sa.String,
@@ -517,13 +517,13 @@ class PublicLawRestrictionDocument(Base):
             relation to  a document.
         document_id (int): The foreign key to the document which has relation to the public law
             restriction.
-        plr (pyramid_oereb.standard.models.noise_sensitivity_levels.PublicLawRestriction):
+        plr (pyramid_oereb.standard.models.cantonal_nature_reserves.PublicLawRestriction):
             The dedicated relation to the public law restriction instance from database.
-        document (pyramid_oereb.standard.models.noise_sensitivity_levels.DocumentBase):
+        document (pyramid_oereb.standard.models.cantonal_nature_reserves.DocumentBase):
             The dedicated relation to the document instance from database.
     """
     __tablename__ = 'public_law_restriction_document'
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     public_law_restriction_id = sa.Column(
         sa.String,
@@ -555,15 +555,15 @@ class DocumentReference(Base):
             you  don't like it - don't care about.
         document_id (int): The foreign key to the document which references to another document.
         reference_document_id (int): The foreign key to the document which is referenced.
-        document (pyramid_oereb.standard.models.noise_sensitivity_levels.Document):
+        document (pyramid_oereb.standard.models.cantonal_nature_reserves.Document):
             The dedicated relation to the document (which references) instance from database.
-        referenced_document (pyramid_oereb.standard.models.noise_sensitivity_levels.Document):
+        referenced_document (pyramid_oereb.standard.models.cantonal_nature_reserves.Document):
             The dedicated relation to the document (which is referenced) instance from database.
         article_numbers (str): A colon of article numbers which clarify the reference. This is a
             string  separated by '|'.
     """
     __tablename__ = 'document_reference'
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     document_id = sa.Column(
         sa.String,
@@ -601,7 +601,7 @@ class DocumentReferenceDefinition(Base):
             reference  definition.
     """
     __tablename__ = 'document_reference_definition'
-    __table_args__ = {'schema': 'noise_sensitivity_levels'}
+    __table_args__ = {'schema': 'cantonal_nature_reserves'}
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     document_id = sa.Column(
         sa.String,
