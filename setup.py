@@ -8,7 +8,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     version=__version__,
     include_package_data=True,
-    install_requires=['plaster_pastedeploy', 'pyramid', 'pyramid_jinja2', 'pyramid_debugtoolbar', 'waitress', 'pyramid_oereb[recommend]==1.4.0'],
+    install_requires=['plaster_pastedeploy', 'pyramid', 'pyramid_jinja2', 'pyramid_debugtoolbar', 'waitress', 'pyramid_oereb[recommend]==1.5.0'],
     author='Peter Schär, Amt für Geoinformation des Kantons Bern',
     author_email='peter.schaer@bve.be.ch',
     description='Implementierung von pyramid_oereb für den ÖREB-Kataster des Kantons Bern.',

@@ -80,9 +80,19 @@ pyramid_oereb:
     # Whether to display the RealEstate_SubunitOfLandRegister (Grundbuchkreis) in the pdf extract or not.
     # Default to true.
     display_real_estate_subunit_of_land_register: true
+    # whether to display the "Certification" section in the pdf extract or not.
+    # Default to true
+    display_certification: false
     # Split themes up, so that each sub theme gets its own page
     # Disabled by default.
     split_sub_themes: true
+    # Determine if a multiple page table of content (TOC) is used with a slightly different layout but
+    # better page numbering. If it is known that the TOC is very long and runs over more than one page it
+    # is preferred to set this to true.
+    multi_page_TOC: true
+    # Specify any additional URL parameters that the print shall use for WMS calls
+    wms_url_params:
+      TRANSPARENT: 'true'
 
   # The "app_schema" property contains only one sub property "name". This is directly related to the database
   # creation process, because this name is used as schema name in the target database. The app_schema holds
@@ -211,8 +221,8 @@ pyramid_oereb:
       layer:
         name: geodb.mopube_lif
       style:
-        stroke_opacity: 0.6
-        stroke_color: '#e60000'
+        stroke_opacity: 0.75
+        stroke_color: '#ff0000'
         stroke_width: 3
     type_mapping:
       - mapping: RealEstate
@@ -282,7 +292,7 @@ pyramid_oereb:
         # The connection path where the database can be found
         db_connection: *main_db_connection
         # The model which maps the municipality database table.
-        model: pyramid_oereb.standard.models.main.Municipality
+        model: oereb_server.models.main.Municipality
 
   # The processor of the oereb project needs access to glossary data. In the standard configuration this
   # is assumed to be read from a database. Hint: If you want to read the glossary out of an existing database
@@ -299,7 +309,7 @@ pyramid_oereb:
         # The connection path where the database can be found
         db_connection: *main_db_connection
         # The model which maps the glossary database table.
-        model: pyramid_oereb.standard.models.main.Glossary
+        model: oereb_server.models.main.Glossary
 
   # The processor of the oereb project needs access to exclusion of liability data. In the standard
   # configuration this is assumed to be read from a database. Hint: If you wamt to read the exclusion of
@@ -317,7 +327,7 @@ pyramid_oereb:
         # The connection path where the database can be found
         db_connection: *main_db_connection
         # The model which maps the exclusion_of_liability database table.
-        model: pyramid_oereb.standard.models.main.ExclusionOfLiability
+        model: oereb_server.models.main.ExclusionOfLiability
 
   # The extract is the entry point which binds everything
   # related to data together.
@@ -339,8 +349,8 @@ pyramid_oereb:
         de: https://www.belex.sites.be.ch/frontend/texts_of_law/247
         fr: https://www.belex.sites.be.ch/frontend/texts_of_law/247
     general_information:
-        de: Der Inhalt des ÖREB-Katasters wird als bekannt vorausgesetzt. Der Kanton Bern ist für die Genauigkeit und Verlässlichkeit der gesetzgebenden Dokumente in elektronischer Form nicht haftbar. Der Auszug hat rein informativen Charakter und begründet insbesondere keine Rechte und Pflichten. Rechtsverbindlich sind diejenigen Dokumente, welche rechtskräftig verabschiedet oder veröffentlicht worden sind. Mit der Beglaubigung des Auszugs wird die Übereinstimmung des Auszuges mit dem ÖREB-Kataster zum Zeitpunkt der Auszugserstellung bestätigt.
-        fr: Le contenu du cadastre RDPPF est supposé connu. Le canton de Berne n’engage pas sa responsabilité sur l’exactitude ou la fiabilité des documents législatifs dans leur version électronique. L’extrait a un caractère informatif et ne crée aucun droit ou obligation. Les documents juridiquement contraignants sont ceux qui ont été légalement adoptés ou publiés. La certification d’un extrait confirme la concordance de cet extrait avec le cadastre RDPPF à la date d’établissement dudit extrait.
+        de: "Der Inhalt des ÖREB-Katasters wird als bekannt vorausgesetzt. Der Kanton Bern ist für die Genauigkeit und Verlässlichkeit der gesetzgebenden Dokumente in elektronischer Form nicht haftbar. Der Auszug hat rein informativen Charakter und begründet insbesondere keine Rechte und Pflichten. Rechtsverbindlich sind diejenigen Dokumente, welche rechtskräftig verabschiedet oder veröffentlicht worden sind. Mit der Beglaubigung des Auszugs wird die Übereinstimmung des Auszuges mit dem ÖREB-Kataster zum Zeitpunkt der Auszugserstellung bestätigt. Weitere Informationen zum ÖREB-Kataster finden Sie unter: www.be.ch/oerebk oder www.cadastre.ch"
+        fr: "Le contenu du cadastre RDPPF est supposé connu. Le canton de Berne n’engage pas sa responsabilité sur l’exactitude ou la fiabilité des documents législatifs dans leur version électronique. L’extrait a un caractère informatif et ne crée aucun droit ou obligation. Les documents juridiquement contraignants sont ceux qui ont été légalement adoptés ou publiés. La certification d’un extrait confirme la concordance de cet extrait avec le cadastre RDPPF à la date d’établissement dudit extrait. Vous trouverez d’autres informations sur le cadastre RDPPF sous: www.be.ch/crdppf ou www.cadastre.ch"
 
 
   # All PLRs which are provided by this application. This is related to all application behaviour, especially
@@ -402,7 +412,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr732
-      code: RegionalLandUsePlans
+      code: ch.BE.RegionalLandUsePlans
       geometry_type: MULTIPOLYGON
       # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
       # and not as calculation errors (false trues) due to topological imperfections
@@ -433,7 +443,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr731
-      code: CantonalLandUsePlans
+      code: ch.BE.CantonalLandUsePlans
       geometry_type: MULTIPOLYGON
       # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
       # and not as calculation errors (false trues) due to topological imperfections
@@ -928,7 +938,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr1591
-      code: RegionalForestDistanceLines
+      code: ch.BE.RegionalForestDistanceLines
       geometry_type: LINESTRING
       thresholds:
         length:
@@ -957,7 +967,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr1592
-      code: CantonalForestDistanceLines
+      code: ch.BE.CantonalForestDistanceLines
       geometry_type: LINESTRING
       thresholds:
         length:
@@ -986,7 +996,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr0036
-      code: CantonalStreetBuildingLines
+      code: ch.BE.CantonalStreetBuildingLines
       geometry_type: MULTILINESTRING
       thresholds:
         length:
@@ -1015,7 +1025,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr0086
-      code: cantonal_nature_reserves
+      code: ch.BE.CantonalNatureReserves
       geometry_type: MULTIPOLYGON
       thresholds:
         length:
@@ -1044,7 +1054,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr0085
-      code: regional_protected_botanical_objects
+      code: ch.BE.RegionalProtectedBotanicalObjects
       geometry_type: GEOMETRYCOLLECTION
       thresholds:
         length:
@@ -1073,7 +1083,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr0084
-      code: regional_protected_geological_objects
+      code: ch.BE.RegionalProtectedGeologicalObjects
       geometry_type: POINT
       thresholds:
         length:
