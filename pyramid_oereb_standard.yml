@@ -105,7 +105,7 @@ pyramid_oereb:
     name: pyramid_oereb_main
     models: oereb_server.models.main
     db_connection: &main_db_connection
-      {DBCONFIG}
+	  {DBCONFIG}
 
   # Define the SRID which your server is representing. Note: Only one projection system is possible in the
   # application. It does not provide any reprojection nor data in different projection systems. Take care in
@@ -473,6 +473,35 @@ pyramid_oereb:
         in_force: inForce
         running_modifications: runningModifications
 
+    - name: plr0036
+      code: ch.BE.CantonalStreetBuildingLines
+      geometry_type: MULTILINESTRING
+      thresholds:
+        length:
+          limit: 1.0
+        area:
+          limit: 1.0
+      text:
+        de: Baulinien Kantonsstrassen
+        fr: Alignements des routes cantonales
+      language: de
+      federal: false
+      standard: true
+      view_service:
+        layer_index: 1
+        layer_opacity: 0.75
+      source:
+        class: pyramid_oereb.standard.sources.plr.DatabaseSource
+        params:
+          db_connection: *main_db_connection
+          models: oereb_server.models.cantonal_street_building_lines
+      hooks:
+        get_symbol: pyramid_oereb.standard.hook_methods.get_symbol
+        get_symbol_ref: pyramid_oereb.standard.hook_methods.get_symbol_ref
+      law_status:
+        in_force: inForce
+        running_modifications: runningModifications
+
     - name: plr87
       code: MotorwaysProjectPlaningZones
       geometry_type: MULTIPOLYGON
@@ -531,35 +560,6 @@ pyramid_oereb:
         in_force: inForce
         running_modifications: runningModifications
 
-    - name: plr97
-      code: RailwaysBuildingLines
-      geometry_type: LINESTRING
-      thresholds:
-        length:
-          limit: 1.0
-        area:
-          limit: 1.0
-      text:
-        de: Baulinien Eisenbahnanlagen
-        fr: Alignements des installations ferroviaires
-      language: de
-      federal: true
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 0.75
-      source:
-        class: pyramid_oereb.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          models: oereb_server.models.railways_building_lines
-      hooks:
-        get_symbol: pyramid_oereb.standard.hook_methods.get_symbol
-        get_symbol_ref: pyramid_oereb.standard.hook_methods.get_symbol_ref
-      law_status:
-        in_force: inForce
-        running_modifications: runningModifications
-
     - name: plr96
       code: RailwaysProjectPlanningZones
       geometry_type: POLYGON
@@ -582,6 +582,35 @@ pyramid_oereb:
         params:
           db_connection: *main_db_connection
           models: oereb_server.models.railways_project_planning_zones
+      hooks:
+        get_symbol: pyramid_oereb.standard.hook_methods.get_symbol
+        get_symbol_ref: pyramid_oereb.standard.hook_methods.get_symbol_ref
+      law_status:
+        in_force: inForce
+        running_modifications: runningModifications
+
+    - name: plr97
+      code: RailwaysBuildingLines
+      geometry_type: LINESTRING
+      thresholds:
+        length:
+          limit: 1.0
+        area:
+          limit: 1.0
+      text:
+        de: Baulinien Eisenbahnanlagen
+        fr: Alignements des installations ferroviaires
+      language: de
+      federal: true
+      standard: true
+      view_service:
+        layer_index: 1
+        layer_opacity: 0.75
+      source:
+        class: pyramid_oereb.standard.sources.plr.DatabaseSource
+        params:
+          db_connection: *main_db_connection
+          models: oereb_server.models.railways_building_lines
       hooks:
         get_symbol: pyramid_oereb.standard.hook_methods.get_symbol
         get_symbol_ref: pyramid_oereb.standard.hook_methods.get_symbol_ref
@@ -995,17 +1024,17 @@ pyramid_oereb:
         in_force: inForce
         running_modifications: runningModifications
 
-    - name: plr0036
-      code: ch.BE.CantonalStreetBuildingLines
-      geometry_type: MULTILINESTRING
+    - name: plr0084
+      code: ch.BE.RegionalProtectedGeologicalObjects
+      geometry_type: POINT
       thresholds:
         length:
           limit: 1.0
         area:
           limit: 1.0
       text:
-        de: Baulinien Kantonsstrassen
-        fr: Alignements des routes cantonales
+        de: Geschützte geologische Objekte regionaler Bedeutung
+        fr: Objets protégés géologiques d’importance régionale
       language: de
       federal: false
       standard: true
@@ -1016,36 +1045,7 @@ pyramid_oereb:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
           db_connection: *main_db_connection
-          models: oereb_server.models.cantonal_street_building_lines
-      hooks:
-        get_symbol: pyramid_oereb.standard.hook_methods.get_symbol
-        get_symbol_ref: pyramid_oereb.standard.hook_methods.get_symbol_ref
-      law_status:
-        in_force: inForce
-        running_modifications: runningModifications
-
-    - name: plr0086
-      code: ch.BE.CantonalNatureReserves
-      geometry_type: MULTIPOLYGON
-      thresholds:
-        length:
-          limit: 1.0
-        area:
-          limit: 1.0
-      text:
-        de: Kantonale Naturschutzgebiete
-        fr: Zones cantonales de protection de la nature
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 0.75
-      source:
-        class: pyramid_oereb.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          models: oereb_server.models.cantonal_nature_reserves
+          models: oereb_server.models.regional_protected_geological_objects
       hooks:
         get_symbol: pyramid_oereb.standard.hook_methods.get_symbol
         get_symbol_ref: pyramid_oereb.standard.hook_methods.get_symbol_ref
@@ -1082,17 +1082,17 @@ pyramid_oereb:
         in_force: inForce
         running_modifications: runningModifications
 
-    - name: plr0084
-      code: ch.BE.RegionalProtectedGeologicalObjects
-      geometry_type: POINT
+    - name: plr0086
+      code: ch.BE.CantonalNatureReserves
+      geometry_type: MULTIPOLYGON
       thresholds:
         length:
           limit: 1.0
         area:
           limit: 1.0
       text:
-        de: Geschützte geologische Objekte regionaler Bedeutung
-        fr: Objets protégés géologiques d’importance régionale
+        de: Kantonale Naturschutzgebiete
+        fr: Zones cantonales de protection de la nature
       language: de
       federal: false
       standard: true
@@ -1103,7 +1103,7 @@ pyramid_oereb:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
           db_connection: *main_db_connection
-          models: oereb_server.models.regional_protected_geological_objects
+          models: oereb_server.models.cantonal_nature_reserves
       hooks:
         get_symbol: pyramid_oereb.standard.hook_methods.get_symbol
         get_symbol_ref: pyramid_oereb.standard.hook_methods.get_symbol_ref
