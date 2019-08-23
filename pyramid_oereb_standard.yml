@@ -82,7 +82,7 @@ pyramid_oereb:
     display_real_estate_subunit_of_land_register: true
     # whether to display the "Certification" section in the pdf extract or not.
     # Default to true
-    display_certification: false
+    display_certification: true
     # Split themes up, so that each sub theme gets its own page
     # Disabled by default.
     split_sub_themes: true
@@ -105,7 +105,7 @@ pyramid_oereb:
     name: pyramid_oereb_main
     models: oereb_server.models.main
     db_connection: &main_db_connection
-	  {DBCONFIG}
+      {DBCONFIG}
 
   # Define the SRID which your server is representing. Note: Only one projection system is possible in the
   # application. It does not provide any reprojection nor data in different projection systems. Take care in
@@ -376,7 +376,7 @@ pyramid_oereb:
               - Linienbezogene Festlegungen
               - Punktbezogene Festlegungen
               - Surfaces de zones de l’affectation primaire
-              - Surfaces de zones de l’affectation primaire (Type de zone d'affectation)
+              - Surfaces de zones de l’affectation primaire (Zone d'affectation)
               - Surfaces de zones de l’affectation primaire (Classe de construction)
               - Zones superposées
               - Autres périmètres superposés
@@ -398,7 +398,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -412,7 +412,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr732
-      code: ch.BE.RegionalLandUsePlans
+      code: RegionalLandUsePlans
       geometry_type: MULTIPOLYGON
       # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
       # and not as calculation errors (false trues) due to topological imperfections
@@ -429,7 +429,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -443,7 +443,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr731
-      code: ch.BE.CantonalLandUsePlans
+      code: CantonalLandUsePlans
       geometry_type: MULTIPOLYGON
       # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
       # and not as calculation errors (false trues) due to topological imperfections
@@ -460,7 +460,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -474,7 +474,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr0036
-      code: ch.BE.CantonalStreetBuildingLines
+      code: CantonalStreetBuildingLines
       geometry_type: MULTILINESTRING
       thresholds:
         length:
@@ -489,7 +489,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -518,7 +518,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -547,7 +547,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -576,7 +576,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -605,7 +605,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -634,7 +634,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -663,7 +663,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -692,7 +692,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -721,7 +721,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -750,7 +750,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -779,7 +779,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -808,7 +808,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -837,7 +837,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -866,7 +866,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -895,7 +895,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -924,7 +924,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -953,7 +953,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -967,7 +967,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr1591
-      code: ch.BE.RegionalForestDistanceLines
+      code: RegionalForestDistanceLines
       geometry_type: LINESTRING
       thresholds:
         length:
@@ -982,7 +982,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -996,7 +996,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr1592
-      code: ch.BE.CantonalForestDistanceLines
+      code: CantonalForestDistanceLines
       geometry_type: LINESTRING
       thresholds:
         length:
@@ -1011,7 +1011,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -1025,7 +1025,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr0084
-      code: ch.BE.RegionalProtectedGeologicalObjects
+      code: RegionalProtectedGeologicalObjects
       geometry_type: POINT
       thresholds:
         length:
@@ -1040,7 +1040,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -1054,7 +1054,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr0085
-      code: ch.BE.RegionalProtectedBotanicalObjects
+      code: RegionalProtectedBotanicalObjects
       geometry_type: GEOMETRYCOLLECTION
       thresholds:
         length:
@@ -1063,13 +1063,13 @@ pyramid_oereb:
           limit: 1.0
       text:
         de: Geschützte botanische Objekte regionaler Bedeutung
-        fr: Zones cantonales de protection de la nature
+        fr: Objets botaniques protégés d’importance régionale
       language: de
       federal: false
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:
@@ -1083,7 +1083,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr0086
-      code: ch.BE.CantonalNatureReserves
+      code: CantonalNatureReserves
       geometry_type: MULTIPOLYGON
       thresholds:
         length:
@@ -1098,7 +1098,7 @@ pyramid_oereb:
       standard: true
       view_service:
         layer_index: 1
-        layer_opacity: 0.75
+        layer_opacity: 1.0
       source:
         class: pyramid_oereb.standard.sources.plr.DatabaseSource
         params:

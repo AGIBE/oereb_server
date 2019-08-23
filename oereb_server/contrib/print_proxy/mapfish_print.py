@@ -26,6 +26,7 @@ class BERenderer(Renderer):
                         customParams['map'] = 'oereb_de'
                         del lyr['customParams']
                         lyr['customParams'] = customParams
+            plr['baseLayers']['layers'].reverse()
         
 
         # Und hier noch für die Titelseite
