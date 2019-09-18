@@ -412,7 +412,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr732
-      code: RegionalLandUsePlans
+      code: ch.BE.RegionalLandUsePlans
       geometry_type: MULTIPOLYGON
       # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
       # and not as calculation errors (false trues) due to topological imperfections
@@ -443,7 +443,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr731
-      code: CantonalLandUsePlans
+      code: ch.BE.CantonalLandUsePlans
       geometry_type: MULTIPOLYGON
       # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
       # and not as calculation errors (false trues) due to topological imperfections
@@ -474,7 +474,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr0036
-      code: CantonalStreetBuildingLines
+      code: ch.BE.CantonalStreetBuildingLines
       geometry_type: MULTILINESTRING
       thresholds:
         length:
@@ -967,7 +967,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr1591
-      code: RegionalForestDistanceLines
+      code: ch.BE.RegionalForestDistanceLines
       geometry_type: LINESTRING
       thresholds:
         length:
@@ -996,7 +996,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr1592
-      code: CantonalForestDistanceLines
+      code: ch.BE.CantonalForestDistanceLines
       geometry_type: LINESTRING
       thresholds:
         length:
@@ -1025,7 +1025,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr0084
-      code: RegionalProtectedGeologicalObjects
+      code: ch.BE.RegionalProtectedGeologicalObjects
       geometry_type: POINT
       thresholds:
         length:
@@ -1054,7 +1054,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr0085
-      code: RegionalProtectedBotanicalObjects
+      code: ch.BE.RegionalProtectedBotanicalObjects
       geometry_type: GEOMETRYCOLLECTION
       thresholds:
         length:
@@ -1083,7 +1083,7 @@ pyramid_oereb:
         running_modifications: runningModifications
 
     - name: plr0086
-      code: CantonalNatureReserves
+      code: ch.BE.CantonalNatureReserves
       geometry_type: MULTIPOLYGON
       thresholds:
         length:
