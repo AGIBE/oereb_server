@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from pyramid.config import Configurator
 
-__version__ = '1.2.2'
+__version__ = '1.2.3'
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.

@@ -105,7 +105,7 @@ pyramid_oereb:
     name: pyramid_oereb_main
     models: oereb_server.models.main
     db_connection: &main_db_connection
-      {DBCONFIG}
+	  {DBCONFIG}
 
   # Define the SRID which your server is representing. Note: Only one projection system is possible in the
   # application. It does not provide any reprojection nor data in different projection systems. Take care in
