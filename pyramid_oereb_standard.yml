@@ -56,6 +56,7 @@ pyramid_oereb:
     # The pyramid renderer which is used as proxy pass through to the desired service for printable static
     # extract. Here you can define the path to the logic which prepares the output as payload for print
     # service and returns the result to the user.
+    #renderer: pyramid_oereb.contrib.print_proxy.mapfish_print.Renderer
     renderer: oereb_server.contrib.print_proxy.mapfish_print.BERenderer
     # The minimum buffer in pixel at 72 DPI between the real estate and the map's border.
     # Die Buffer-Grösse ist nur für die WMS-URLs im JSON/XML relevant.
@@ -89,10 +90,26 @@ pyramid_oereb:
     # Determine if a multiple page table of content (TOC) is used with a slightly different layout but
     # better page numbering. If it is known that the TOC is very long and runs over more than one page it
     # is preferred to set this to true.
-    multi_page_TOC: true
+    # Group elements of "LegalProvision" and "Hints" with the same "Title.Text" together yes/no
+    # Disabled by default.
+    group_legal_provisions: false
+    # Will make an estimation of the total length of the Table of Content (TOC) and control that the page
+    # numbering in the output pdf is consistent with TOC numbering. If it is known that the TOC is very long and
+    # could run over more than one page, it is preferred to set this to true. The drawback is that it might need
+    # more time to generate the PDF. If set to false, it will assume that only one TOC page exists, and this can
+    # lead to wrong numbering in the TOC.
+    compute_toc_pages: true
     # Specify any additional URL parameters that the print shall use for WMS calls
     wms_url_params:
       TRANSPARENT: 'true'
+      map: 'oerebav_de'
+    # If you want the print to keep some custom URL parameters directly from the reference_wms you have defined,
+    # then use the configuration option wms_url_keep_params.
+    # In wms_url_keep_params, you can list which URL parameter values should be read from the reference_wms
+    # and used by the print.
+    wms_url_keep_params:
+      - map
+      - TRANSPARENT
 
   # The "app_schema" property contains only one sub property "name". This is directly related to the database
   # creation process, because this name is used as schema name in the target database. The app_schema holds
@@ -105,7 +122,7 @@ pyramid_oereb:
     name: pyramid_oereb_main
     models: oereb_server.models.main
     db_connection: &main_db_connection
-	  {DBCONFIG}
+      {DBCONFIG}
 
   # Define the SRID which your server is representing. Note: Only one projection system is possible in the
   # application. It does not provide any reprojection nor data in different projection systems. Take care in
@@ -187,7 +204,9 @@ pyramid_oereb:
     confederation: oereb_server/static/images/logo_confederation.png
     # The logo representing the oereb extract CI. You can use it as is because it is provided in this
     # repository, but if you need to change it for any reason: Feel free...
-    oereb: oereb_server/static/images/logo_oereb.png
+    oereb:
+      de: oereb_server/static/images/logo_oereb_de.png
+      fr: oereb_server/static/images/logo_oereb_fr.png
     # The logo representing your canton. Replace with your own logo!
     canton: oereb_server/static/images/logo_canton.png
 

@@ -3,6 +3,9 @@ from pyramid.config import Configurator
 from pyramid.response import Response
 from pyramid.httpexceptions import HTTPFound
 from pyramid.httpexceptions import HTTPNotFound
+from pyramid.httpexceptions import HTTPOk
+import json
+from oereb_server import __version__
 
 def get_parameter_value(possible_parameter_names, request):
 
@@ -15,6 +18,7 @@ def get_parameter_value(possible_parameter_names, request):
     return value
 
 def wo_redirector(request):
+    version = get_parameter_value(['version', 'VERSION', 'Version'], request)
     egrid = get_parameter_value(['egrid', 'EGRID', 'Egrid'], request)
     language = get_parameter_value(['lang','LANG','Lang'], request)
     base_url = 'https://www.oereb.apps.be.ch'
@@ -22,10 +26,12 @@ def wo_redirector(request):
         base_url = 'https://www.oereb-test.apps.be.ch'
     
     if egrid is not None and language is not None:
-
         extract_query_string = '/extract/reduced/pdf/%s?LANG=%s' % (egrid, language)
         extract_url = base_url + extract_query_string
         return HTTPFound(location=extract_url)
+    elif version is not None:
+        version_json = json.dumps({"version": __version__})
+        return HTTPOk(body=version_json, content_type='application/json')
     else:
         return HTTPNotFound()
 
