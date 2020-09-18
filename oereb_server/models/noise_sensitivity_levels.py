@@ -91,7 +91,7 @@ class DataIntegration(Base):
     __tablename__ = 'data_integration'
     id = sa.Column(sa.String, primary_key=True, autoincrement=False)
     date = sa.Column(sa.DateTime, nullable=False)
-    office_id = sa.Column(sa.String, sa.ForeignKey(Office.id), nullable=False)
+    office_id = sa.Column(sa.String, sa.ForeignKey(Office.id, deferrable=True, initially='deferred'), nullable=False)
     office = relationship(Office)
     liefereinheit = sa.Column(sa.Integer, nullable=True)
 
@@ -200,7 +200,7 @@ class Document(DocumentBase):
     )
     office_id = sa.Column(
         sa.String,
-        sa.ForeignKey(Office.id),
+        sa.ForeignKey(Office.id, deferrable=True, initially='deferred'),
         nullable=False
     )
     responsible_office = relationship(Office)
@@ -364,7 +364,7 @@ class PublicLawRestriction(Base):
     )
     office_id = sa.Column(
         sa.String,
-        sa.ForeignKey(Office.id),
+        sa.ForeignKey(Office.id, deferrable=True, initially='deferred'),
         nullable=False
     )
     responsible_office = relationship(Office)
@@ -415,7 +415,7 @@ class Geometry(Base):
     )
     office_id = sa.Column(
         sa.String,
-        sa.ForeignKey(Office.id),
+        sa.ForeignKey(Office.id, deferrable=True, initially='deferred'),
         nullable=False
     )
     responsible_office = relationship(Office)

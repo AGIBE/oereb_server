@@ -1,4 +1,3 @@
-from waitress import serve
 from pyramid.config import Configurator
 from pyramid.response import Response
 from pyramid.httpexceptions import HTTPFound
@@ -31,7 +30,7 @@ def wo_redirector(request):
         return HTTPFound(location=extract_url)
     elif version is not None:
         version_json = json.dumps({"version": __version__})
-        return HTTPOk(body=version_json, content_type='application/json')
+        return HTTPOk(body=version_json, content_type='application/json', charset='UTF-8')
     else:
         return HTTPNotFound()
 

@@ -58,6 +58,8 @@ pyramid_oereb:
     # service and returns the result to the user.
     #renderer: pyramid_oereb.contrib.print_proxy.mapfish_print.Renderer
     renderer: oereb_server.contrib.print_proxy.mapfish_print.BERenderer
+    # Define whether all geometry data must be included when sending the data to the print service
+    with_geometry: False
     # The minimum buffer in pixel at 72 DPI between the real estate and the map's border.
     # Die Buffer-Grösse ist nur für die WMS-URLs im JSON/XML relevant.
     # Der Buffer für den PDF-Auszug muss in oereb_server_print (config.yaml => ZoomToFeatures)
@@ -192,7 +194,7 @@ pyramid_oereb:
     # The street number of the address of your office. For instance: 36
     number: 11
     # The ZIP code of the address of your office. For instance: 4410
-    postal_code: 3011
+    postal_code: 3013
     # The city name of the address of your office. For instance: Liestal
     city: Bern
 
