@@ -74,7 +74,7 @@ pyramid_oereb:
     # The map size (in millimeters) used to calculate the size of the requested map (for pdf export only).
     pdf_map_size_millimeters: [174, 99]
     # Base URL with application of the print server
-    base_url: http://localhost:8080/print/print/oereb
+    base_url: http://${PRINT_SERVICE_HOST}:${PRINT_SERVICE_PORT}/print/oereb
     # Name of the print template to use
     template_name: A4 portrait
     # The headers sent to the print
@@ -124,7 +124,7 @@ pyramid_oereb:
     name: pyramid_oereb_main
     models: oereb_server.models.main
     db_connection: &main_db_connection
-      {DBCONFIG}
+      postgresql://${POSTGRES_SERVICE_USER}:${POSTGRES_SERVICE_PASS}@${POSTGRES_SERVICE_HOST}:${POSTGRES_SERVICE_PORT}/${POSTGRES_SERVICE_DATABASE}
 
   # Define the SRID which your server is representing. Note: Only one projection system is possible in the
   # application. It does not provide any reprojection nor data in different projection systems. Take care in
