@@ -19,9 +19,3 @@ def test_invalid_egrid_de(running_server_instance):
     url = running_server_instance + "/wo_redirect?egrid=666&lang=de"
     res = requests.get(url)
     assert res.status_code == 204
-
-def test_version_correct(running_server_instance, version):
-    url = running_server_instance + "/wo_redirect?version=xxx"
-    res = requests.get(url)
-    assert res.status_code == 200
-    assert res.json()['version'] == version
