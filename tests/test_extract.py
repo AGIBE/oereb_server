@@ -52,6 +52,19 @@ def test_invalid_egrid(running_server_instance):
     res = requests.get(extract_url)
     assert res.status_code == 204
 
+def test_extract_pdf_url_scheme(running_server_instance, egrid_with_some_plr):
+    # oereb_server übergibt im JSON die URL auf sich selber.
+    # Da oereb_server hinter einem Reverse Proxy läuft, weiss
+    # er aber nichts von https und nimmt immer "nur" http.
+    # Diese URL wird in oereb_server fix auf https gestellt.
+    # Und zwar im Startup-Script mit dem Parameter url_scheme.
+    extract_url = running_server_instance + "/extract/reduced/pdf/" + egrid_with_some_plr + "?getspec=true"
+    res = requests.get(extract_url)
+    json = res.json()
+    url_logo = json['attributes']['CantonalLogoRef']
+    assert url_logo.lower().startswith('https://')
+
+
 def test_random_egrids(running_server_instance, random_egrids):
     for egrid in random_egrids:
         extract_url_json = running_server_instance + "/extract/reduced/json/" + egrid
