@@ -13,7 +13,7 @@ def add_cors_headers_response_callback(event):
         })
     event.request.add_response_callback(cors_headers)
 
-__version__ = '2.2.2'
+__version__ = '2.2.3'
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
