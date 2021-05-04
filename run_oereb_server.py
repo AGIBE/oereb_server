@@ -21,7 +21,7 @@ def main():
     with codecs.open('pyramid_oereb_standard.yml', "w", "utf-8") as config_file:
         config_file.write(rendered_config)
 
-    level = "development"
+    level = "production"
 
     template2 = Template(filename=level + '.mako')
     rendered_config2 = template2.render(**vars)
