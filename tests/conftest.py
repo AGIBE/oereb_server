@@ -94,3 +94,7 @@ def environment(pytestconfig):
 @pytest.fixture(scope="module")
 def egrids_for_concurrent_error():
     return ('CH594607413563', 'CH804335484602')
+
+@pytest.fixture(scope='module')
+def cors_header_name():
+    return "access-control-allow-origin"
