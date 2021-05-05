@@ -13,3 +13,8 @@ def test_invalid_url(running_server_instance):
 def test_config_valid(config):
     schema_name = config['pyramid_oereb']['app_schema']['name']
     assert schema_name == "pyramid_oereb_main"
+
+def test_debugtoolbar(running_server_instance):
+    debugtoolbar_url = running_server_instance + "/_debug_toolbar/"
+    res = requests.get(debugtoolbar_url)
+    assert res.status_code == 404
