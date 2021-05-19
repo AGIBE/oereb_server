@@ -33,7 +33,7 @@ def main():
     setup_logging(ini_path)
     application = get_app(ini_path, 'main')
     
-    serve(paste.translogger.TransLogger(application, setup_console_handler=False), listen='*:6543', url_scheme='https')
+    serve(paste.translogger.TransLogger(application, setup_console_handler=False), listen='*:6543', url_scheme='https', threads=16)
 
 if __name__ == "__main__":
     main()
