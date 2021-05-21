@@ -50,10 +50,6 @@ def running_server_instance(environment):
         server = 'https://www.oereb-test.apps.be.ch'
     elif environment == 'prod':
         server = 'https://www.oereb.apps.be.ch'
-    elif environment == 'prod1':
-        server = 'http://a4pa-www-oerebpyramid001.infra.be.ch'
-    elif environment == 'prod2':
-        server = 'http://a4pa-www-oerebpyramid002.infra.be.ch'
     return server
 
 @pytest.fixture(scope="module")
@@ -85,7 +81,7 @@ def random_egrids(db_connection_string, app_schema_name):
             return [egrid[0] for egrid in cur.fetchall()]
 
 def pytest_addoption(parser):
-    parser.addoption("--env", action="store", default="dev", help="Eines von dev, test, prod", choices=['dev', 'test', 'prod', 'prod1', 'prod2'])
+    parser.addoption("--env", action="store", default="dev", help="Eines von dev, test, prod", choices=['dev', 'test', 'prod'])
 
 @pytest.fixture(scope="module")
 def environment(pytestconfig):
