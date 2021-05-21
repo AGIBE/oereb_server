@@ -6,7 +6,6 @@ import threading
 thread_local = threading.local()
 
 # Testet, ob bei parallelen Requests keine Vermischungen stattfinden (s. #6725)
-@pytest.mark.xfail(condition="config.getoption('--env') not in ('dev','test')", reason="Concurrent Fehler aus #6725 nur auf dev behoben.")
 def test_concurrent_requests(running_server_instance, egrids_for_concurrent_error):
     slow_egrid, fast_egrid = egrids_for_concurrent_error
     slow_extract_url = running_server_instance + "/extract/reduced/json/" + slow_egrid
