@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from pyramid_oereb.contrib.print_proxy.mapfish_print import Renderer
+from pyramid_oereb.contrib.print_proxy.mapfish_print.mapfish_print import Renderer
 
 class BERenderer(Renderer):
     
-    def convert_to_printable_extract(self, extract_dict, feature_geometry, pdf_to_join):
-        ed = super(BERenderer, self).convert_to_printable_extract(extract_dict, feature_geometry, pdf_to_join)
+    def convert_to_printable_extract(self, extract_dict, feature_geometry):
+        ed = super(BERenderer, self).convert_to_printable_extract(extract_dict, feature_geometry)
 
         # Die Darstellungsreihenfolge auf den plr-Seiten ist für den Kanton
         # Bern ungünstig. Wir möchten den AV-WMS über dem PLR-WMS legen. Die

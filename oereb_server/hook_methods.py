@@ -2,7 +2,7 @@
 import datetime
 from pyramid.path import DottedNameResolver
 from pyramid_oereb import Config, database_adapter
-from pyramid_oereb.lib.records.office import OfficeRecord
+from pyramid_oereb.core.records.office import OfficeRecord
 
 def get_surveying_data_provider(real_estate):
     """
