@@ -5,7 +5,7 @@ import psycopg2
 
 @pytest.fixture(scope="module")
 def config():
-    with codecs.open(r"pyramid_oereb_standard.yml", "r", "utf-8") as cf:
+    with codecs.open(r"oereb_server.yml", "r", "utf-8") as cf:
         return yaml.load(cf, Loader=yaml.FullLoader)
 
 @pytest.fixture(scope="module")
@@ -21,11 +21,11 @@ def version():
 
 @pytest.fixture(scope="module")
 def app_schema_name(config):
-    return config['pyramid_oereb']['app_schema']['name']
+    return config['oereb_server']['app_schema']['name']
 
 @pytest.fixture(scope="module")
 def db_connection_string(config):
-    return config['pyramid_oereb']['app_schema']['db_connection']
+    return config['oereb_server']['app_schema']['db_connection']
 
 @pytest.fixture(scope="module")
 def largest_area_parcel(db_connection_string, app_schema_name):
@@ -69,6 +69,14 @@ def number_of_municipalities(db_connection_string, app_schema_name):
     with psycopg2.connect(db_connection_string) as conn:
         with conn.cursor() as cur:
             sql = 'select count(*) from %s.municipality' % (app_schema_name)
+            cur.execute(sql)
+            return cur.fetchone()[0]
+
+@pytest.fixture(scope="module")
+def number_of_topics_config(db_connection_string, app_schema_name):
+    with psycopg2.connect(db_connection_string) as conn:
+        with conn.cursor() as cur:
+            sql = 'select count(*) from %s.theme' % (app_schema_name)
             cur.execute(sql)
             return cur.fetchone()[0]
 

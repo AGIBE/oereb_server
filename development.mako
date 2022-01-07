@@ -18,6 +18,7 @@ pyramid.includes = pyramid_debugtoolbar
 # By default, the toolbar only appears for clients from IP addresses
 # '127.0.0.1' and '::1'.
 # debugtoolbar.hosts = 127.0.0.1 ::1
+debugtoolbar.active_panels = performance
 
 ###
 # wsgi server configuration
