@@ -21,7 +21,6 @@ Mako==1.1.5
 mako-render==0.1.0
 MarkupSafe==2.0.1
 numpy==1.19.5
--e git+https://github.com/AGIBE/oereb_server.git@fe3672488dee08747e9e41facfef53fb1f68a168#egg=oereb_server
 Paste==3.5.0
 PasteDeploy==2.1.1
 plaster==1.0
