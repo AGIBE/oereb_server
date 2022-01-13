@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from signal import SIG_DFL
 from pyramid.paster import get_app, setup_logging
 from waitress import serve
 from mako.template import Template
@@ -23,8 +24,12 @@ def main():
         'INI_LEVEL'
         ]
     vars = {}
+    level = ''
     for env_var in env_vars:
-        vars[env_var] = os.environ[env_var]
+        if env_var == 'INI_LEVEL':
+            level = os.environ[env_var]
+        else:
+            vars[env_var] = os.environ[env_var]
 
     # pyramid_oereb_standard.yml schreiben
     template = Template(filename='oereb_server.mako')
@@ -32,8 +37,6 @@ def main():
 
     with codecs.open('oereb_server.yml', "w", "utf-8") as config_file:
         config_file.write(rendered_config)
-
-    level = vars['INI_LEVEL']
 
     template2 = Template(filename=level + '.mako')
     rendered_config2 = template2.render(**vars)
