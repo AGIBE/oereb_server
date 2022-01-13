@@ -26,7 +26,6 @@ RUN apt update && \
 WORKDIR /usr/src
 RUN git clone https://github.com/openoereb/pyramid_oereb.git
 WORKDIR /usr/src/pyramid_oereb
-RUN git checkout v3
 RUN python setup.py develop
 
 WORKDIR /usr/src/oereb_server
