@@ -84,7 +84,6 @@ oereb_server:
     # Specify any additional URL parameters that the print shall use for WMS calls
     wms_url_params:
       TRANSPARENT: 'true'
-      map: 'oerebav_de'
     # If you want the print to keep some custom URL parameters directly from the reference_wms you have defined,
     # then use the configuration option wms_url_keep_params.
     # In wms_url_keep_params, you can list which URL parameter values should be read from the reference_wms
