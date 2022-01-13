@@ -25,7 +25,7 @@ Paste==3.5.0
 PasteDeploy==2.1.1
 plaster==1.0
 plaster-pastedeploy==0.7
-psycopg2==2.9.1
+psycopg2-binary==2.9.1
 pyconizer==0.1.4
 pycparser==2.21
 Pygments==2.11.2
@@ -35,13 +35,13 @@ pyproj==3.2.0
 pyramid==1.10.8
 pyramid-debugtoolbar==4.9
 pyramid-mako==1.1.0
-pyramid-oereb==2.0.0b8
+pyramid-oereb==2.0.0b9
 pyreproj==2.0.0
 pyrsistent==0.18.0
 PyYAML==5.4.1
 repoze.lru==0.7
 requests==2.26.0
-Shapely @ file://geoda.infra.be.ch/arbeit/Anwend/OEREBK/Dokumentation/P06_System/TS6_%C3%96REBServer/Software/wheels/Shapely-1.6.4.post2-cp37-cp37m-win_amd64.whl
+Shapely==1.6.4.post1
 simplejson==3.17.4
 six==1.16.0
 SQLAlchemy==1.4.23
