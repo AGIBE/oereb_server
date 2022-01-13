@@ -15,7 +15,8 @@ def main():
         'POSTGRES_PASSWORD',
         'POSTGRES_PORT',
         'POSTGRES_USER',
-        'PRINT_SERVICE_URL',
+        'PRINT_SERVICE_HOST',
+        'PRINT_SERVICE_PORT',
         'POSTGRES_LOGGER_DATABASE',
         'POSTGRES_LOGGER_SCHEMA',
         'POSTGRES_LOGGER_TABLE'
