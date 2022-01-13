@@ -59,7 +59,7 @@ formatter = generic
 
 [handler_sqlalchemylogger]
 class = c2cwsgiutils.sqlalchemylogger.handlers.SQLAlchemyHandler
-args = ({'url':'postgresql://${POSTGRES_LOGGER_USER}:${POSTGRES_LOGGER_PASS}@${POSTGRES_LOGGER_HOST}:${POSTGRES_LOGGER_PORT}/${POSTGRES_LOGGER_DATABASE}','tablename':'${POSTGRES_LOGGER_TABLE}','tableargs': {'schema':'${POSTGRES_LOGGER_SCHEMA}'}},'2601767,1200283')
+args = ({'url':'postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_LOGGER_DATABASE}','tablename':'${POSTGRES_LOGGER_TABLE}','tableargs': {'schema':'${POSTGRES_LOGGER_SCHEMA}'}},'healthcheck')
 level = NOTSET
 formatter = generic
 propagate = 0

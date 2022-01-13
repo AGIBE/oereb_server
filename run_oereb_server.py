@@ -26,10 +26,7 @@ def main():
     vars = {}
     level = ''
     for env_var in env_vars:
-        if env_var == 'INI_LEVEL':
-            level = os.environ[env_var]
-        else:
-            vars[env_var] = os.environ[env_var]
+        vars[env_var] = os.environ[env_var]
 
     # pyramid_oereb_standard.yml schreiben
     template = Template(filename='oereb_server.mako')
@@ -37,6 +34,9 @@ def main():
 
     with codecs.open('oereb_server.yml', "w", "utf-8") as config_file:
         config_file.write(rendered_config)
+
+    # ini-File schreiben (production oder development)
+    level = vars['INI_LEVEL']
 
     template2 = Template(filename=level + '.mako')
     rendered_config2 = template2.render(**vars)
