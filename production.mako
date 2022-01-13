@@ -11,8 +11,8 @@ pyramid.debug_authorization = false
 pyramid.debug_notfound = false
 pyramid.debug_routematch = false
 pyramid.default_locale_name = en
-pyramid_oereb.cfg.file = pyramid_oereb_standard.yml
-pyramid_oereb.cfg.section = pyramid_oereb
+pyramid_oereb.cfg.file = oereb_server.yml
+pyramid_oereb.cfg.section = oereb_server
 
 ###
 # wsgi server configuration
