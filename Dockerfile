@@ -6,7 +6,10 @@ WORKDIR /usr/src/oereb_server
 
 COPY ./dev-requirements.txt .
 COPY development.mako .
-COPY run_oereb_server.py .
+COPY create_config.py .
+COPY run_oereb_server_waitress.py .
+COPY run_oereb_server_waitress.sh .
+RUN chmod +x run_oereb_server_waitress.sh
 COPY production.mako .
 COPY oereb_server.mako .
 COPY requirements.txt .
@@ -36,6 +39,6 @@ RUN groupadd oereb && useradd -g oereb oerebrunner
 RUN chown -R oerebrunner:oereb /usr/src/oereb_server
 RUN chown -R oerebrunner:oereb /usr/src/pyramid_oereb
 
-ENTRYPOINT [ "gosu", "oerebrunner", "tini", "--" ]
 
-CMD ["python", "/usr/src/oereb_server/run_oereb_server.py"]
+ENTRYPOINT [ "gosu", "oerebrunner", "tini", "--" ]
+CMD ["/usr/src/oereb_server/run_oereb_server_waitress.sh"]
