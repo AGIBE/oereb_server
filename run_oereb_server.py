@@ -19,7 +19,8 @@ def main():
         'PRINT_SERVICE_PORT',
         'POSTGRES_LOGGER_DATABASE',
         'POSTGRES_LOGGER_SCHEMA',
-        'POSTGRES_LOGGER_TABLE'
+        'POSTGRES_LOGGER_TABLE',
+        'INI_LEVEL'
         ]
     vars = {}
     for env_var in env_vars:
@@ -32,7 +33,7 @@ def main():
     with codecs.open('oereb_server.yml', "w", "utf-8") as config_file:
         config_file.write(rendered_config)
 
-    level = "development"
+    level = vars['INI_LEVEL']
 
     template2 = Template(filename=level + '.mako')
     rendered_config2 = template2.render(**vars)
