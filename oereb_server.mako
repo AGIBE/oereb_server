@@ -59,7 +59,7 @@ oereb_server:
     # The map size (in millimeters) used to calculate the size of the requested map (for pdf export only).
     pdf_map_size_millimeters: [174, 99]
     # Base URL with application of the print server
-    base_url: http://${PRINT_SERVICE_HOST}:${PRINT_SERVICE_PORT}/print/oereb
+    base_url: ${PRINT_SERVICE_HOST}:${PRINT_SERVICE_PORT}${PRINT_SERVICE_PATH}
     # Name of the print tempate to use
     template_name: A4 portrait
     # The headers send to the print

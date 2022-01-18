@@ -3,7 +3,7 @@ from mako.template import Template
 import codecs
 import os
 
-def main():
+def run_create_config():
     # Alle Umgebungsvariablen in einen Dictionary abfüllen
     env_vars = [
         'POSTGRES_DATABASE',
@@ -13,6 +13,7 @@ def main():
         'POSTGRES_USER',
         'PRINT_SERVICE_HOST',
         'PRINT_SERVICE_PORT',
+        'PRINT_SERVICE_PATH',
         'POSTGRES_LOGGER_DATABASE',
         'POSTGRES_LOGGER_SCHEMA',
         'POSTGRES_LOGGER_TABLE',
@@ -40,4 +41,4 @@ def main():
         ini_file.write(rendered_config2)
 
 if __name__ == "__main__":
-    main()
+    run_create_config()

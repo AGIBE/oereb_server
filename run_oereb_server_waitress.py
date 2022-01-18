@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
-from signal import SIG_DFL
 from pyramid.paster import get_app, setup_logging
 from waitress import serve
 from mako.template import Template
 import paste
 from paste.translogger import TransLogger
+import create_config
 import os
 
 def main():
+
+    create_config.run_create_config()
 
     level = os.environ['INI_LEVEL']
 
