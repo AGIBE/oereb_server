@@ -4,7 +4,7 @@ from waitress import serve
 from mako.template import Template
 import paste
 from paste.translogger import TransLogger
-import create_config
+from oereb_server.scripts import create_config
 import os
 
 def main():
