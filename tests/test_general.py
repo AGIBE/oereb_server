@@ -11,8 +11,8 @@ def test_invalid_url(running_server_instance):
     assert res.status_code == 404
 
 def test_config_valid(config):
-    schema_name = config['pyramid_oereb']['app_schema']['name']
-    assert schema_name == "pyramid_oereb_main"
+    schema_name = config['oereb_server']['app_schema']['name']
+    assert schema_name == "oereb_server"
 
 def test_debugtoolbar(running_server_instance):
     debugtoolbar_url = running_server_instance + "/_debug_toolbar/"

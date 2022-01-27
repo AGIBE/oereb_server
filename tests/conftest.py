@@ -2,9 +2,13 @@ import pytest
 import codecs
 import yaml
 import psycopg2
+from oereb_server.scripts import create_config
 
 @pytest.fixture(scope="module")
 def config():
+    # create_config muss ausgeführt werden,
+    # damit oereb_server.yml existiert.
+    create_config.run_create_config()
     with codecs.open(r"oereb_server.yml", "r", "utf-8") as cf:
         return yaml.load(cf, Loader=yaml.FullLoader)
 

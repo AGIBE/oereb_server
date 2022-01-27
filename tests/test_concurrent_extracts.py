@@ -8,8 +8,8 @@ thread_local = threading.local()
 # Testet, ob bei parallelen Requests keine Vermischungen stattfinden (s. #6725)
 def test_concurrent_requests(running_server_instance, egrids_for_concurrent_error):
     slow_egrid, fast_egrid = egrids_for_concurrent_error
-    slow_extract_url = running_server_instance + "/extract/reduced/json/" + slow_egrid
-    fast_extract_url = running_server_instance + "/extract/reduced/json/" + fast_egrid
+    slow_extract_url = running_server_instance + "/extract/json?egrid=" + slow_egrid
+    fast_extract_url = running_server_instance + "/extract/json?egrid=" + fast_egrid
 
     res_slow = requests.get(slow_extract_url)
     res_fast = requests.get(fast_extract_url)
