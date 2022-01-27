@@ -90,6 +90,7 @@ oereb_server:
     # and used by the print.
     wms_url_keep_params:
       - map
+      - MAP
       - TRANSPARENT
     # Flag to print or not the canton logo
     print_canton_logo: true
