@@ -19,12 +19,12 @@ def get_parameter_value(possible_parameter_names, request):
 def wo_redirect(request):
     egrid = get_parameter_value(['egrid', 'EGRID', 'Egrid'], request)
     language = get_parameter_value(['lang','LANG','Lang'], request)
-    # base_url = 'https://www.oereb.apps.be.ch'
-    # if 'a4pu' in request.host_url:
-    #     base_url = 'https://www.oereb-test.apps.be.ch'
     if egrid is not None and language is not None:
-        extract_query_string = '/extract/pdf?egrid=%s?lang=%s' % (egrid, language)
-        extract_url = request.host_url + extract_query_string
+        extract_query_string = '/extract/pdf?egrid=%s&lang=%s' % (egrid, language)
+        # request.application_url scheint das richtige zu sein. 
+        # Bei /versions/json wird es auch verwendet. Scheint
+        # scheme zu berücksichtigen.
+        extract_url = request.application_url + extract_query_string
         return HTTPFound(location=extract_url)
     else:
         return HTTPNotFound()
