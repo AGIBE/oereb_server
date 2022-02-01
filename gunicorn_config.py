@@ -17,3 +17,6 @@ secure_scheme_headers = {'X-FORWARDED-PORT': '443', 'X-FORWARDED-PROTO': 'https'
 # nicht bekannt, daher lasse ich hier den Asterisk drin. Im RZ der Bedag ist das
 # wohl nicht zu heikel.
 forwarded_allow_ips = "*"
+# Logging: damit wird auch ein klassisches Access-Log geschrieben
+accesslog = "-"
+errorlog = "-"
