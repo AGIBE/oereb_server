@@ -40,7 +40,7 @@ listen = localhost:6543
 ###
 
 [loggers]
-keys = root, oereb_server, json
+keys = root, json
 
 [handlers]
 keys = console, sqlalchemylogger
@@ -51,11 +51,6 @@ keys = generic
 [logger_root]
 level = INFO
 handlers = console
-
-[logger_oereb_server]
-level = DEBUG
-handlers =
-qualname = oereb_server
 
 [logger_json]
 level = INFO

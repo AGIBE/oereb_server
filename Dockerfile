@@ -4,15 +4,14 @@ WORKDIR /usr/src
 RUN mkdir oereb_server
 WORKDIR /usr/src/oereb_server
 
-COPY ./dev-requirements.txt .
 COPY development.mako .
-COPY create_config.py .
-COPY run_oereb_server_waitress.py .
-COPY run_oereb_server_waitress.sh .
-RUN chmod +x run_oereb_server_waitress.sh
-COPY production.mako .
 COPY oereb_server.mako .
+COPY production.mako .
 COPY requirements.txt .
+COPY run_oereb_server_waitress.py .
+COPY run_oereb_server_gunicorn.sh .
+RUN chmod +x run_oereb_server_gunicorn.sh
+COPY gunicorn_config.py .
 COPY setup.py .
 COPY ./oereb_server/. ./oereb_server/.
 COPY ./tests/. ./tests/.
@@ -39,6 +38,6 @@ RUN groupadd oereb && useradd -g oereb oerebrunner
 RUN chown -R oerebrunner:oereb /usr/src/oereb_server
 RUN chown -R oerebrunner:oereb /usr/src/pyramid_oereb
 
-
 ENTRYPOINT [ "gosu", "oerebrunner", "tini", "--" ]
-CMD ["/usr/src/oereb_server/run_oereb_server_waitress.sh"]
+CMD ["/usr/src/oereb_server/run_oereb_server_gunicorn.sh"]
+# CMD ["python", "/usr/src/oereb_server/run_oereb_server_waitress.py"]

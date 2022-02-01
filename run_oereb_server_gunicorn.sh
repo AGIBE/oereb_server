@@ -1,3 +1,3 @@
 #!/bin/bash
 python oereb_server/scripts/create_config.py
-gunicorn -h
+gunicorn --paste production.ini#main --config gunicorn_config.py
