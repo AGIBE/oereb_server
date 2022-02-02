@@ -557,164 +557,164 @@ oereb_server:
   # All PLRs which are provided by this application. This is related to all application behaviour, especially
   # the extract creation process which loops over this list.
   plrs:
-    - code: ch.Planungszonen
-      geometry_type: MULTIPOLYGON
-      # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
-      # and not as calculation errors (false trues) due to topological imperfections
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: planning_zones2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint          
+    # - code: ch.Planungszonen
+    #   geometry_type: MULTIPOLYGON
+    #   # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
+    #   # and not as calculation errors (false trues) due to topological imperfections
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: planning_zones2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint          
 
-    - code: ch.BE.RegionalePlanungszonen
-      geometry_type: MULTIPOLYGON
-      # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
-      # and not as calculation errors (false trues) due to topological imperfections
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: regional_planning_zones2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint 
+    # - code: ch.BE.RegionalePlanungszonen
+    #   geometry_type: MULTIPOLYGON
+    #   # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
+    #   # and not as calculation errors (false trues) due to topological imperfections
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: regional_planning_zones2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint 
 
-    - code: ch.BE.KantonalePlanungszonen
-      geometry_type: MULTIPOLYGON
-      # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
-      # and not as calculation errors (false trues) due to topological imperfections
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: cantonal_planning_zones2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint 
+    # - code: ch.BE.KantonalePlanungszonen
+    #   geometry_type: MULTIPOLYGON
+    #   # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
+    #   # and not as calculation errors (false trues) due to topological imperfections
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: cantonal_planning_zones2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint 
 
     - code: ch.Nutzungsplanung
       geometry_type: GEOMETRYCOLLECTION
@@ -875,164 +875,164 @@ oereb_server:
           transfer_code: Hinweis
           extract_code: Hint
 
-    - code: ch.Gewaesserraum
-      geometry_type: GEOMETRYCOLLECTION
-      # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
-      # and not as calculation errors (false trues) due to topological imperfections
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: water_space2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint
+    # - code: ch.Gewaesserraum
+    #   geometry_type: GEOMETRYCOLLECTION
+    #   # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
+    #   # and not as calculation errors (false trues) due to topological imperfections
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: water_space2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint
 
-    - code: ch.BE.RegionalerGewaesserraum
-      geometry_type: GEOMETRYCOLLECTION
-      # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
-      # and not as calculation errors (false trues) due to topological imperfections
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: regional_water_space2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint
+    # - code: ch.BE.RegionalerGewaesserraum
+    #   geometry_type: GEOMETRYCOLLECTION
+    #   # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
+    #   # and not as calculation errors (false trues) due to topological imperfections
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: regional_water_space2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint
 
-    - code: ch.BE.KantonalerGewaesserraum
-      geometry_type: GEOMETRYCOLLECTION
-      # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
-      # and not as calculation errors (false trues) due to topological imperfections
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: cantonal_water_space2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint
+    # - code: ch.BE.KantonalerGewaesserraum
+    #   geometry_type: GEOMETRYCOLLECTION
+    #   # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
+    #   # and not as calculation errors (false trues) due to topological imperfections
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: cantonal_water_space2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint
 
     - code: ch.ProjektierungszonenNationalstrassen
       geometry_type: MULTIPOLYGON
@@ -1747,107 +1747,107 @@ oereb_server:
           transfer_code: Hinweis
           extract_code: Hint
 
-    - code: ch.BE.RegionaleLaermempfindlichkeitsstufen
-      geometry_type: POLYGON
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: regional_noise_sensitivity_levels2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint
+    # - code: ch.BE.RegionaleLaermempfindlichkeitsstufen
+    #   geometry_type: POLYGON
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: regional_noise_sensitivity_levels2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint
 
-    - code: ch.BE.KantonaleLaermempfindlichkeitsstufen
-      geometry_type: POLYGON
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: cantonal_noise_sensitivity_levels2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint
+    # - code: ch.BE.KantonaleLaermempfindlichkeitsstufen
+    #   geometry_type: POLYGON
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: cantonal_noise_sensitivity_levels2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint
 
     - code: ch.StatischeWaldgrenzen
       geometry_type: LINESTRING
@@ -2056,158 +2056,158 @@ oereb_server:
           transfer_code: Hinweis
           extract_code: Hint
 
-    - code: ch.Waldreservate
-      geometry_type: POLYGON
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: forest_reserves2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint
+    # - code: ch.Waldreservate
+    #   geometry_type: POLYGON
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: forest_reserves2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint
 
-    - code: ch.ProjektierungszonenStarkstromanlagen
-      geometry_type: POLYGON
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: heavy_current_installations_planning_zones2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint
+    # - code: ch.ProjektierungszonenStarkstromanlagen
+    #   geometry_type: POLYGON
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: heavy_current_installations_planning_zones2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint
 
-    - code: ch.BaulinienStarkstromanlagen
-      geometry_type: LINESTRING
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: heavy_current_installations_building_lines2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint
+    # - code: ch.BaulinienStarkstromanlagen
+    #   geometry_type: LINESTRING
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: heavy_current_installations_building_lines2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint
 
     - code: ch.BE.GeschuetzteGeologischeObjekte
       geometry_type: POINT
@@ -2362,311 +2362,311 @@ oereb_server:
           transfer_code: Hinweis
           extract_code: Hint          
 
-    - code: ch.BE.KantonaleDenkmalschutzobjekte
-      geometry_type: MULTIPOLYGON
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: cantonal_monument_conservation_objects2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint            
+    # - code: ch.BE.KantonaleDenkmalschutzobjekte
+    #   geometry_type: MULTIPOLYGON
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: cantonal_monument_conservation_objects2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint            
 
-    - code: ch.BE.ArchaeologischesInventar
-      geometry_type: POINT
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: archaeological_inventory2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint  
+    # - code: ch.BE.ArchaeologischesInventar
+    #   geometry_type: POINT
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: archaeological_inventory2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint  
 
-    - code: ch.BE.Bauinventar
-      geometry_type: POINT
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: construction_inventory2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint            
+    # - code: ch.BE.Bauinventar
+    #   geometry_type: POINT
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: construction_inventory2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint            
 
-    - code: ch.BE.DurchleitungsrechteEnergienetze
-      geometry_type: LINESTRING
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: conduits_energy_network2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint  
+    # - code: ch.BE.DurchleitungsrechteEnergienetze
+    #   geometry_type: LINESTRING
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: conduits_energy_network2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint  
  
-    - code: ch.BE.LeitungenWasser
-      geometry_type: LINESTRING
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: conduits_water2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint  
+    # - code: ch.BE.LeitungenWasser
+    #   geometry_type: LINESTRING
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: conduits_water2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint  
 
-    - code: ch.BE.Ueberflutungsgebiet
-      geometry_type: MULTIPOLYGON
-      thresholds:
-        length:
-          limit: 1.0
-          unit: 'm'
-          precision: 2
-        area:
-          limit: 1.0
-          unit: 'm²'
-          precision: 2
-        percentage:
-          precision: 1
-      language: de
-      federal: false
-      standard: true
-      view_service:
-        layer_index: 1
-        layer_opacity: 1.0
-      source:
-        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
-        params:
-          db_connection: *main_db_connection
-          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
-          # uncomment line above and comment line below to use integer type for primary keys
-          model_factory: oereb_server.models.theme.model_factory_string_pk
-          schema_name: flood_areas2
-      hooks:
-        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
-      law_status_lookup:
-        - data_code: inKraft
-          transfer_code: inKraft
-          extract_code: inForce
-        - data_code: AenderungMitVorwirkung
-          transfer_code: AenderungMitVorwirkung
-          extract_code: changeWithPreEffect
-        - data_code: AenderungOhneVorwirkung
-          transfer_code: AenderungOhneVorwirkung
-          extract_code: changeWithoutPreEffect
-      document_types_lookup:
-        - data_code: Rechtsvorschrift
-          transfer_code: Rechtsvorschrift
-          extract_code: LegalProvision
-        - data_code: GesetzlicheGrundlage
-          transfer_code: GesetzlicheGrundlage
-          extract_code: Law
-        - data_code: Hinweis
-          transfer_code: Hinweis
-          extract_code: Hint 
+    # - code: ch.BE.Ueberflutungsgebiet
+    #   geometry_type: MULTIPOLYGON
+    #   thresholds:
+    #     length:
+    #       limit: 1.0
+    #       unit: 'm'
+    #       precision: 2
+    #     area:
+    #       limit: 1.0
+    #       unit: 'm²'
+    #       precision: 2
+    #     percentage:
+    #       precision: 1
+    #   language: de
+    #   federal: false
+    #   standard: true
+    #   view_service:
+    #     layer_index: 1
+    #     layer_opacity: 1.0
+    #   source:
+    #     class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+    #     params:
+    #       db_connection: *main_db_connection
+    #       # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+    #       # uncomment line above and comment line below to use integer type for primary keys
+    #       model_factory: oereb_server.models.theme.model_factory_string_pk
+    #       schema_name: flood_areas2
+    #   hooks:
+    #     get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+    #     get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+    #   law_status_lookup:
+    #     - data_code: inKraft
+    #       transfer_code: inKraft
+    #       extract_code: inForce
+    #     - data_code: AenderungMitVorwirkung
+    #       transfer_code: AenderungMitVorwirkung
+    #       extract_code: changeWithPreEffect
+    #     - data_code: AenderungOhneVorwirkung
+    #       transfer_code: AenderungOhneVorwirkung
+    #       extract_code: changeWithoutPreEffect
+    #   document_types_lookup:
+    #     - data_code: Rechtsvorschrift
+    #       transfer_code: Rechtsvorschrift
+    #       extract_code: LegalProvision
+    #     - data_code: GesetzlicheGrundlage
+    #       transfer_code: GesetzlicheGrundlage
+    #       extract_code: Law
+    #     - data_code: Hinweis
+    #       transfer_code: Hinweis
+    #       extract_code: Hint 
 
   # The error message returned if an error occurs when requesting a static extract
   # The content of the message is defined in the specification (document "Inhalt und Darstellung des statischen Auszugs")
