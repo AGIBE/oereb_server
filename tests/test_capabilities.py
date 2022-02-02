@@ -17,12 +17,12 @@ def test_capabilities_xml_explicit(running_server_instance, config, number_of_mu
     url = running_server_instance + "/capabilities/xml"
     res = requests.get(url)
     xml_root = ET.fromstring(res.text)
-    number_of_topics_xml = len(xml_root.findall("{http://schemas.geo.admin.ch/V_D/OeREB/1.0/Extract}topic"))
-    number_of_municipalities_xml = len(xml_root.findall("{http://schemas.geo.admin.ch/V_D/OeREB/1.0/Extract}municipality"))
+    number_of_topics_xml = len(xml_root.findall("{http://schemas.geo.admin.ch/V_D/OeREB/2.0/Extract}topic"))
+    number_of_municipalities_xml = len(xml_root.findall("{http://schemas.geo.admin.ch/V_D/OeREB/2.0/Extract}municipality"))
     assert res.status_code == 200
     assert number_of_topics_xml == number_of_topics_config
     assert number_of_municipalities_xml == number_of_municipalities
-    assert xml_root.findall("{http://schemas.geo.admin.ch/V_D/OeREB/1.0/Extract}crs")[0].text.lower() == "epsg:2056"
+    assert xml_root.findall("{http://schemas.geo.admin.ch/V_D/OeREB/2.0/Extract}crs")[0].text.lower() == "epsg:2056"
 
 def test_capabilities_xml_implicit(running_server_instance):
     url = running_server_instance + "/capabilities"
