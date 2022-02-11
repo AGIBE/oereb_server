@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from pyramid.paster import get_app, setup_logging
 from waitress import serve
-from mako.template import Template
 from oereb_server.scripts import create_config
 import os
 
