@@ -35,7 +35,7 @@ pyproj==3.2.0
 pyramid==1.10.8
 pyramid-debugtoolbar==4.9
 pyramid-mako==1.1.0
-pyramid-oereb==2.0.0b13
+pyramid-oereb==2.0.0b14
 pyreproj==2.0.0
 pyrsistent==0.18.0
 PyYAML==5.4.1

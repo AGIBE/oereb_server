@@ -233,7 +233,7 @@ oereb_server:
       layer_index: 0
       layer_opacity: 1.0
     visualisation:
-      method: pyramid_oereb.contrib.data_sources.standard.hook_methods.produce_sld_content
+      method: pyramid_oereb.core.hook_methods.produce_sld_content
       # Note: these parameters must fit to the attributes provided by the RealEstateRecord!!!!
       url_params:
         - egrid
@@ -547,7 +547,7 @@ oereb_server:
         date: oereb_server.hook_methods.get_surveying_data_update_date
         provider:  oereb_server.hook_methods.get_surveying_data_provider
 
-    sort_within_themes_method: pyramid_oereb.contrib.data_sources.standard.hook_methods.plr_sort_within_themes
+    sort_within_themes_method: pyramid_oereb.core.hook_methods.plr_sort_within_themes
     # Example of a specific sorting method:
     # sort_within_themes_method: pyramid_oereb.contrib.plr_sort_within_themes_by_type_code
     # Redirect configuration for type URL. You can use any attribute of the real estate RealEstateRecord
