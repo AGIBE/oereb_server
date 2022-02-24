@@ -90,7 +90,7 @@ def get_symbol_ref(request, record):
             symbol_url = getattr(legend_entry, 'symbol_url', None)
             if symbol_url:
                 return symbol_url
-        raise HTTPNotFound()
+        raise HTTPNotFound("Symbol nicht gefunden.")
     finally:
         session.close()
         
