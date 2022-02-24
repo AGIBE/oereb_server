@@ -2360,7 +2360,58 @@ oereb_server:
           extract_code: Law
         - data_code: Hinweis
           transfer_code: Hinweis
-          extract_code: Hint          
+          extract_code: Hint    
+
+    - code: ch.BE.BaulinienKantonsstrassen
+      geometry_type: MULTILINESTRING
+      thresholds:
+        length:
+          limit: 1.0
+          unit: 'm'
+          precision: 2
+        area:
+          limit: 1.0
+          unit: 'm²'
+          precision: 2
+        percentage:
+          precision: 1
+      language: de
+      federal: false
+      standard: true
+      view_service:
+        layer_index: 1
+        layer_opacity: 1.0
+      source:
+        class: pyramid_oereb.contrib.data_sources.standard.sources.plr.DatabaseSource
+        params:
+          db_connection: *main_db_connection
+          # model_factory: pyramid_oereb.standard.models.theme.model_factory_integer_pk
+          # uncomment line above and comment line below to use integer type for primary keys
+          model_factory: oereb_server.models.theme.model_factory_string_pk
+          schema_name: cantonal_street_building_lines2
+      hooks:
+        get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
+        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+      law_status_lookup:
+        - data_code: inKraft
+          transfer_code: inKraft
+          extract_code: inForce
+        - data_code: AenderungMitVorwirkung
+          transfer_code: AenderungMitVorwirkung
+          extract_code: changeWithPreEffect
+        - data_code: AenderungOhneVorwirkung
+          transfer_code: AenderungOhneVorwirkung
+          extract_code: changeWithoutPreEffect
+      document_types_lookup:
+        - data_code: Rechtsvorschrift
+          transfer_code: Rechtsvorschrift
+          extract_code: LegalProvision
+        - data_code: GesetzlicheGrundlage
+          transfer_code: GesetzlicheGrundlage
+          extract_code: Law
+        - data_code: Hinweis
+          transfer_code: Hinweis
+          extract_code: Hint                   
 
     # - code: ch.BE.KantonaleDenkmalschutzobjekte
     #   geometry_type: MULTIPOLYGON
