@@ -1114,7 +1114,7 @@ oereb_server:
           schema_name: motorways_building_lines2
       hooks:
         get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+        get_symbol_ref: pyramid_oereb.core.hook_methods.get_symbol_ref
       law_status_lookup:
         - data_code: inKraft
           transfer_code: inKraft
@@ -1267,7 +1267,7 @@ oereb_server:
           schema_name: airports_project_planning_zones2
       hooks:
         get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+        get_symbol_ref: pyramid_oereb.core.hook_methods.get_symbol_ref
       law_status_lookup:
         - data_code: inKraft
           transfer_code: inKraft
@@ -1369,7 +1369,7 @@ oereb_server:
           schema_name: airports_security_zone_plans2
       hooks:
         get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+        get_symbol_ref: pyramid_oereb.core.hook_methods.get_symbol_ref
       law_status_lookup:
         - data_code: inKraft
           transfer_code: inKraft
@@ -1469,7 +1469,7 @@ oereb_server:
           schema_name: contaminated_military_sites2
       hooks:
         get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+        get_symbol_ref: pyramid_oereb.core.hook_methods.get_symbol_ref
       law_status_lookup:
         - data_code: inKraft
           transfer_code: inKraft
@@ -1520,7 +1520,7 @@ oereb_server:
           schema_name: contaminated_civil_aviation_sites2
       hooks:
         get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+        get_symbol_ref: pyramid_oereb.core.hook_methods.get_symbol_ref
       law_status_lookup:
         - data_code: inKraft
           transfer_code: inKraft
@@ -1571,7 +1571,7 @@ oereb_server:
           schema_name: contaminated_public_transport_sites2
       hooks:
         get_symbol: pyramid_oereb.contrib.data_sources.standard.hook_methods.get_symbol
-        get_symbol_ref: oereb_server.hook_methods.get_symbol_ref
+        get_symbol_ref: pyramid_oereb.core.hook_methods.get_symbol_ref
       law_status_lookup:
         - data_code: inKraft
           transfer_code: inKraft
