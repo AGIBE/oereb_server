@@ -67,3 +67,14 @@ def test_random_egrids(running_server_instance, random_egrids):
         res_pdf = requests.get(extract_url_pdf)
         assert res_json.status_code == 200
         assert res_pdf.status_code == 200
+
+def test_extract_url_valid_egrid(running_server_instance, egrid_with_some_plr):
+    extract_url = running_server_instance + "/extract/url/?egrid=" + egrid_with_some_plr
+    res = requests.get(extract_url)
+    assert res.status_code == 200
+    assert res.history[0].status_code == 302
+
+def test_extract_url_invalid_egrid(running_server_instance):
+    extract_url = running_server_instance + "/extract/url/?egrid=666"
+    res = requests.get(extract_url)
+    assert res.status_code == 204
