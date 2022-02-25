@@ -1,4 +1,4 @@
-FROM python:3.7.12-slim-bullseye
+FROM python:3.9.10-slim-bullseye
 
 RUN mkdir /usr/src/oereb_server
 WORKDIR /usr/src/oereb_server
@@ -9,9 +9,9 @@ RUN chmod +x run_oereb_server_gunicorn.sh
 COPY --chown=oerebrunner:oereb ./oereb_server/. ./oereb_server/.
 
 RUN apt update && \
-    DEV_PACKAGES="build-essential libgeos-dev" && \
+    DEV_PACKAGES="build-essential libgeos-dev python-dev libpq-dev" && \
     DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends \
-        libgeos-c1v5 gosu tini ${DEV_PACKAGES} && \
+        libgeos-c1v5 gosu tini libpq5 ${DEV_PACKAGES} && \
     pip install --disable-pip-version-check --no-cache-dir --requirement requirements.txt && \
     pip install -e . && \
     apt remove --purge --autoremove --yes ${DEV_PACKAGES} binutils && \
