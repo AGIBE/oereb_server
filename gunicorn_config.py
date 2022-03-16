@@ -1,4 +1,8 @@
 import os
+from logging.config import fileConfig
+
+def post_fork(server, worker):
+    fileConfig(os.environ['INI_LEVEL'] + ".ini")
 
 # Port
 bind = ":6543"
