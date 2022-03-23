@@ -574,7 +574,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -627,7 +626,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -680,7 +678,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -733,7 +730,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -786,7 +782,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -839,7 +834,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -892,7 +886,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -945,7 +938,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -998,7 +990,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -1049,7 +1040,6 @@ oereb_server:
           precision: 1
       language: de
       federal: true
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 0.75
@@ -1100,7 +1090,6 @@ oereb_server:
           precision: 1
       language: de
       federal: true
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 0.75
@@ -1151,7 +1140,6 @@ oereb_server:
           precision: 1
       language: de
       federal: true
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 0.75
@@ -1202,7 +1190,6 @@ oereb_server:
           precision: 1
       language: de
       federal: true
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 0.75
@@ -1253,7 +1240,6 @@ oereb_server:
           precision: 1
       language: de
       federal: true
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 0.75
@@ -1304,7 +1290,6 @@ oereb_server:
           precision: 1
       language: de
       federal: true
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 0.75
@@ -1355,7 +1340,6 @@ oereb_server:
           precision: 1
       language: de
       federal: true
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 0.75
@@ -1406,7 +1390,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -1455,7 +1438,6 @@ oereb_server:
           precision: 1
       language: de
       federal: true
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 0.75
@@ -1506,7 +1488,6 @@ oereb_server:
           precision: 1
       language: de
       federal: true
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 0.75
@@ -1557,7 +1538,6 @@ oereb_server:
           precision: 1
       language: de
       federal: true
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 0.75
@@ -1609,7 +1589,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -1660,7 +1639,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -1711,7 +1689,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -1762,7 +1739,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -1813,7 +1789,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -1864,7 +1839,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -1918,7 +1892,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -1969,7 +1942,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -2020,7 +1992,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -2071,7 +2042,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -2122,7 +2092,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -2173,7 +2142,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -2224,7 +2192,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -2275,7 +2242,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -2326,7 +2292,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -2377,7 +2342,6 @@ oereb_server:
           precision: 1
       language: de
       federal: false
-      standard: true
       view_service:
         layer_index: 1
         layer_opacity: 1.0
@@ -2428,7 +2392,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -2479,7 +2442,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -2530,7 +2492,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -2581,7 +2542,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -2632,7 +2592,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
@@ -2683,7 +2642,6 @@ oereb_server:
     #       precision: 1
     #   language: de
     #   federal: false
-    #   standard: true
     #   view_service:
     #     layer_index: 1
     #     layer_opacity: 1.0
