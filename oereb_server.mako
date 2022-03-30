@@ -41,7 +41,7 @@ oereb_server:
     # extract. Here you can define the path to the logic which prepares the output as payload for print
     # service and returns the result to the user.
     # Configuration for MapFish-Print print service
-    renderer: oereb_server.contrib.print_proxy.mapfish_print.BERenderer
+    renderer: pyramid_oereb.contrib.print_proxy.mapfish_print.mapfish_print.Renderer
     # Define whether all geometry data must be included when sending the data to the print service
     with_geometry: False
     # Set an archive path to keep a copy of each generated pdf.
