@@ -78,3 +78,27 @@ def test_extract_url_invalid_egrid(running_server_instance):
     extract_url = running_server_instance + "/extract/url/?egrid=666"
     res = requests.get(extract_url)
     assert res.status_code == 204
+
+def test_extract_building_right(running_server_instance, parcel_building_right):
+    extract_url = running_server_instance + "/extract/json/?egrid=" + parcel_building_right
+    res = requests.get(extract_url)
+    json = res.json()
+    real_estate_type = json['GetExtractByIdResponse']['extract']['RealEstate']['Type']['Text'][0]['Text']
+    assert res.status_code == 200
+    assert real_estate_type == 'Baurecht'
+
+def test_extract_sources_right(running_server_instance, parcel_source_right):
+    extract_url = running_server_instance + "/extract/json/?egrid=" + parcel_source_right
+    res = requests.get(extract_url)
+    json = res.json()
+    real_estate_type = json['GetExtractByIdResponse']['extract']['RealEstate']['Type']['Text'][0]['Text']
+    assert res.status_code == 200
+    assert real_estate_type == 'Quellenrecht'
+
+def test_extract_concession_right(running_server_instance, parcel_concession_right):
+    extract_url = running_server_instance + "/extract/json/?egrid=" + parcel_concession_right
+    res = requests.get(extract_url)
+    json = res.json()
+    real_estate_type = json['GetExtractByIdResponse']['extract']['RealEstate']['Type']['Text'][0]['Text']
+    assert res.status_code == 200
+    assert real_estate_type == 'Konzessionsrecht'
