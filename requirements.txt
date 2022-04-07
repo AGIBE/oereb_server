@@ -5,6 +5,7 @@ pyramid==1.10.8 # rq.filter: <2
 pyramid-debugtoolbar==4.9
 shapely==1.8.1
 SQLAlchemy==1.4.31
+pyaml-env==1.1.4
 urllib3[secure]==1.26.8
 waitress==2.1.1
 pyreproj==2.0.0
@@ -13,5 +14,5 @@ requests==2.27.1
 geolink-formatter==2.0.1
 pyconizer==0.1.4
 c2cwsgiutils[standard]==5.*
-pyramid-oereb==2.0.0rc2
-PyYAML==6.0
+pyramid-oereb==2.0.0
+gunicorn==20.1.0
