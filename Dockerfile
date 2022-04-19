@@ -1,4 +1,4 @@
-FROM python:3.9.10-slim-bullseye
+FROM python:3.9.12-slim-bullseye
 
 RUN mkdir /usr/src/oereb_server
 WORKDIR /usr/src/oereb_server
@@ -19,12 +19,6 @@ RUN apt update && \
     rm --force --recursive /var/lib/apt/lists/*
 
 RUN chown -R oerebrunner:oereb /usr/src/oereb_server
-
-# WORKDIR /usr/src
-# RUN git clone https://github.com/openoereb/pyramid_oereb.git
-# WORKDIR /usr/src/pyramid_oereb
-# RUN python setup.py develop
-# RUN chown -R oerebrunner:oereb /usr/src/pyramid_oereb
 
 ENTRYPOINT [ "gosu", "oerebrunner", "tini", "--" ]
 CMD ["/usr/src/oereb_server/run_oereb_server_gunicorn.sh"]
