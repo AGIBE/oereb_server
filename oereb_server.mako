@@ -222,14 +222,14 @@ oereb_server:
       # WMS URL to query the plan for land register used for all themes pages
       reference_wms:
         de: https://wfs.geodienste.ch/av_situationsplan_oereb_0/deu?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:2056&BBOX=2585000,1218000,2586000,1219000&WIDTH=1000&HEIGHT=1000&LAYERS=daten&STYLES=,&EXCEPTIONS=XML&FORMAT=image/png&BGCOLOR=0xFEFFFF&TRANSPARENT=TRUE&
-        fr: https://wfs.geodienste.ch/av_situationsplan_oereb_0/fra?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:2056&BBOX=2585000,1218000,2586000,1219000&WIDTH=1000&HEIGHT=1000&LAYERS=daten&STYLES=,&EXCEPTIONS=XML&FORMAT=image/png&BGCOLOR=0xFEFFFF&TRANSPARENT=TRUE&
+        fr: https://wfs.geodienste.ch/av_situationsplan_oereb_0/fra?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:2056&BBOX=2585000,1218000,2586000,1219000&WIDTH=1000&HEIGHT=1000&LAYERS=donnees&STYLES=,&EXCEPTIONS=XML&FORMAT=image/png&BGCOLOR=0xFEFFFF&TRANSPARENT=TRUE&
       layer_index: 0
       layer_opacity: 1.0
     plan_for_land_register_main_page:
       # WMS URL to query the plan for land register specially for static extracts overview page
       reference_wms:
         de: https://wfs.geodienste.ch/av_situationsplan_0/deu?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:2056&BBOX=2585000,1218000,2586000,1219000&WIDTH=1000&HEIGHT=1000&LAYERS=daten,national_maps_grey&STYLES=,,&EXCEPTIONS=XML&FORMAT=image/png&BGCOLOR=0xFEFFFF&TRANSPARENT=TRUE&
-        fr: https://wfs.geodienste.ch/av_situationsplan_0/fra?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:2056&BBOX=2585000,1218000,2586000,1219000&WIDTH=1000&HEIGHT=1000&LAYERS=daten,national_maps_grey&STYLES=,,&EXCEPTIONS=XML&FORMAT=image/png&BGCOLOR=0xFEFFFF&TRANSPARENT=TRUE&
+        fr: https://wfs.geodienste.ch/av_situationsplan_0/fra?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:2056&BBOX=2585000,1218000,2586000,1219000&WIDTH=1000&HEIGHT=1000&LAYERS=donnees,national_maps_grey&STYLES=,,&EXCEPTIONS=XML&FORMAT=image/png&BGCOLOR=0xFEFFFF&TRANSPARENT=TRUE&
       layer_index: 0
       layer_opacity: 1.0
     visualisation:
