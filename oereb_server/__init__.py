@@ -18,6 +18,7 @@ def main(global_config, **settings):
     config.include('pyramid_oereb')
     config.add_static_view('static', 'static', cache_max_age=3600)
     config.add_route('version', '/version')
+    config.add_route('status', '/status')
     config.add_route('home', '/')
     config.scan()
     config.add_subscriber(add_cors_headers_response_callback, NewRequest)
