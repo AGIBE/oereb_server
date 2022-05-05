@@ -16,5 +16,5 @@ geolink-formatter==2.0.1
 pyconizer==0.1.4
 c2cwsgiutils[standard]==5.*
 # Zusätzliche Requirements nur für den ÖREB-Server BE
-pyramid-oereb==2.0.1
+pyramid-oereb==2.0.2
 gunicorn==20.1.0
