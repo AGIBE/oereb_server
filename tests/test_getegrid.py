@@ -65,6 +65,13 @@ def test_getegrid_valid_gnss_multiple_json(running_server_instance):
     assert res.status_code == 200
     assert len(res_json['GetEGRIDResponse']) == 2
 
+def test_getegrid_valid_gnss_multiple_json_SDR(running_server_instance):
+    url = running_server_instance + "/getegrid/json/?GNSS=46.8803336026804,7.554141348197121"
+    res = requests.get(url)
+    res_json = res.json()
+    assert res.status_code == 200
+    assert len(res_json['GetEGRIDResponse']) == 2
+
 def test_getegrid_valid_gnss_single_xml(running_server_instance):
     url = running_server_instance + "/getegrid/xml/?GNSS=46.95108,7.43863"
     res = requests.get(url)
@@ -79,6 +86,13 @@ def test_getegrid_invalid_gnss_single_xml(running_server_instance):
 
 def test_getegrid_valid_gnss_multiple_xml(running_server_instance):
     url = running_server_instance + "/getegrid/xml/?GNSS=46.94387,7.42781"
+    res = requests.get(url)
+    xml_root = ET.fromstring(res.text)
+    assert res.status_code == 200
+    assert len(xml_root.findall("{http://schemas.geo.admin.ch/V_D/OeREB/2.0/Extract}egrid")) == 2
+
+def test_getegrid_valid_gnss_multiple_xml_SDR(running_server_instance):
+    url = running_server_instance + "/getegrid/xml/?GNSS=46.8803336026804,7.554141348197121"
     res = requests.get(url)
     xml_root = ET.fromstring(res.text)
     assert res.status_code == 200
