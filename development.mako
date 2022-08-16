@@ -11,14 +11,16 @@ pyramid.debug_authorization = false
 pyramid.debug_notfound = false
 pyramid.debug_routematch = false
 pyramid.default_locale_name = en
-pyramid_oereb.cfg.file = pyramid_oereb_standard.yml
-pyramid_oereb.cfg.section = pyramid_oereb
-pyramid.includes =
-    pyramid_debugtoolbar
+pyramid_oereb.cfg.file = oereb_server.yml
+pyramid_oereb.cfg.section = oereb_server
+pyramid.includes = pyramid_debugtoolbar
 
 # By default, the toolbar only appears for clients from IP addresses
 # '127.0.0.1' and '::1'.
 # debugtoolbar.hosts = 127.0.0.1 ::1
+# debugtoolbar.active_panels = performance
+# Das Performance-Panel macht Probleme, wenn via Tomcat ein PDF erstellt werden soll.
+# Daher in diesem Fall deaktivieren.
 
 ###
 # wsgi server configuration
@@ -27,6 +29,10 @@ pyramid.includes =
 [server:main]
 use = egg:waitress#main
 listen = localhost:6543
+; use = egg:gunicorn#main
+; host = 127.0.0.1
+; port = 6543
+; workers = 3
 
 ###
 # logging configuration
@@ -34,7 +40,7 @@ listen = localhost:6543
 ###
 
 [loggers]
-keys = root, oereb_server, json
+keys = root, json
 
 [handlers]
 keys = console, sqlalchemylogger
@@ -45,11 +51,6 @@ keys = generic
 [logger_root]
 level = INFO
 handlers = console
-
-[logger_oereb_server]
-level = DEBUG
-handlers =
-qualname = oereb_server
 
 [logger_json]
 level = INFO
@@ -65,7 +66,7 @@ formatter = generic
 
 [handler_sqlalchemylogger]
 class = c2cwsgiutils.sqlalchemylogger.handlers.SQLAlchemyHandler
-args = ({'url':'postgresql://${POSTGRES_LOGGER_USER}:${POSTGRES_LOGGER_PASS}@${POSTGRES_LOGGER_HOST}:${POSTGRES_LOGGER_PORT}/${POSTGRES_LOGGER_DATABASE}','tablename':'${POSTGRES_LOGGER_TABLE}','tableargs': {'schema':'${POSTGRES_LOGGER_SCHEMA}'}},'healthcheck')
+args = ({'url':'postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_LOGGER_DATABASE}','tablename':'${POSTGRES_LOGGER_TABLE}','tableargs': {'schema':'${POSTGRES_LOGGER_SCHEMA}', 'extend_existing': 'True'}},'/version')
 level = NOTSET
 formatter = generic
 propagate = 0

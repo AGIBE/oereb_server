@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 import datetime
 from pyramid.path import DottedNameResolver
+from pyramid.httpexceptions import HTTPNotFound
+from sqlalchemy import cast, Text
 from pyramid_oereb import Config, database_adapter
-from pyramid_oereb.lib.records.office import OfficeRecord
+from pyramid_oereb.core.records.office import OfficeRecord
+from pyramid_oereb.contrib.data_sources.standard.sources.plr import StandardThemeConfigParser
 
 def get_surveying_data_provider(real_estate):
     """
@@ -45,3 +48,4 @@ def get_surveying_data_update_date(real_estate):
         return datetime.datetime.combine(re.currentness, datetime.time.min)
     finally:
         session.close()
+        
