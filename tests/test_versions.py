@@ -17,7 +17,7 @@ def test_versions_json_version_number(running_server_instance):
     res_json = res.json()
     version_number = res_json['GetVersionsResponse']['supportedVersion'][0]['version']
     assert res.status_code == 200
-    assert version_number == 'extract-2.0'
+    assert version_number == '2.0'
 
 def test_versions_xml_number_of_versions(running_server_instance):
     url = running_server_instance + "/versions/xml"
@@ -34,7 +34,7 @@ def test_versions_xml_version_number(running_server_instance):
     spVer = xml_root.findall("{http://schemas.geo.admin.ch/V_D/OeREB/1.0/Versioning}supportedVersion")[0]
     version = spVer.findall("{http://schemas.geo.admin.ch/V_D/OeREB/1.0/Versioning}version")[0]
     assert res.status_code == 200
-    assert version.text == 'extract-2.0'
+    assert version.text == '2.0'
 
 def test_versions_implicit(running_server_instance):
     url = running_server_instance + "/versions"
