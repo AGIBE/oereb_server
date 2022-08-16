@@ -1,4 +1,4 @@
-FROM python:3.9.12-slim-bullseye
+FROM python:3.9.13-slim-bullseye
 
 RUN mkdir /usr/src/oereb_server
 WORKDIR /usr/src/oereb_server
