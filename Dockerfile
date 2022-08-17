@@ -8,7 +8,7 @@ COPY --chown=oerebrunner:oereb *.mako *.py *.sh *.txt ./
 RUN chmod +x run_oereb_server_gunicorn.sh
 COPY --chown=oerebrunner:oereb ./oereb_server/. ./oereb_server/.
 
-RUN apt update && apt upgrade \
+RUN apt update && \
     DEV_PACKAGES="build-essential libgeos-dev python-dev libpq-dev" && \
     DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends \
         libgeos-c1v5 gosu tini libpq5 ${DEV_PACKAGES} && \
