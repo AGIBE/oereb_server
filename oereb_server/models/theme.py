@@ -5,7 +5,6 @@ from oereb_server.models import (
     get_office,
     get_document,
     get_availablility,
-    get_data_integration,
     get_view_service,
     get_legend_entry,
     get_public_law_restriction,
@@ -16,13 +15,12 @@ from oereb_server.models import (
 
 class Models(object):
 
-    def __init__(self, availability, office, data_integration, document, view_service,
+    def __init__(self, availability, office, document, view_service,
                  legend_entry, public_law_restriction, geometry,
                  public_law_restriction_document, base, db_connection, schema_name):
 
         self.Availability = availability
         self.Office = office
-        self.DataIntegration = data_integration
         self.Document = document
         self.ViewService = view_service
         self.LegendEntry = legend_entry
@@ -51,7 +49,6 @@ def model_factory(schema_name, pk_type, geometry_type, srid, db_connection):
     Office = get_office(Base, schema_name, pk_type)
     Document = get_document(Base, schema_name, pk_type, Office)
     Availability = get_availablility(Base, schema_name, pk_type)
-    DataIntegration = get_data_integration(Base, schema_name, pk_type, Office)
     ViewService = get_view_service(Base, schema_name, pk_type)
     LegendEntry = get_legend_entry(Base, schema_name, pk_type, ViewService)
     PublicLawRestriction = get_public_law_restriction(Base, schema_name, pk_type, Office, ViewService,
@@ -61,7 +58,7 @@ def model_factory(schema_name, pk_type, geometry_type, srid, db_connection):
                                                                        PublicLawRestriction, Document)
 
     return Models(
-        Availability, Office, DataIntegration, Document, ViewService,
+        Availability, Office, Document, ViewService,
         LegendEntry, PublicLawRestriction, Geometry, PublicLawRestrictionDocument,
         Base, db_connection, schema_name
     )

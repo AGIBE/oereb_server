@@ -27,7 +27,7 @@ But you can change it also via configuration.
 """
 from pyramid_oereb.contrib.data_sources.standard.models import get_office, get_document
 from sqlalchemy import Column, PrimaryKeyConstraint, ForeignKey, UniqueConstraint
-from sqlalchemy import Unicode, String, text, Integer, Boolean, Float, Date
+from sqlalchemy import Unicode, String, text, Integer, Boolean, Float, Date, DateTime
 from geoalchemy2 import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy_utils import JSONType
@@ -346,3 +346,28 @@ class Availability(Base):
     municipality_fosnr = Column(ForeignKey(Municipality.fosnr), nullable=False)
     theme_code = Column(String, nullable=False)
     available = Column(Boolean, nullable=False, default=False)
+    
+class DataIntegration(Base):
+    """
+    The bucket to fill in the date when this whole schema was updated. It has a relation to the
+    office to be able to find out who was the delivering instance.
+
+    Attributes:
+        id (str): The identifier. This is used in the database only and must not be set manually. If
+            you  don't like it - don't care about.
+        date (datetime.date): The date when this data set was delivered.
+        theme_code (str): the theme code which this switch element belongs to.
+        office_id (str): A foreign key which points to the actual office instance.
+        office (pyramid_oereb.standard.models.airports_building_lines.Office):
+            The actual office instance which the id points to.
+        checksum (str): A checksum to persist the data state which is in the db. It is thought
+            to be a helper field to check if import is necessary.
+    """
+    __table_args__ = {'schema': app_schema_name}
+    __tablename__ = 'data_integration'
+    id = Column(String, primary_key=True, autoincrement=False)
+    date = Column(DateTime, nullable=False)
+    theme_code = Column(String, nullable=False)
+    office_id = Column(ForeignKey(Office.id), nullable=False)
+    office = relationship(Office)
+    checksum = Column(String, nullable=True)
