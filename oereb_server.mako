@@ -2445,7 +2445,7 @@ oereb_server:
     #       extract_code: Hint            
 
     # - code: ch.BE.ArchaeologischesInventar
-    #   geometry_type: POINT
+    #   geometry_type: GEOMETRYCOLLECTION
     #   thresholds:
     #     length:
     #       limit: 1.0
