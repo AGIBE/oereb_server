@@ -2095,7 +2095,7 @@ oereb_server:
           extract_code: Hint
 
     # - code: ch.Waldreservate
-    #   geometry_type: POLYGON
+    #   geometry_type: MULTIPOLYGON
     #   thresholds:
     #     length:
     #       limit: 1.0
