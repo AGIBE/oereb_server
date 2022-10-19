@@ -72,7 +72,7 @@ def test_extract_url_valid_egrid(running_server_instance, egrid_with_some_plr):
     extract_url = running_server_instance + "/extract/url/?egrid=" + egrid_with_some_plr
     res = requests.get(extract_url)
     assert res.status_code == 200
-    assert res.history[0].status_code == 302
+    assert res.history[0].status_code == 303
 
 def test_extract_url_invalid_egrid(running_server_instance):
     extract_url = running_server_instance + "/extract/url/?egrid=666"
