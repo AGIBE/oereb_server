@@ -152,7 +152,31 @@ UNION
     availability.fosnr AS municipality_fosnr,
     'ch.BE.GeschuetzteGeologischeObjekte'::text AS theme_code,
     availability.available
-   FROM regional_protected_geological_objects2.availability;
+   FROM regional_protected_geological_objects2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
+    'ch.Planungszonen'::text AS theme_code,
+    availability.available
+   FROM planning_zones2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
+    'ch.BE.RegionalePlanungszonen'::text AS theme_code,
+    availability.available
+   FROM regional_planning_zones2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
+    'ch.BE.KantonalePlanungszonen'::text AS theme_code,
+    availability.available
+   FROM cantonal_planning_zones2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
+    'ch.Waldreservate'::text AS theme_code,
+    availability.available
+   FROM forest_reserves2.availability;
 
 -- Permissions
 
