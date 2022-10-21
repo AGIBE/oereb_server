@@ -82,7 +82,7 @@ def running_server_instance(environment):
 
 @pytest.fixture(scope="module")
 def egrid_without_plr():
-    return "CH401435854634"
+    return "CH228633463582"
 
 @pytest.fixture(scope="module")
 def egrid_with_some_plr():
