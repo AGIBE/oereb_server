@@ -72,6 +72,9 @@ oereb_server:
     # Whether to display the Certification section in the pdf extract or not.
     # Default to true
     display_certification: false
+    # Whether to display the QR code in the pdf extract or not.
+    # Default to true
+    display_qrcode: false    
     # Group elements of "LegalProvision" and "Hints" with the same "Title.Text" together yes/no
     # Disabled by default.
     group_legal_provisions: false
