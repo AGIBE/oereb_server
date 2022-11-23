@@ -122,7 +122,7 @@ def get_document(base, schema_name, pk_type, Office):
         law_status = Column(String, nullable=False)
         title = Column(JSONType, nullable=False)
         office_id = Column(
-            ForeignKey(Office.id),
+            ForeignKey(Office.id, deferrable=True, initially='deferred'),
             nullable=False
         )
         responsible_office = relationship(Office)
@@ -321,7 +321,7 @@ def get_public_law_restriction(base, schema_name, pk_type, Office, ViewService, 
             backref='public_law_restrictions'
         )
         office_id = Column(
-            ForeignKey(Office.id),
+            ForeignKey(Office.id, deferrable=True, initially='deferred'),
             nullable=False
         )
         responsible_office = relationship(Office)
