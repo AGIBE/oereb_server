@@ -82,7 +82,7 @@ def running_server_instance(environment):
 
 @pytest.fixture(scope="module")
 def egrid_without_plr():
-    return "CH228633463582"
+    return "CH859646713546"
 
 @pytest.fixture(scope="module")
 def egrid_with_some_plr():
@@ -126,6 +126,10 @@ def environment(pytestconfig):
 @pytest.fixture(scope="module")
 def egrids_for_concurrent_error():
     return ('CH594607413563', 'CH804335484602')
+
+@pytest.fixture(scope="module")
+def complex_extract_parcel():
+    return 'CH643546232754'
 
 @pytest.fixture(scope='module')
 def cors_header_name():

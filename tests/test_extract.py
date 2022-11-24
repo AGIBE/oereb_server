@@ -20,14 +20,25 @@ def test_parcel_without_plr_json(running_server_instance, egrid_without_plr):
     assert res.status_code == 200
     assert len(res.json()['GetExtractByIdResponse']['extract']['ConcernedTheme']) == 0
 
-def test_complex_extract_json(running_server_instance, complex_area_parcel):
+def test_complex_parcel_json(running_server_instance, complex_area_parcel):
     extract_url = running_server_instance + "/extract/json/?egrid=" + complex_area_parcel
     res = requests.get(extract_url)
     assert res.status_code == 200
     assert 'GetExtractByIdResponse' in res.json().keys()
 
-def test_complex_extract_pdf(running_server_instance, complex_area_parcel):
+def test_complex_parcel_pdf(running_server_instance, complex_area_parcel):
     extract_url = running_server_instance + "/extract/pdf/?egrid=" + complex_area_parcel
+    res = requests.get(extract_url)
+    assert res.status_code == 200
+
+def test_complex_extract_json(running_server_instance, complex_extract_parcel):
+    extract_url = running_server_instance + "/extract/json/?egrid=" + complex_extract_parcel
+    res = requests.get(extract_url)
+    assert res.status_code == 200
+    assert 'GetExtractByIdResponse' in res.json().keys()
+
+def test_complex_extract_pdf(running_server_instance, complex_extract_parcel):
+    extract_url = running_server_instance + "/extract/pdf/?egrid=" + complex_extract_parcel
     res = requests.get(extract_url)
     assert res.status_code == 200
 
