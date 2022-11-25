@@ -1,7 +1,10 @@
 import pytest
 import codecs
+import pathlib
 import yaml
 import psycopg2
+import requests
+import xmlschema
 from oereb_server.scripts import create_config
 
 @pytest.fixture(scope="module")
@@ -134,3 +137,22 @@ def complex_extract_parcel():
 @pytest.fixture(scope='module')
 def cors_header_name():
     return "access-control-allow-origin"
+
+@pytest.fixture(scope='session')
+def schema_for_validation(tmp_path_factory):
+    # dieses XML-Schema muss lokal gespeichert sein.
+    # Wenn nicht, gibt es beim Import in xmlschema
+    # einen Fehler. Grund: unklar.
+    xmldsig_url = "http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"
+    res = requests.get(xmldsig_url, timeout=30)
+    temp_xmldsig_file = tmp_path_factory.mktemp("xmldsig") / "xmldsig-core-schema.xsd"
+    with temp_xmldsig_file.open("w", encoding='utf-8') as f:
+        f.write(res.text)
+    sources = [
+        "http://models.interlis.ch/refhb24/geometry.xsd",
+        temp_xmldsig_file,
+        "http://schemas.geo.admin.ch/V_D/OeREB/2.0/Extract.xsd",
+        "http://schemas.geo.admin.ch/V_D/OeREB/2.0/ExtractData.xsd"
+    ]
+    schema = xmlschema.XMLSchema11(sources)
+    return schema

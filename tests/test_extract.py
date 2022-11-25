@@ -113,3 +113,9 @@ def test_extract_concession_right(running_server_instance, parcel_concession_rig
     real_estate_type = json['GetExtractByIdResponse']['extract']['RealEstate']['Type']['Text'][0]['Text']
     assert res.status_code == 200
     assert real_estate_type == 'Konzessionsrecht'
+
+def test_extract_xml_valid_schema(running_server_instance, egrid_with_some_plr, schema_for_validation):
+    extract_url = running_server_instance + "/extract/xml/?egrid=" + egrid_with_some_plr
+    res = requests.get(extract_url)
+    xml = res.text
+    assert schema_for_validation.is_valid(xml) == True
