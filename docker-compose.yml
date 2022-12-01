@@ -1,0 +1,51 @@
+services:
+  oereb_server:
+    container_name: oereb-server
+    image: oereb_server:3.1.5
+    depends_on:
+      - oereb_server_db
+      - oereb_server_print
+    ports:
+      - "6543:6543"
+    environment:
+      - POSTGRES_DATABASE=${OEREB_SERVER_POSTGRES_DATABASE}
+      - POSTGRES_HOST=${OEREB_SERVER_POSTGRES_HOST}
+      - POSTGRES_PASSWORD=${OEREB_SERVER_POSTGRES_PASSWORD}
+      - POSTGRES_PORT=${OEREB_SERVER_POSTGRES_PORT}
+      - POSTGRES_USER=${OEREB_SERVER_POSTGRES_USER}
+      - PRINT_SERVICE_HOST=${OEREB_SERVER_PRINT_SERVICE_HOST}
+      - PRINT_SERVICE_PORT=${OEREB_SERVER_PRINT_SERVICE_PORT}
+      - PRINT_SERVICE_PATH=${OEREB_SERVER_PRINT_SERVICE_PATH}
+      - POSTGRES_LOGGER_DATABASE=${OEREB_SERVER_POSTGRES_LOGGER_DATABASE}
+      - POSTGRES_LOGGER_SCHEMA=${OEREB_SERVER_POSTGRES_LOGGER_SCHEMA}
+      - POSTGRES_LOGGER_TABLE=${OEREB_SERVER_POSTGRES_LOGGER_TABLE}
+      - INI_LEVEL=${OEREB_SERVER_INI_LEVEL}
+      - GUNICORN_WORKERS=${OEREB_SERVER_GUNICORN_WORKERS}
+      - GUNICORN_THREADS=${OEREB_SERVER_GUNICORN_THREADS}
+  oereb_server_db:
+    container_name: oereb-server-db
+    image: oereb_server_db:2022_12_01
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=${OEREB_SERVER_DB_POSTGRES_PASSWORD}
+  oereb_server_print:
+    container_name: oereb-server-print
+    image: oereb_server_print:3.1.5
+    depends_on:
+      - squid_proxy
+    ports:
+      - "8080:8080"
+    environment:
+      - PRINT_YAML_MAX_ALIASES=${OEREB_SERVER_PRINT_PRINT_YAML_MAX_ALIASES}
+      - LOG_LEVEL=${OEREB_SERVER_PRINT_LOG_LEVEL}
+      - CATALINA_OPTS=${OEREB_SERVER_PRINT_CATALINA_OPTS}
+      - PROXY_HOST=${OEREB_SERVER_PRINT_PROXY_HOST}
+      - PROXY_PORT=${OEREB_SERVER_PRINT_PROXY_PORT}
+  squid_proxy:
+    container_name: squid-proxy
+    image: ubuntu/squid:4.10-20.04_beta
+    ports:
+      - "3128:3128"
+    environment:
+      - TZ=${SQUID_PROXY_TZ}
