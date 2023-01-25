@@ -34,7 +34,6 @@ oereb_server:
   #             authority
   flavour:
     - REDUCED
-    - SIGNED
 
   print:
     # The pyramid renderer which is used as proxy pass through to the desired service for printable static
