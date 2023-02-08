@@ -156,3 +156,4 @@ def schema_for_validation(tmp_path_factory):
     ]
     schema = xmlschema.XMLSchema11(sources)
     return schema
+

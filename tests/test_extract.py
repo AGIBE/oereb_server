@@ -1,7 +1,5 @@
 import pytest
 import requests
-import concurrent.futures
-import threading
 
 def test_largest_area_extract_json(running_server_instance, largest_area_parcel):
     extract_url = running_server_instance + "/extract/json/?egrid=" + largest_area_parcel
