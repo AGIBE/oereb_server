@@ -176,7 +176,25 @@ UNION
     availability.fosnr AS municipality_fosnr,
     'ch.Waldreservate'::text AS theme_code,
     availability.available
-   FROM forest_reserves2.availability;
+   FROM forest_reserves2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
+    'ch.BE.Ueberflutungsgebiet'::text AS theme_code,
+    availability.available
+   FROM flood_areas2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
+    'ch.BE.ArchaeologischesInventar'::text AS theme_code,
+    availability.available
+   FROM archaeological_inventory2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
+    'ch.Gewaesserraum'::text AS theme_code,
+    availability.available
+   FROM water_space2.availability;
 
 -- Permissions
 
