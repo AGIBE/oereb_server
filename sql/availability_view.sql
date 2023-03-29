@@ -24,6 +24,12 @@ UNION
 UNION
  SELECT gen_random_uuid() AS id,
     availability.fosnr AS municipality_fosnr,
+    'ch.BE.ArchaeologischesInventar'::text AS theme_code,
+    availability.available
+   FROM archaeological_inventory2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
     'ch.BE.KantonaleWaldabstandslinien'::text AS theme_code,
     availability.available
    FROM cantonal_forest_distance_lines2.availability
@@ -42,9 +48,27 @@ UNION
 UNION
  SELECT gen_random_uuid() AS id,
     availability.fosnr AS municipality_fosnr,
+    'ch.BE.KantonaleLaermempfindlichkeitsstufen'::text AS theme_code,
+    availability.available
+   FROM cantonal_noise_sensitivity_levels2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
+    'ch.BE.KantonalePlanungszonen'::text AS theme_code,
+    availability.available
+   FROM cantonal_planning_zones2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
     'ch.BE.BaulinienKantonsstrassen'::text AS theme_code,
     availability.available
    FROM cantonal_street_building_lines2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
+    'ch.BE.KantonalerGewaesserraum'::text AS theme_code,
+    availability.available
+   FROM cantonal_water_space2.availability
 UNION
  SELECT gen_random_uuid() AS id,
     availability.fosnr AS municipality_fosnr,
@@ -72,6 +96,12 @@ UNION
 UNION
  SELECT gen_random_uuid() AS id,
     availability.fosnr AS municipality_fosnr,
+    'ch.BE.Ueberflutungsgebiet'::text AS theme_code,
+    availability.available
+   FROM flood_areas2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
     'ch.Waldabstandslinien'::text AS theme_code,
     availability.available
    FROM forest_distance_lines2.availability
@@ -84,6 +114,12 @@ UNION
 UNION
  SELECT gen_random_uuid() AS id,
     availability.fosnr AS municipality_fosnr,
+    'ch.Waldreservate'::text AS theme_code,
+    availability.available
+   FROM forest_reserves2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
     'ch.Grundwasserschutzareale'::text AS theme_code,
     availability.available
    FROM groundwater_protection_sites2.availability
@@ -93,6 +129,18 @@ UNION
     'ch.Grundwasserschutzzonen'::text AS theme_code,
     availability.available
    FROM groundwater_protection_zones2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
+    'ch.BaulinienStarkstromanlagen'::text AS theme_code,
+    availability.available
+   FROM heavy_current_installations_building_lines2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
+    'ch.ProjektierungszonenStarkstromanlagen'::text AS theme_code,
+    availability.available
+   FROM heavy_current_installations_planning_zones2.availability
 UNION
  SELECT gen_random_uuid() AS id,
     availability.fosnr AS municipality_fosnr,
@@ -120,6 +168,12 @@ UNION
 UNION
  SELECT gen_random_uuid() AS id,
     availability.fosnr AS municipality_fosnr,
+    'ch.Planungszonen'::text AS theme_code,
+    availability.available
+   FROM planning_zones2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
     'ch.BaulinienEisenbahnanlagen'::text AS theme_code,
     availability.available
    FROM railways_building_lines2.availability
@@ -144,6 +198,18 @@ UNION
 UNION
  SELECT gen_random_uuid() AS id,
     availability.fosnr AS municipality_fosnr,
+    'ch.BE.RegionaleLaermempfindlichkeitsstufen'::text AS theme_code,
+    availability.available
+   FROM regional_noise_sensitivity_levels2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
+    'ch.BE.RegionalePlanungszonen'::text AS theme_code,
+    availability.available
+   FROM regional_planning_zones2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
     'ch.BE.GeschuetzteBotanischeObjekte'::text AS theme_code,
     availability.available
    FROM regional_protected_botanical_objects2.availability
@@ -156,39 +222,9 @@ UNION
 UNION
  SELECT gen_random_uuid() AS id,
     availability.fosnr AS municipality_fosnr,
-    'ch.Planungszonen'::text AS theme_code,
+    'ch.BE.RegionalerGewaesserraum'::text AS theme_code,
     availability.available
-   FROM planning_zones2.availability
-UNION
- SELECT gen_random_uuid() AS id,
-    availability.fosnr AS municipality_fosnr,
-    'ch.BE.RegionalePlanungszonen'::text AS theme_code,
-    availability.available
-   FROM regional_planning_zones2.availability
-UNION
- SELECT gen_random_uuid() AS id,
-    availability.fosnr AS municipality_fosnr,
-    'ch.BE.KantonalePlanungszonen'::text AS theme_code,
-    availability.available
-   FROM cantonal_planning_zones2.availability
-UNION
- SELECT gen_random_uuid() AS id,
-    availability.fosnr AS municipality_fosnr,
-    'ch.Waldreservate'::text AS theme_code,
-    availability.available
-   FROM forest_reserves2.availability
-UNION
- SELECT gen_random_uuid() AS id,
-    availability.fosnr AS municipality_fosnr,
-    'ch.BE.Ueberflutungsgebiet'::text AS theme_code,
-    availability.available
-   FROM flood_areas2.availability
-UNION
- SELECT gen_random_uuid() AS id,
-    availability.fosnr AS municipality_fosnr,
-    'ch.BE.ArchaeologischesInventar'::text AS theme_code,
-    availability.available
-   FROM archaeological_inventory2.availability
+   FROM regional_water_space2.availability
 UNION
  SELECT gen_random_uuid() AS id,
     availability.fosnr AS municipality_fosnr,
