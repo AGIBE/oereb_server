@@ -55,6 +55,17 @@ def test_version(running_server_instance, cors_header_name):
     assert response.status_code == 200
 
 ###############
+# LEGEND
+###############    
+
+def test_legend(running_server_instance, cors_header_name):
+    legend_url = running_server_instance + "/legend?bfsnr=351"
+    response = requests.get(legend_url)
+    assert cors_header_name in response.history[0].headers.keys()
+    assert response.history[0].headers[cors_header_name] == '*'
+    assert response.history[0].status_code == 303
+
+###############
 # VERSIONS
 ###############    
 
