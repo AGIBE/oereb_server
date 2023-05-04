@@ -24,7 +24,7 @@ services:
       - GUNICORN_THREADS=${OEREB_SERVER_GUNICORN_THREADS}
   oereb_server_db:
     container_name: oereb-server-db
-    image: oereb_server_db:2023_04_01
+    image: oereb_server_db:2023_05_04
     ports:
       - "5432:5432"
     environment:
