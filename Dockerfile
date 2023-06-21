@@ -1,4 +1,4 @@
-FROM python:3.9.17-slim-bookworm
+FROM python:3.9.16-slim-bullseye
 
 RUN mkdir /usr/src/oereb_server
 
@@ -10,10 +10,10 @@ COPY --chown=oerebrunner:oereb *.mako *.py *.sh *.txt ./
 
 RUN chmod +x run_oereb_server_gunicorn.sh
 
-COPY --chown=oerebrunner:oereb ./oereb_server/. ./oereb_server/.
+COPY --chown=oerebrunner:oereb ./src/oereb_server/. ./src/oereb_server/.
 
 RUN apt-get update && apt-get -y upgrade && \
-	DEV_PACKAGES="build-essential libgeos-dev python-dev libpq-dev" && \
+	DEV_PACKAGES="build-essential libgeos-dev libpq-dev" && \
 	DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends \
 	libgeos-c1v5 gosu tini libpq5 ${DEV_PACKAGES} && \
 	pip install --disable-pip-version-check --no-cache-dir --requirement requirements.txt && \
