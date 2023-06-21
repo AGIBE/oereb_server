@@ -17,7 +17,7 @@ def config():
 
 @pytest.fixture(scope="module")
 def version():
-    with codecs.open(r"oereb_server/__init__.py") as vf:
+    with codecs.open(r"src/oereb_server/__init__.py") as vf:
         for line in vf.read().splitlines():
             if line.startswith('__version__'):
                 delim = '"' if '"' in line else "'"
