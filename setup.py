@@ -20,6 +20,7 @@ setuptools.setup(
     name='oereb_server',
     packages=setuptools.find_packages(),
     version = get_version("src/oereb_server/__init__.py"),
+    package_dir = {"": "src"},
     include_package_data=True,
     author='Peter Schär, Amt für Geoinformation des Kantons Bern',
     author_email='peter.schaer@be.ch',
