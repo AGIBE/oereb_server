@@ -230,7 +230,13 @@ UNION
     availability.fosnr AS municipality_fosnr,
     'ch.Gewaesserraum'::text AS theme_code,
     availability.available
-   FROM water_space2.availability;
+   FROM water_space2.availability
+UNION
+ SELECT gen_random_uuid() AS id,
+    availability.fosnr AS municipality_fosnr,
+    'ch.BE.LeitungenWasser'::text AS theme_code,
+    availability.available
+   FROM conduits_water2.availability;
 
 -- Permissions
 
