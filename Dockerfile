@@ -1,4 +1,4 @@
-FROM python:3.9.16-slim-bullseye
+FROM python:3.9.17-slim-bookworm
 
 RUN mkdir /usr/src/oereb_server
 
@@ -26,4 +26,5 @@ RUN apt-get update && apt-get -y upgrade && \
 ENTRYPOINT [ "gosu", "oerebrunner", "tini", "--" ]
 
 CMD ["/usr/src/oereb_server/run_oereb_server_gunicorn.sh"]
+# CMD ["python3", "./run_oereb_server_waitress_local.py"]
 
