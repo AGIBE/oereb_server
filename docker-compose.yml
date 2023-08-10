@@ -1,3 +1,4 @@
+version: "3"
 services:
   oereb_server:
     container_name: oereb-server
@@ -47,7 +48,7 @@ services:
     environment:
       - PRINT_YAML_MAX_ALIASES=${OEREB_SERVER_PRINT_PRINT_YAML_MAX_ALIASES}
       - LOG_LEVEL=${OEREB_SERVER_PRINT_LOG_LEVEL}
-      - CATALINA_OPTS=${OEREB_SERVER_PRINT_CATALINA_OPTS}
+      - "CATALINA_OPTS=${OEREB_SERVER_PRINT_CATALINA_OPTS}"
       - PROXY_HOST=${OEREB_SERVER_PRINT_PROXY_HOST}
       - PROXY_PORT=${OEREB_SERVER_PRINT_PROXY_PORT}
   squid_proxy:
