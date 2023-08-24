@@ -89,7 +89,7 @@ def egrid_without_plr():
 
 @pytest.fixture(scope="module")
 def egrid_with_some_plr():
-    return "CH613515467670"
+    return "CH934641351251"
 
 @pytest.fixture(scope="module")
 def egrid_large_geometries_error():
