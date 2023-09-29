@@ -2962,7 +2962,7 @@ oereb_server:
     #       extract_code: Hint  
  
     - code: ch.BE.LeitungenWasser
-      geometry_type: LINESTRING
+      geometry_type: GEOMETRYCOLLECTION
       thresholds:
         length:
           limit: 1.0
