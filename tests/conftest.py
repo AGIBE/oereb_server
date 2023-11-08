@@ -85,11 +85,11 @@ def running_server_instance(environment):
 
 @pytest.fixture(scope="module")
 def egrid_without_plr():
-    return "CH934679357732"
+    return "CH934641351251"
 
 @pytest.fixture(scope="module")
 def egrid_with_some_plr():
-    return "CH934641351251"
+    return "CH173510804618"
 
 @pytest.fixture(scope="module")
 def egrid_large_geometries_error():
