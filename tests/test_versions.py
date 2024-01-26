@@ -1,9 +1,7 @@
-from importlib_metadata import version
 import jsonschema
 import requests
 import xml.etree.ElementTree as ET
 import xmlschema
-import pytest
 
 def test_versions_json_number_of_versions(running_server_instance):
     url = running_server_instance + "/versions/json"
