@@ -2,7 +2,7 @@ version: "3"
 services:
   oereb_server:
     container_name: oereb-server
-    image: oereb_server:3.2.5
+    image: oereb_server:3.2.6
     depends_on:
       - oereb_server_db
       - oereb_server_print
@@ -40,7 +40,7 @@ services:
       - POSTGRES_TRANSFERSTRUKTUR_URL=${OEREB_SERVER_DB_TRANSFERSTRUKTUR_URL}
   oereb_server_print:
     container_name: oereb-server-print
-    image: oereb_server_print:3.2.5
+    image: oereb_server_print:3.2.6
     depends_on:
       - squid_proxy
     ports:
