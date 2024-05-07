@@ -1,16 +1,16 @@
 # Aus den pyramid_oereb-Requirements übernommen
-pypdf==3.17.4
+pypdf==4.0.1
 filetype==1.2.0
-geoalchemy2==0.14.3
+geoalchemy2==0.14.4
 pyramid==2.0.2
-pyramid-debugtoolbar==4.10
+pyramid-debugtoolbar==4.12.1
 qrcode==7.4.2
 image==1.5.33
 shapely==2.0.2
-SQLAlchemy==2.0.25
+SQLAlchemy==2.0.26
 pyaml-env==1.2.1
-urllib3==2.1.0
-waitress==2.1.2
+urllib3==2.2.0
+waitress==3.0.0
 pyreproj==3.0.0
 mako-render==0.1.0
 requests==2.31.0
@@ -18,5 +18,5 @@ geolink-formatter==2.0.5
 pyconizer==0.1.4
 c2cwsgiutils[standard]==6.0.7
 # Zusätzliche Requirements nur für den ÖREB-Server BE
-pyramid-oereb==2.4.8
-gunicorn==20.1.0
+pyramid-oereb==2.5.0
+gunicorn==22.0.0
