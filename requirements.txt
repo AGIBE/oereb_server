@@ -19,4 +19,4 @@ pyconizer==0.1.4
 c2cwsgiutils[standard]==6.0.7
 # Zusätzliche Requirements nur für den ÖREB-Server BE
 pyramid-oereb==2.5.0
-gunicorn==20.1.0
+gunicorn==22.0.0
