@@ -49,7 +49,7 @@ keys = console, sqlalchemylogger
 keys = generic
 
 [logger_root]
-level = INFO
+level = DEBUG
 handlers = console
 
 [logger_json]
