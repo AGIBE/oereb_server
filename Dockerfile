@@ -1,4 +1,4 @@
-FROM python:3.11.9-slim-bookworm
+FROM python:3.11.10-slim-bookworm
 
 RUN mkdir /usr/src/oereb_server
 
