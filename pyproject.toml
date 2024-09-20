@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools >= 61.0", "pyramid==2.0.2", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oereb_server"
+dynamic = ["version"]
+authors = [
+    {name = "Peter Schär", email = "peter.schaer@be.ch"}
+]
+description = "Implementierung von pyramid_oereb für den ÖREB-Kataster des Kantons Bern."
+requires-python = ">=3.11"
+dependencies = [
+    # Aus den pyramid_oereb-Requirements übernommen
+    "pypdf==4.3.1",
+    "filetype==1.2.0",
+    "geoalchemy2==0.15.2",
+    "pyramid==2.0.2",
+    "pyramid-debugtoolbar==4.12.1",
+    "qrcode==7.4.2",
+    "image==1.5.33",
+    "shapely==2.0.6",
+    "SQLAlchemy==2.0.32",
+    "pyaml-env==1.2.1",
+    "urllib3==2.2.2",
+    "waitress==3.0.0",
+    "pyreproj==3.0.0",
+    "mako-render==0.1.0",
+    "requests==2.32.3",
+    "geolink-formatter==2.0.5",
+    "pyconizer==0.1.4",
+    "c2cwsgiutils[standard]==6.0.8",
+    # Zusätzliche Requirements nur für den ÖREB-Server BE
+    "pyramid_oereb==2.5.3",
+    "gunicorn==23.0.0",
+]
+
+[project.urls]
+Homepage = "https://www.be.ch/oerebk"
+Repository = "https://github.com/AGIBE/oereb_server"
+
+[project.entry-points."paste.app_factory"]
+main = "oereb_server:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = "oereb_server.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src/"]
+
+[tool.uv]
+dev-dependencies = [
+    "jsonschema>=4.23.0",
+    "pylint>=3.2.7",
+    "pytest>=8.3.3",
+    "xmlschema>=3.4.2",
+]
