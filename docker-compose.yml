@@ -3,6 +3,14 @@ services:
   oereb_server:
     container_name: oereb-server
     image: oereb_server:3.3.2
+    deploy:
+        resources:
+          limits:
+            cpus: '1'
+            memory: 2G
+          reservations:
+            cpus: '1'
+            memory: 2G
     depends_on:
       - oereb_server_db
       - oereb_server_print
@@ -25,7 +33,7 @@ services:
       - GUNICORN_THREADS=${OEREB_SERVER_GUNICORN_THREADS}
   oereb_server_db:
     container_name: oereb-server-db
-    image: oereb_server_db:2024_09_19
+    image: oereb_server_db:2024_12_04
     ports:
       - "5432:5432"
     environment:
