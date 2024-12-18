@@ -157,3 +157,10 @@ def schema_for_validation(tmp_path_factory):
     schema = xmlschema.XMLSchema11(sources)
     return schema
 
+@pytest.fixture(scope='module')
+def egrid_gz_old():
+    return "CH724797463501"
+
+@pytest.fixture(scope='module')
+def nbident_number_gz_new():
+    return ('BE0200000065', 'GZN32-01')

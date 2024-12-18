@@ -117,3 +117,26 @@ def test_extract_xml_valid_schema(running_server_instance, egrid_with_some_plr, 
     res = requests.get(extract_url)
     xml = res.text
     assert schema_for_validation.is_valid(xml) == True
+
+def test_extract_gz_new(running_server_instance, egrid_gz_old):
+    extract_url = running_server_instance + "/extract/json/?egrid=" + egrid_gz_old
+    res = requests.get(extract_url)
+    assert res.status_code == 200
+
+def test_extract_gz_old(running_server_instance, nbident_number_gz_new):
+    nbident = nbident_number_gz_new[0]
+    number = nbident_number_gz_new[1]
+    extract_url = f"{running_server_instance}/extract/json/?identdn={nbident}&number={number}"
+    res = requests.get(extract_url)
+    json = res.json()
+    extract_number = json['GetExtractByIdResponse']['extract']['RealEstate']['Number']
+    assert res.status_code == 200
+    assert extract_number.startswith("GZN")
+
+@pytest.mark.skip(reason="Im Moment gibt es keine laufenden Baulandumlegungen.")
+def test_extract_blu_new():
+    pass
+
+@pytest.mark.skip(reason="Im Moment gibt es keine laufenden Baulandumlegungen.")
+def test_extract_blu_old():
+    pass
