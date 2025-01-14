@@ -567,7 +567,7 @@ oereb_server:
     # sort_within_themes_method: pyramid_oereb.contrib.plr_sort_within_themes_by_type_code
     # Redirect configuration for type URL. You can use any attribute of the real estate RealEstateRecord
     # (e.g. "{egrid}") to parameterize the URL.
-    redirect: https://oerebview.apps.be.ch/#!/d/{egrid}
+    redirect: https://oerebview.apps.be.ch/#/d/{egrid}
 
 # The processor of the oereb project needs access to availability data. In the standard configuration this
   # is assumed to be read from a database. Hint: If you want to read the availability out of an existing database
