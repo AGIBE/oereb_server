@@ -586,7 +586,7 @@ requires-dist = [
     { name = "pypdf", specifier = "==5.1.0" },
     { name = "pyramid", specifier = "==2.0.2" },
     { name = "pyramid-debugtoolbar", specifier = "==4.12.1" },
-    { name = "pyramid-oereb", editable = "../pyramid_oereb" },
+    { name = "pyramid-oereb", specifier = "==2.5.5" },
     { name = "pyreproj", specifier = "==3.0.0" },
     { name = "qrcode", specifier = "==8.0" },
     { name = "requests", specifier = "==2.32.3" },
@@ -868,66 +868,11 @@ wheels = [
 
 [[package]]
 name = "pyramid-oereb"
-version = "2.5.4"
-source = { editable = "../pyramid_oereb" }
-
-[package.metadata]
-requires-dist = [
-    { name = "c2c-template", marker = "extra == 'dev'", specifier = "==2.4.2" },
-    { name = "c2cwsgiutils", extras = ["standard"], marker = "extra == 'no-version'" },
-    { name = "c2cwsgiutils", extras = ["standard"], marker = "extra == 'recommend'", specifier = "==6.0.8" },
-    { name = "filetype", marker = "extra == 'no-version'" },
-    { name = "filetype", marker = "extra == 'recommend'", specifier = "==1.2.0" },
-    { name = "flake8", marker = "extra == 'dev'", specifier = "==7.1.1" },
-    { name = "flake8-pyproject", marker = "extra == 'dev'", specifier = "==1.2.3" },
-    { name = "geoalchemy2", marker = "extra == 'no-version'" },
-    { name = "geoalchemy2", marker = "extra == 'recommend'", specifier = "==0.15.2" },
-    { name = "geolink-formatter", marker = "extra == 'no-version'" },
-    { name = "geolink-formatter", marker = "extra == 'recommend'", specifier = "==2.0.5" },
-    { name = "image", marker = "extra == 'no-version'" },
-    { name = "image", marker = "extra == 'recommend'", specifier = "==1.5.33" },
-    { name = "jsonschema", marker = "extra == 'testing'", specifier = "==4.23.0" },
-    { name = "lxml", marker = "extra == 'testing'", specifier = "==5.3.0" },
-    { name = "mako-render", marker = "extra == 'no-version'" },
-    { name = "mako-render", marker = "extra == 'recommend'", specifier = "==0.1.0" },
-    { name = "mccabe", marker = "extra == 'dev'", specifier = "==0.7.0" },
-    { name = "pillow", marker = "extra == 'testing'", specifier = "==11.0.0" },
-    { name = "psycopg2", marker = "extra == 'dev'", specifier = "==2.9.10" },
-    { name = "pyaml-env", marker = "extra == 'no-version'" },
-    { name = "pyaml-env", marker = "extra == 'recommend'", specifier = "==1.2.1" },
-    { name = "pycodestyle", marker = "extra == 'dev'", specifier = "==2.12.1" },
-    { name = "pyconizer", marker = "extra == 'no-version'" },
-    { name = "pyconizer", marker = "extra == 'recommend'", specifier = "==0.1.4" },
-    { name = "pyflakes", marker = "extra == 'dev'", specifier = "==3.2.0" },
-    { name = "pypdf", marker = "extra == 'no-version'" },
-    { name = "pypdf", marker = "extra == 'recommend'", specifier = "==5.1.0" },
-    { name = "pyramid", marker = "extra == 'no-version'" },
-    { name = "pyramid", marker = "extra == 'recommend'", specifier = "==2.0.2" },
-    { name = "pyramid-debugtoolbar", marker = "extra == 'no-version'" },
-    { name = "pyramid-debugtoolbar", marker = "extra == 'recommend'", specifier = "==4.12.1" },
-    { name = "pyreproj", marker = "extra == 'no-version'" },
-    { name = "pyreproj", marker = "extra == 'recommend'", specifier = "==3.0.0" },
-    { name = "pytest", marker = "extra == 'testing'", specifier = "==8.3.3" },
-    { name = "pytest-cov", marker = "extra == 'testing'", specifier = "==6.0.0" },
-    { name = "pytest-ordering", marker = "extra == 'testing'", specifier = "==0.6" },
-    { name = "qrcode", marker = "extra == 'no-version'" },
-    { name = "qrcode", marker = "extra == 'recommend'", specifier = "==8.0" },
-    { name = "requests", marker = "extra == 'no-version'" },
-    { name = "requests", marker = "extra == 'recommend'", specifier = "==2.32.3" },
-    { name = "requests-mock", marker = "extra == 'testing'", specifier = "==1.12.1" },
-    { name = "responses", marker = "extra == 'testing'", specifier = "==0.25.3" },
-    { name = "shapely", marker = "extra == 'no-version'" },
-    { name = "shapely", marker = "extra == 'recommend'", specifier = "==2.0.6" },
-    { name = "sphinx", marker = "extra == 'dev'", specifier = "==7.4.7" },
-    { name = "sphinx-rtd-theme", marker = "extra == 'dev'", specifier = "==3.0.1" },
-    { name = "sqlalchemy", marker = "extra == 'no-version'" },
-    { name = "sqlalchemy", marker = "extra == 'recommend'", specifier = "==2.0.36" },
-    { name = "urllib3", marker = "extra == 'no-version'" },
-    { name = "urllib3", marker = "extra == 'recommend'", specifier = "==2.2.3" },
-    { name = "waitress", marker = "extra == 'no-version'" },
-    { name = "waitress", marker = "extra == 'recommend'", specifier = "==3.0.1" },
-    { name = "webtest", marker = "extra == 'testing'", specifier = "==3.0.1" },
-    { name = "yappi", marker = "extra == 'dev'" },
+version = "2.5.5"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/22/0e/78f5c93996a9344b75bc75ad209bfc495890949e62820e76a18734c02cb9/pyramid_oereb-2.5.5.tar.gz", hash = "sha256:2493fc9e40314b06427707db45196fd587d9225c4029b26536b7df5ec501f627", size = 143935 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/46/ed/8d283fb124fde2e359703aa92b4f870109d672cb39f3025c195de2bca28a/pyramid_oereb-2.5.5-py3-none-any.whl", hash = "sha256:279347041d19579364bf5a7f1739d2c47c4d25308dc98fb7a9a0716775a27f6b", size = 283360 },
 ]
 
 [[package]]

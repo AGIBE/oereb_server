@@ -57,6 +57,3 @@ dev-dependencies = [
     "pytest>=8.3.3",
     "xmlschema>=3.4.2",
 ]
-
-[tool.uv.sources]
-pyramid-oereb = { path = "../pyramid_oereb", editable = true }
