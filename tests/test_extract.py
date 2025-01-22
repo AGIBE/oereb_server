@@ -137,6 +137,7 @@ def test_extract_gz_old(running_server_instance, nbident_number_gz_new):
 def test_extract_blu_new():
     pass
 
-@pytest.mark.skip(reason="Im Moment gibt es keine laufenden Baulandumlegungen.")
-def test_extract_blu_old():
-    pass
+def test_extract_blu_old(running_server_instance, egrid_blu_old):
+    extract_url = running_server_instance + "/extract/json/?egrid=" + egrid_blu_old
+    res = requests.get(extract_url)
+    assert res.status_code == 200
