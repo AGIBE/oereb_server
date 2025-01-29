@@ -24,3 +24,12 @@ forwarded_allow_ips = "*"
 # Logging: damit wird auch ein klassisches Access-Log geschrieben
 accesslog = "-"
 errorlog = "-"
+# Der ÖREB-Server hat irgendwo ein Memory Leak, d.h. der Memory-Verbrauch wird
+# wird über die Zeit immer grösser. Das führt dazu, dass die Applikation ans 
+# des zugewiesenen RAMS kommt und terminiert wird. Sie wird dann zwar automatisch
+# wieder gestartet, generiert aber eine Fehlermeldung im Monitoring und wohl auch
+# bei den Anwendern. Deshalb wird mit max_requests bewirkt, dass jeder Worker nach
+# max_requests kontrolliert neugestartet wird. Mit dem Jitter-Parameter wird bewirkt,
+# dass nicht alle Worker gleichzeitig neustarten.
+max_requests = os.environ['GUNICORN_MAX_REQUESTS']
+max_requests_jitter = 50
