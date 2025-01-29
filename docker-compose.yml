@@ -7,10 +7,10 @@ services:
         resources:
           limits:
             cpus: '1'
-            memory: 2G
+            memory: 6G
           reservations:
             cpus: '1'
-            memory: 2G
+            memory: 6G
     depends_on:
       - oereb_server_db
       - oereb_server_print
