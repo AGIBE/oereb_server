@@ -1,6 +1,6 @@
 FROM python:3.11.11-slim-bookworm as builder
 
-COPY --from=ghcr.io/astral-sh/uv:0.5.7 /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.6.6 /uv /bin/uv
 
 WORKDIR /usr/src/oereb_server
 
