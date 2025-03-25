@@ -9,29 +9,29 @@ authors = [
     {name = "Peter Schär", email = "peter.schaer@be.ch"}
 ]
 description = "Implementierung von pyramid_oereb für den ÖREB-Kataster des Kantons Bern."
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
     # Aus den pyramid_oereb-Requirements übernommen
     "pypdf==5.1.0",
     "filetype==1.2.0",
-    "geoalchemy2==0.15.2",
+    "geoalchemy2==0.17.1",
     "pyramid==2.0.2",
     "pyramid-debugtoolbar==4.12.1",
     "qrcode==8.0",
     "image==1.5.33",
     "shapely==2.0.6",
     "SQLAlchemy==2.0.36",
-    "pyaml-env==1.2.1",
-    "urllib3==2.2.3",
-    "waitress==3.0.1",
+    "pyaml-env==1.2.2",
+    "urllib3==2.3.0",
+    "waitress==3.0.2",
     "pyreproj==3.0.0",
     "mako-render==0.1.0",
     "requests==2.32.3",
-    "geolink-formatter==2.0.5",
+    "geolink-formatter==2.0.6",
     "pyconizer==0.1.4",
     "c2cwsgiutils[standard]==6.0.8",
     "gunicorn==23.0.0",
-    "pyramid-oereb==2.5.5",
+    "pyramid-oereb==2.5.6",
 ]
 
 [project.urls]
