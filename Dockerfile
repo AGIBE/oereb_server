@@ -1,6 +1,6 @@
-FROM python:3.11.11-slim-bookworm as builder
+FROM python:3.12.9-slim-bookworm as builder
 
-COPY --from=ghcr.io/astral-sh/uv:0.6.6 /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.6.9 /uv /bin/uv
 
 WORKDIR /usr/src/oereb_server
 
@@ -14,7 +14,7 @@ ADD . /usr/src/oereb_server
 
 RUN uv sync --frozen --no-dev --no-cache
 
-FROM python:3.11.11-slim-bookworm
+FROM python:3.12.9-slim-bookworm
 
 RUN apt-get update && apt-get -y upgrade && \
 	DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
