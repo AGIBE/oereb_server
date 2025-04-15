@@ -9,7 +9,7 @@ authors = [
     {name = "Peter Schär", email = "peter.schaer@be.ch"}
 ]
 description = "Implementierung von pyramid_oereb für den ÖREB-Kataster des Kantons Bern."
-requires-python = ">=3.12"
+requires-python = "==3.12.10"
 dependencies = [
     # Aus den pyramid_oereb-Requirements übernommen
     "pypdf==5.1.0",
