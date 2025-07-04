@@ -242,7 +242,25 @@ UNION
  availability.fosnr AS municipality_fosnr,
  'ch.BE.Gewaesserschutzbereiche'::text AS theme_code,
  availability.available
- FROM water_protection_areas2.availability;
+ FROM water_protection_areas2.availability
+UNION
+ SELECT gen_random_uuid() as id,
+ availability.fosnr AS municipality_fosnr,
+ 'ch.BE.Bauinventar'::text AS theme_code,
+ availability.available
+ FROM cantonal_building_inventory2.availability
+UNION
+ SELECT gen_random_uuid() as id,
+ availability.fosnr AS municipality_fosnr,
+ 'ch.BE.Denkmalschutzobjekte'::text AS theme_code,
+ availability.available
+ FROM cantonal_monument_protection2.availability
+ UNION
+ SELECT gen_random_uuid() as id,
+ availability.fosnr AS municipality_fosnr,
+ 'ch.BE.SachplanBiodiversitaet'::text AS theme_code,
+ availability.available
+ FROM cantonal_biodiversity_plan2.availability;
 
 -- Permissions
 
