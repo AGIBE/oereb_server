@@ -12,6 +12,7 @@ def test_largest_area_extract_pdf(running_server_instance, largest_area_parcel):
     res = requests.get(extract_url)
     assert res.status_code == 200
 
+@pytest.mark.xfail(reason="Seit den Gewässerschutzbereichen gibt es keine Parzellen ohne ÖREBs mehr.")
 def test_parcel_without_plr_json(running_server_instance, egrid_without_plr):
     extract_url = running_server_instance + "/extract/json/?egrid=" + egrid_without_plr
     res = requests.get(extract_url)
