@@ -6,6 +6,7 @@ import psycopg2
 import xmlschema
 from oereb_server.scripts import create_config
 
+
 @pytest.fixture(scope="module")
 def config():
     # create_config muss ausgeführt werden,
@@ -14,11 +15,12 @@ def config():
     with codecs.open(r"oereb_server.yml", "r", "utf-8") as cf:
         return yaml.load(cf, Loader=yaml.FullLoader)
 
+
 @pytest.fixture(scope="module")
 def version():
     with codecs.open(r"src/oereb_server/__init__.py") as vf:
         for line in vf.read().splitlines():
-            if line.startswith('__version__'):
+            if line.startswith("__version__"):
                 delim = '"' if '"' in line else "'"
                 return line.split(delim)[1]
         else:
@@ -27,138 +29,183 @@ def version():
 
 @pytest.fixture(scope="module")
 def app_schema_name(config):
-    return config['oereb_server']['app_schema']['name']
+    return config["oereb_server"]["app_schema"]["name"]
+
 
 @pytest.fixture(scope="module")
 def db_connection_string(config):
-    return config['oereb_server']['app_schema']['db_connection']
+    return config["oereb_server"]["app_schema"]["db_connection"]
+
 
 @pytest.fixture(scope="module")
 def largest_area_parcel(db_connection_string, app_schema_name):
     with psycopg2.connect(db_connection_string) as conn:
         with conn.cursor() as cur:
-            sql = "SELECT egrid FROM %s.real_estate order by land_registry_area desc limit 1" % (app_schema_name)
+            sql = (
+                "SELECT egrid FROM %s.real_estate order by land_registry_area desc limit 1"
+                % (app_schema_name)
+            )
             cur.execute(sql)
             return cur.fetchone()[0]
+
 
 @pytest.fixture(scope="module")
 def complex_area_parcel(db_connection_string, app_schema_name):
     with psycopg2.connect(db_connection_string) as conn:
         with conn.cursor() as cur:
-            sql = 'SELECT egrid FROM %s.real_estate order by st_npoints("limit") desc limit 1' % (app_schema_name)
+            sql = (
+                'SELECT egrid FROM %s.real_estate order by st_npoints("limit") desc limit 1'
+                % (app_schema_name)
+            )
             cur.execute(sql)
             return cur.fetchone()[0]
+
 
 @pytest.fixture(scope="module")
 def parcel_building_right(db_connection_string, app_schema_name):
     with psycopg2.connect(db_connection_string) as conn:
         with conn.cursor() as cur:
-            sql = "select egrid from %s.real_estate re where re.type='SelbstRecht.Baurecht' and re.land_registry_area > 0 order by land_registry_area asc limit 1" % (app_schema_name)
+            sql = (
+                "select egrid from %s.real_estate re where re.type='SelbstRecht.Baurecht' and re.land_registry_area > 0 order by land_registry_area asc limit 1"
+                % (app_schema_name)
+            )
             cur.execute(sql)
             return cur.fetchone()[0]
+
 
 @pytest.fixture(scope="module")
 def parcel_source_right(db_connection_string, app_schema_name):
     with psycopg2.connect(db_connection_string) as conn:
         with conn.cursor() as cur:
-            sql = "select egrid from %s.real_estate re where re.type='SelbstRecht.Quellenrecht' and re.land_registry_area > 0 order by land_registry_area asc limit 1" % (app_schema_name)
+            sql = (
+                "select egrid from %s.real_estate re where re.type='SelbstRecht.Quellenrecht' and re.land_registry_area > 0 order by land_registry_area asc limit 1"
+                % (app_schema_name)
+            )
             cur.execute(sql)
             return cur.fetchone()[0]
+
 
 @pytest.fixture(scope="module")
 def parcel_concession_right(db_connection_string, app_schema_name):
     with psycopg2.connect(db_connection_string) as conn:
         with conn.cursor() as cur:
-            sql = "select egrid from %s.real_estate re where re.type='SelbstRecht.Konzessionsrecht' and re.land_registry_area > 0 order by land_registry_area asc limit 1" % (app_schema_name)
+            sql = (
+                "select egrid from %s.real_estate re where re.type='SelbstRecht.Konzessionsrecht' and re.land_registry_area > 0 order by land_registry_area asc limit 1"
+                % (app_schema_name)
+            )
             cur.execute(sql)
             return cur.fetchone()[0]
+
 
 @pytest.fixture(scope="module")
 def running_server_instance(environment):
     server = "http://localhost:6543"
-    if environment == 'test':
-        server = 'https://www.oereb2-test.apps.be.ch'
-    elif environment == 'prod':
-        server = 'https://www.oereb2.apps.be.ch'
+    if environment == "test":
+        server = "https://www.oereb2-test.apps.be.ch"
+    elif environment == "prod":
+        server = "https://www.oereb2.apps.be.ch"
     return server
+
 
 @pytest.fixture(scope="module")
 def egrid_without_plr():
     return "CH934641351251"
 
+
 @pytest.fixture(scope="module")
 def egrid_with_some_plr():
     return "CH173510804618"
 
+
 @pytest.fixture(scope="module")
 def egrid_large_geometries_error():
-    return "CH173515254641"    
+    return "CH173515254641"
+
 
 @pytest.fixture(scope="module")
 def number_of_municipalities(db_connection_string, app_schema_name):
     with psycopg2.connect(db_connection_string) as conn:
         with conn.cursor() as cur:
-            sql = 'select count(*) from %s.municipality' % (app_schema_name)
+            sql = "select count(*) from %s.municipality" % (app_schema_name)
             cur.execute(sql)
             return cur.fetchone()[0]
+
 
 @pytest.fixture(scope="module")
 def number_of_topics_config(db_connection_string, app_schema_name):
     with psycopg2.connect(db_connection_string) as conn:
         with conn.cursor() as cur:
-            sql = 'select count(*) from %s.theme' % (app_schema_name)
+            sql = "select count(*) from %s.theme" % (app_schema_name)
             cur.execute(sql)
             return cur.fetchone()[0]
+
 
 @pytest.fixture(scope="module")
 def random_egrids(db_connection_string, app_schema_name):
     with psycopg2.connect(db_connection_string) as conn:
         with conn.cursor() as cur:
-            sql = 'SELECT egrid from %s.real_estate ORDER BY RANDOM() LIMIT 10' % (app_schema_name)
+            sql = "SELECT egrid from %s.real_estate ORDER BY RANDOM() LIMIT 10" % (
+                app_schema_name
+            )
             cur.execute(sql)
             return [egrid[0] for egrid in cur.fetchall()]
 
+
 def pytest_addoption(parser):
-    parser.addoption("--env", action="store", default="dev", help="Eines von dev, test, prod", choices=['dev', 'test', 'prod'])
+    parser.addoption(
+        "--env",
+        action="store",
+        default="dev",
+        help="Eines von dev, test, prod",
+        choices=["dev", "test", "prod"],
+    )
+
 
 @pytest.fixture(scope="module")
 def environment(pytestconfig):
     return pytestconfig.getoption("--env")
 
+
 @pytest.fixture(scope="module")
 def egrids_for_concurrent_error():
-    return ('CH594607413563', 'CH804335484602')
+    return ("CH594607413563", "CH804335484602")
+
 
 @pytest.fixture(scope="module")
 def complex_extract_parcel():
-    return 'CH643546232754'
+    return "CH643546232754"
 
-@pytest.fixture(scope='module')
+
+@pytest.fixture(scope="module")
 def cors_header_name():
     return "access-control-allow-origin"
 
-@pytest.fixture(scope='session')
+
+@pytest.fixture(scope="session")
 def schema_for_validation(tmp_path_factory, request):
     # Die Schema-Files werden lokal gespeichert, damit
     # es keine Abhängigkeit zu exterenen Ressourcen gibt.
-    resources_dir = pathlib.Path(__file__).parent.resolve() / 'resources'
+    resources_dir = pathlib.Path(__file__).parent.resolve() / "resources"
     sources = [
-        resources_dir / 'geometry.xsd',
-        resources_dir / 'xmldsig-core-schema.xsd',
-        resources_dir / 'Extract.xsd',
-        resources_dir / 'ExtractData.xsd'
+        resources_dir / "geometry.xsd",
+        resources_dir / "xmldsig-core-schema.xsd",
+        resources_dir / "Extract.xsd",
+        resources_dir / "ExtractData.xsd",
     ]
     schema = xmlschema.XMLSchema11(sources)
     return schema
 
-@pytest.fixture(scope='module')
+
+@pytest.fixture(scope="module")
 def egrid_gz_old():
     return "CH724797463501"
 
-@pytest.fixture(scope='module')
-def nbident_number_gz_new():
-    return ('BE0200000266', 'GZN3-01')
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope="module")
+def nbident_number_gz_new():
+    return ("BE0200000266", "GZN3-01")
+
+
+@pytest.fixture(scope="module")
 def egrid_blu_old():
     return "CH458946813550"

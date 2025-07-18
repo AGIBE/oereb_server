@@ -5,7 +5,10 @@ from pyramid.httpexceptions import HTTPNotFound
 from sqlalchemy import cast, Text
 from pyramid_oereb import Config, database_adapter
 from pyramid_oereb.core.records.office import OfficeRecord
-from pyramid_oereb.contrib.data_sources.standard.sources.plr import StandardThemeConfigParser
+from pyramid_oereb.contrib.data_sources.standard.sources.plr import (
+    StandardThemeConfigParser,
+)
+
 
 def get_surveying_data_provider(real_estate):
     """
@@ -16,10 +19,10 @@ def get_surveying_data_provider(real_estate):
         provider (pyramid_oereb.lib.records.office.OfficeRecord): The provider who produced the used
             surveying data.
     """
-    params = Config.get_real_estate_config().get('source').get('params')
-    session = database_adapter.get_session(params.get('db_connection'))
+    params = Config.get_real_estate_config().get("source").get("params")
+    session = database_adapter.get_session(params.get("db_connection"))
     try:
-        model = DottedNameResolver().resolve(params.get('model'))
+        model = DottedNameResolver().resolve(params.get("model"))
         re = session.query(model).filter(model.egrid == real_estate.egrid).one()
         provider = OfficeRecord(re.data_provider)
         return provider
@@ -40,14 +43,15 @@ def get_surveying_data_update_date(real_estate):
     Returns:
         update_date (datetime.datetime): The date of the last update of the cadastral base data
     """
-    params = Config.get_real_estate_config().get('source').get('params')
-    session = database_adapter.get_session(params.get('db_connection'))
+    params = Config.get_real_estate_config().get("source").get("params")
+    session = database_adapter.get_session(params.get("db_connection"))
     try:
-        model = DottedNameResolver().resolve(params.get('model'))
+        model = DottedNameResolver().resolve(params.get("model"))
         re = session.query(model).filter(model.egrid == real_estate.egrid).one()
         return datetime.datetime.combine(re.currentness, datetime.time.min)
     finally:
         session.close()
+
 
 # Diese Hook-Funktion wird nicht genutzt, weil die unter symbol_url
 # referenzierten Bilder teilweise transparent sind (s. #65757)
@@ -69,27 +73,29 @@ def get_symbol_ref(request, record):
         uri: The link to the symbol for the specified public law restriction.
     """
     plr = None
-    for p in Config.get('plrs'):
-        if str(p.get('code')).lower() == str(record.theme.code).lower():
+    for p in Config.get("plrs"):
+        if str(p.get("code")).lower() == str(record.theme.code).lower():
             plr = p
             break
 
     if plr is None:
-        raise HTTPNotFound('No theme with code {}.'.format(record.theme.code))
+        raise HTTPNotFound("No theme with code {}.".format(record.theme.code))
 
-    params = plr['source']['params']
-    session = database_adapter.get_session(params.get('db_connection'))
+    params = plr["source"]["params"]
+    session = database_adapter.get_session(params.get("db_connection"))
     try:
         config_parser = StandardThemeConfigParser(**plr)
         models = config_parser.get_models()
         model = models.LegendEntry
-        legend_entry = session.query(model).filter(
-            cast(model.id, Text) == cast(record.identifier, Text)
-        ).first()
+        legend_entry = (
+            session.query(model)
+            .filter(cast(model.id, Text) == cast(record.identifier, Text))
+            .first()
+        )
         if legend_entry:
-            symbol_url = getattr(legend_entry, 'symbol_url', None)
+            symbol_url = getattr(legend_entry, "symbol_url", None)
             if symbol_url:
                 return symbol_url
         raise HTTPNotFound("Symbol nicht gefunden.")
     finally:
-        session.close()        
+        session.close()

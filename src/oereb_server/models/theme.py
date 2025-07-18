@@ -9,16 +9,25 @@ from oereb_server.models import (
     get_legend_entry,
     get_public_law_restriction,
     get_geometry,
-    get_public_law_restriction_document
+    get_public_law_restriction_document,
 )
 
 
 class Models(object):
-
-    def __init__(self, availability, office, document, view_service,
-                 legend_entry, public_law_restriction, geometry,
-                 public_law_restriction_document, base, db_connection, schema_name):
-
+    def __init__(
+        self,
+        availability,
+        office,
+        document,
+        view_service,
+        legend_entry,
+        public_law_restriction,
+        geometry,
+        public_law_restriction_document,
+        base,
+        db_connection,
+        schema_name,
+    ):
         self.Availability = availability
         self.Office = office
         self.Document = document
@@ -51,16 +60,28 @@ def model_factory(schema_name, pk_type, geometry_type, srid, db_connection):
     Availability = get_availablility(Base, schema_name, pk_type)
     ViewService = get_view_service(Base, schema_name, pk_type)
     LegendEntry = get_legend_entry(Base, schema_name, pk_type, ViewService)
-    PublicLawRestriction = get_public_law_restriction(Base, schema_name, pk_type, Office, ViewService,
-                                                      LegendEntry)
-    Geometry = get_geometry(Base, schema_name, pk_type, geometry_type, srid, PublicLawRestriction)
-    PublicLawRestrictionDocument = get_public_law_restriction_document(Base, schema_name, pk_type,
-                                                                       PublicLawRestriction, Document)
+    PublicLawRestriction = get_public_law_restriction(
+        Base, schema_name, pk_type, Office, ViewService, LegendEntry
+    )
+    Geometry = get_geometry(
+        Base, schema_name, pk_type, geometry_type, srid, PublicLawRestriction
+    )
+    PublicLawRestrictionDocument = get_public_law_restriction_document(
+        Base, schema_name, pk_type, PublicLawRestriction, Document
+    )
 
     return Models(
-        Availability, Office, Document, ViewService,
-        LegendEntry, PublicLawRestriction, Geometry, PublicLawRestrictionDocument,
-        Base, db_connection, schema_name
+        Availability,
+        Office,
+        Document,
+        ViewService,
+        LegendEntry,
+        PublicLawRestriction,
+        Geometry,
+        PublicLawRestrictionDocument,
+        Base,
+        db_connection,
+        schema_name,
     )
 
 

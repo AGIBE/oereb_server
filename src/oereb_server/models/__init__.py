@@ -4,7 +4,6 @@ This Package provides all models fitting to the standard database configuration.
 mandatory topics the federation asks for.
 """
 
-
 from sqlalchemy import Column, ForeignKey
 from sqlalchemy import Boolean, String, Integer, Float, Date
 from geoalchemy2.types import Geometry as GeoAlchemyGeometry
@@ -13,11 +12,11 @@ from sqlalchemy_utils import JSONType
 
 
 NAMING_CONVENTION = {
-    "ix": 'ix_%(column_0_label)s',
+    "ix": "ix_%(column_0_label)s",
     "uq": "uq_%(table_name)s_%(column_0_name)s",
     "ck": "ck_%(table_name)s_%(constraint_name)s",
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-    "pk": "pk_%(table_name)s"
+    "pk": "pk_%(table_name)s",
 }
 
 
@@ -53,8 +52,9 @@ def get_office(base, schema_name, pk_type):
             postal_code (int): The ZIP-code.
             city (str): The name of the city.
         """
-        __table_args__ = {'schema': schema_name}
-        __tablename__ = 'office'
+
+        __table_args__ = {"schema": schema_name}
+        __tablename__ = "office"
         id = Column(pk_type, primary_key=True, autoincrement=False)
         name = Column(JSONType, nullable=False)
         office_at_web = Column(JSONType, nullable=True)
@@ -114,16 +114,16 @@ def get_document(base, schema_name, pk_type, Office):
             file (str): The document itself as a binary representation (PDF). It is string but
                 BaseCode64 encoded.
         """
-        __table_args__ = {'schema': schema_name}
-        __tablename__ = 'document'
+
+        __table_args__ = {"schema": schema_name}
+        __tablename__ = "document"
         id = Column(pk_type, primary_key=True, autoincrement=False)
         document_type = Column(String, nullable=False)
         index = Column(Integer, nullable=False)
         law_status = Column(String, nullable=False)
         title = Column(JSONType, nullable=False)
         office_id = Column(
-            ForeignKey(Office.id, deferrable=True, initially='deferred'),
-            nullable=False
+            ForeignKey(Office.id, deferrable=True, initially="deferred"), nullable=False
         )
         responsible_office = relationship(Office)
         published_from = Column(Date, nullable=False)
@@ -164,13 +164,15 @@ def get_availablility(base, schema_name, pk_type):
                 municipality or not.  This field has direct influence on the applications
                 behaviour. See documentation for more info.
         """
-        __table_args__ = {'schema': schema_name}
-        __tablename__ = 'availability'
+
+        __table_args__ = {"schema": schema_name}
+        __tablename__ = "availability"
         fosnr = Column(pk_type, primary_key=True, autoincrement=False)
         available = Column(Boolean, nullable=False, default=False)
         liefereinheit = Column(Integer, nullable=True)
 
     return Availability
+
 
 def get_view_service(base, schema_name, pk_type):
     """
@@ -198,8 +200,9 @@ def get_view_service(base, schema_name, pk_type):
             layer_index (int): Index for sorting the layering of the view services for a theme
             layer_opacity (float): Opacity of a view service
         """
-        __table_args__ = {'schema': schema_name}
-        __tablename__ = 'view_service'
+
+        __table_args__ = {"schema": schema_name}
+        __tablename__ = "view_service"
         id = Column(pk_type, primary_key=True, autoincrement=False)
         reference_wms = Column(JSONType, nullable=False)
         layer_index = Column(Integer, nullable=False)
@@ -244,8 +247,9 @@ def get_legend_entry(base, schema_name, pk_type, ViewService):
             view_service (ViewService):
                 The dedicated relation to the view service instance from database.
         """
-        __table_args__ = {'schema': schema_name}
-        __tablename__ = 'legend_entry'
+
+        __table_args__ = {"schema": schema_name}
+        __tablename__ = "legend_entry"
         id = Column(pk_type, primary_key=True, autoincrement=False)
         symbol = Column(String, nullable=False)
         symbol_url = Column(String, nullable=False)
@@ -254,17 +258,16 @@ def get_legend_entry(base, schema_name, pk_type, ViewService):
         type_code_list = Column(String, nullable=False)
         theme = Column(String, nullable=False)
         sub_theme = Column(String, nullable=True)
-        view_service_id = Column(
-            ForeignKey(ViewService.id),
-            nullable=False
-        )
-        view_service = relationship(ViewService, backref='legends')
+        view_service_id = Column(ForeignKey(ViewService.id), nullable=False)
+        view_service = relationship(ViewService, backref="legends")
         liefereinheit = Column(Integer, nullable=True)
 
     return LegendEntry
 
 
-def get_public_law_restriction(base, schema_name, pk_type, Office, ViewService, LegendEntry):
+def get_public_law_restriction(
+    base, schema_name, pk_type, Office, ViewService, LegendEntry
+):
     """
     Factory to produce a generic public law restriction model.
 
@@ -306,30 +309,21 @@ def get_public_law_restriction(base, schema_name, pk_type, Office, ViewService, 
             legend_entry (pyramid_oereb.standard.models.airports_building_lines.LegendEntry):
                 The dedicated relation to the legend entry instance from database.
         """
-        __table_args__ = {'schema': schema_name}
-        __tablename__ = 'public_law_restriction'
+
+        __table_args__ = {"schema": schema_name}
+        __tablename__ = "public_law_restriction"
         id = Column(pk_type, primary_key=True, autoincrement=False)
         law_status = Column(String, nullable=False)
         published_from = Column(Date, nullable=False)
         published_until = Column(Date, nullable=True)
-        view_service_id = Column(
-            ForeignKey(ViewService.id),
-            nullable=False
-        )
-        view_service = relationship(
-            ViewService,
-            backref='public_law_restrictions'
-        )
+        view_service_id = Column(ForeignKey(ViewService.id), nullable=False)
+        view_service = relationship(ViewService, backref="public_law_restrictions")
         office_id = Column(
-            ForeignKey(Office.id, deferrable=True, initially='deferred'),
-            nullable=False
+            ForeignKey(Office.id, deferrable=True, initially="deferred"), nullable=False
         )
         responsible_office = relationship(Office)
-        legend_entry_id = Column(
-            ForeignKey(LegendEntry.id),
-            nullable=False
-        )
-        legend_entry = relationship('LegendEntry', backref='public_law_restrictions')
+        legend_entry_id = Column(ForeignKey(LegendEntry.id), nullable=False)
+        legend_entry = relationship("LegendEntry", backref="public_law_restrictions")
         liefereinheit = Column(Integer, nullable=True)
 
     return PublicLawRestriction
@@ -375,8 +369,9 @@ def get_geometry(base, schema_name, pk_type, geometry_type, srid, PublicLawRestr
                 geoalchemy docs (https://geoalchemy-2.readthedocs.io/en/0.4.2/types.html) dependent on the
                 configured type.  This concrete one is LINESTRING
         """
-        __table_args__ = {'schema': schema_name}
-        __tablename__ = 'geometry'
+
+        __table_args__ = {"schema": schema_name}
+        __tablename__ = "geometry"
         id = Column(pk_type, primary_key=True, autoincrement=False)
         law_status = Column(String, nullable=False)
         published_from = Column(Date, nullable=False)
@@ -384,19 +379,19 @@ def get_geometry(base, schema_name, pk_type, geometry_type, srid, PublicLawRestr
         geo_metadata = Column(String, nullable=True)
         geom = Column(GeoAlchemyGeometry(geometry_type, srid=srid), nullable=False)
         public_law_restriction_id = Column(
-            ForeignKey(PublicLawRestriction.id),
-            nullable=False
+            ForeignKey(PublicLawRestriction.id), nullable=False
         )
         public_law_restriction = relationship(
-            PublicLawRestriction,
-            backref='geometries'
+            PublicLawRestriction, backref="geometries"
         )
         liefereinheit = Column(Integer, nullable=True)
 
     return Geometry
 
 
-def get_public_law_restriction_document(base, schema_name, pk_type, PublicLawRestriction, Document):
+def get_public_law_restriction_document(
+    base, schema_name, pk_type, PublicLawRestriction, Document
+):
     """
     Factory to produce a generic public law restriction document model.
 
@@ -427,24 +422,16 @@ def get_public_law_restriction_document(base, schema_name, pk_type, PublicLawRes
             document (Document):
                 The dedicated relation to the document instance from database.
         """
-        __tablename__ = 'public_law_restriction_document'
-        __table_args__ = {'schema': schema_name}
+
+        __tablename__ = "public_law_restriction_document"
+        __table_args__ = {"schema": schema_name}
         id = Column(pk_type, primary_key=True, autoincrement=False)
         public_law_restriction_id = Column(
-            ForeignKey(PublicLawRestriction.id),
-            nullable=False
+            ForeignKey(PublicLawRestriction.id), nullable=False
         )
-        document_id = Column(
-            ForeignKey(Document.id),
-            nullable=False
-        )
-        plr = relationship(
-            PublicLawRestriction,
-            backref='legal_provisions'
-        )
-        document = relationship(
-            Document
-        )
+        document_id = Column(ForeignKey(Document.id), nullable=False)
+        plr = relationship(PublicLawRestriction, backref="legal_provisions")
+        document = relationship(Document)
         liefereinheit = Column(Integer, nullable=True)
 
     return PublicLawRestrictionDocument
