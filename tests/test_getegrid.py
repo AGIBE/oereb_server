@@ -173,14 +173,14 @@ def test_getegrid_xml_valid(running_server_instance, request_params, schema_for_
     url = running_server_instance + "/getegrid/" + request_params
     res = requests.get(url)
     xml = res.text
-    assert schema_for_validation.is_valid(xml) == True
+    assert schema_for_validation.is_valid(xml)
 
 @pytest.mark.parametrize("request_params", getegrid_combos_xml_valid)
 def test_getegrid_xml_geometry_valid(running_server_instance, request_params, schema_for_validation):
     url = running_server_instance + "/getegrid/" + request_params + "&GEOMETRY=TRUE"
     res = requests.get(url)
     xml = res.text
-    assert schema_for_validation.is_valid(xml) == True
+    assert schema_for_validation.is_valid(xml)
 
 
 @pytest.mark.parametrize("request_params", getegrid_combos_invalid)

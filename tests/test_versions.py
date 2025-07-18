@@ -67,7 +67,7 @@ def test_versions_xml_valid(running_server_instance):
     res = requests.get(url)
     xml = res.text
     schema = xmlschema.XMLSchema("http://schemas.geo.admin.ch/V_D/OeREB/2.0/Versioning.xsd")
-    assert schema.is_valid(xml) == True    
+    assert schema.is_valid(xml)
 
 def test_versions_implicit(running_server_instance):
     url = running_server_instance + "/versions"

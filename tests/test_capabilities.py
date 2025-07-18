@@ -116,7 +116,7 @@ def test_capabilities_xml_valid(running_server_instance, schema_for_validation):
     url = running_server_instance + "/capabilities/xml"
     res = requests.get(url)
     xml = res.text
-    assert schema_for_validation.is_valid(xml) == True
+    assert schema_for_validation.is_valid(xml)
 
 def test_capabilities_xml_implicit(running_server_instance):
     url = running_server_instance + "/capabilities"

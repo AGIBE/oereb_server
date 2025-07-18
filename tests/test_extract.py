@@ -116,7 +116,7 @@ def test_extract_xml_valid_schema(running_server_instance, egrid_with_some_plr, 
     extract_url = running_server_instance + "/extract/xml/?egrid=" + egrid_with_some_plr
     res = requests.get(extract_url)
     xml = res.text
-    assert schema_for_validation.is_valid(xml) == True
+    assert schema_for_validation.is_valid(xml)
 
 def test_extract_gz_new(running_server_instance, egrid_gz_old):
     extract_url = running_server_instance + "/extract/json/?egrid=" + egrid_gz_old
