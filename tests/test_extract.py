@@ -119,12 +119,12 @@ def test_extract_xml_valid_schema(running_server_instance, egrid_with_some_plr, 
     xml = res.text
     assert schema_for_validation.is_valid(xml)
 
-def test_extract_gz_new(running_server_instance, egrid_gz_old):
+def test_extract_gz_old(running_server_instance, egrid_gz_old):
     extract_url = running_server_instance + "/extract/json/?egrid=" + egrid_gz_old
     res = requests.get(extract_url)
     assert res.status_code == 200
 
-def test_extract_gz_old(running_server_instance, nbident_number_gz_new):
+def test_extract_gz_new(running_server_instance, nbident_number_gz_new):
     nbident = nbident_number_gz_new[0]
     number = nbident_number_gz_new[1]
     extract_url = f"{running_server_instance}/extract/json/?identdn={nbident}&number={number}"

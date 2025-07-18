@@ -158,7 +158,7 @@ def egrid_gz_old():
 
 @pytest.fixture(scope='module')
 def nbident_number_gz_new():
-    return ('BE0200000065', 'GZN32-01')
+    return ('BE0200000266', 'GZN3-01')
 
 @pytest.fixture(scope='module')
 def egrid_blu_old():
