@@ -3,7 +3,6 @@ import codecs
 import pathlib
 import yaml
 import psycopg2
-import requests
 import xmlschema
 from oereb_server.scripts import create_config
 

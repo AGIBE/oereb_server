@@ -1,4 +1,3 @@
-import pytest
 import jsonschema
 import requests
 import xml.etree.ElementTree as ET
@@ -60,7 +59,7 @@ def test_capabilities_json_valid(running_server_instance):
     resolver = jsonschema.RefResolver(base_uri="http://schemas.geo.admin.ch/V_D/OeREB/2.0/", referrer=json_schema)
     try:
         jsonschema.validate(instance=res_json, schema=json_schema, resolver=resolver)
-    except jsonschema.ValidationError as exc:
+    except jsonschema.ValidationError:
         assert False
 
 def test_capabilities_xml_topics(running_server_instance, number_of_topics_config):

@@ -153,7 +153,7 @@ def test_getegrid_json_valid(running_server_instance, request_params):
     resolver = jsonschema.RefResolver(base_uri="http://schemas.geo.admin.ch/V_D/OeREB/2.0/", referrer=json_schema)
     try:
         jsonschema.validate(instance=res_json, schema=json_schema, resolver=resolver)
-    except jsonschema.ValidationError as exc:
+    except jsonschema.ValidationError:
         assert False    
 
 @pytest.mark.parametrize("request_params", getegrid_combos_json_valid)
@@ -165,7 +165,7 @@ def test_getegrid_json_geometry_valid(running_server_instance, request_params):
     resolver = jsonschema.RefResolver(base_uri="http://schemas.geo.admin.ch/V_D/OeREB/2.0/", referrer=json_schema)
     try:
         jsonschema.validate(instance=res_json, schema=json_schema, resolver=resolver)
-    except jsonschema.ValidationError as exc:
+    except jsonschema.ValidationError:
         assert False    
 
 @pytest.mark.parametrize("request_params", getegrid_combos_xml_valid)

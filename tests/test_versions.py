@@ -34,7 +34,7 @@ def test_versions_json_valid(running_server_instance):
     json_res = res.json()
     try:
         jsonschema.validate(instance=json_res, schema=json_schema)
-    except jsonschema.ValidationError as exc:
+    except jsonschema.ValidationError:
         assert False
 
 def test_versions_xml_number_of_versions(running_server_instance):
