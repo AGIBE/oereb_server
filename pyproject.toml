@@ -52,8 +52,10 @@ where = ["src/"]
 
 [tool.uv]
 dev-dependencies = [
+    "httpx>=0.28.1",
     "jsonschema>=4.23.0",
     "pylint>=3.2.7",
     "pytest>=8.3.3",
+    "pytest-asyncio>=1.1.0",
     "xmlschema>=3.4.2",
 ]
