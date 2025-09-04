@@ -2,7 +2,7 @@ version: "3"
 services:
   oereb_server:
     container_name: oereb-server
-    image: oereb_server:3.4.1
+    image: oereb_server:3.4.2
     deploy:
         resources:
           limits:
@@ -34,7 +34,7 @@ services:
       - GUNICORN_MAX_REQUESTS=${OEREB_SERVER_GUNICORN_MAX_REQUESTS}
   oereb_server_db:
     container_name: oereb-server-db
-    image: oereb_server_db:2025_04_15
+    image: oereb_server_db:2025_09_04
     ports:
       - "5432:5432"
     environment:
@@ -49,7 +49,7 @@ services:
       - POSTGRES_TRANSFERSTRUKTUR_URL=${OEREB_SERVER_DB_TRANSFERSTRUKTUR_URL}
   oereb_server_print:
     container_name: oereb-server-print
-    image: oereb_server_print:3.4.1
+    image: oereb_server_print:3.4.2
     depends_on:
       - squid_proxy
     ports:
