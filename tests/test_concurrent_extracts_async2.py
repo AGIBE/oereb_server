@@ -2,13 +2,15 @@ import pytest
 import asyncio
 import httpx
 
-REPEATS_SLOW_EXTRACT = 1   # Anzahl Wiederholungen in Strang A
-THREADS_FAST_EXTRACT = 5   # parallele Stränge für Request B
-REPEATS_FAST_EXTRACT = 2   # Anzahl Wiederholungen pro Strang in Strang B
+REPEATS_SLOW_EXTRACT = 1  # Anzahl Wiederholungen in Strang A
+THREADS_FAST_EXTRACT = 5  # parallele Stränge für Request B
+REPEATS_FAST_EXTRACT = 2  # Anzahl Wiederholungen pro Strang in Strang B
 
 
 @pytest.mark.asyncio
-async def test_api_parallel_with_reference_check_async(running_server_instance, egrids_for_concurrent_error):
+async def test_api_parallel_with_reference_check_async(
+    running_server_instance, egrids_for_concurrent_error
+):
     async with httpx.AsyncClient(timeout=None) as client:
         slow_egrid, fast_egrid = egrids_for_concurrent_error
         slow_extract_url = running_server_instance + "/extract/json?egrid=" + slow_egrid
@@ -30,7 +32,7 @@ async def test_api_parallel_with_reference_check_async(running_server_instance, 
                 r.raise_for_status()
                 number_of_plrs = count_plr_in_json_extract(r)
                 assert number_of_plrs == slow_ref_len, (
-                    f"Slow Extract Durchlauf {i+1} hat abweichende Antwort (erwartet: {slow_ref_len}; effektiv: {number_of_plrs})"
+                    f"Slow Extract Durchlauf {i + 1} hat abweichende Antwort (erwartet: {slow_ref_len}; effektiv: {number_of_plrs})"
                 )
 
         async def run_fast_extract():
@@ -39,7 +41,7 @@ async def test_api_parallel_with_reference_check_async(running_server_instance, 
                 r.raise_for_status()
                 number_of_plrs = count_plr_in_json_extract(r)
                 assert number_of_plrs == fast_ref_len, (
-                    f"Fast Extract Durchlauf {i+1} hat abweichende Antwort (erwartet: {fast_ref_len}; effektiv: {number_of_plrs})"
+                    f"Fast Extract Durchlauf {i + 1} hat abweichende Antwort (erwartet: {fast_ref_len}; effektiv: {number_of_plrs})"
                 )
 
         # 3. Parallele Ausführung:
@@ -50,6 +52,7 @@ async def test_api_parallel_with_reference_check_async(running_server_instance, 
             tasks.append(asyncio.create_task(run_fast_extract()))
 
         await asyncio.gather(*tasks)
+
 
 def count_plr_in_json_extract(response: httpx.Response):
     js = response.json()
