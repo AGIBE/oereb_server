@@ -29,6 +29,7 @@ pyramid.includes = pyramid_debugtoolbar
 [server:main]
 use = egg:waitress#main
 listen = localhost:6543
+threads = 4
 ; use = egg:gunicorn#main
 ; host = 127.0.0.1
 ; port = 6543
