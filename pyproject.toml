@@ -50,8 +50,8 @@ version = {attr = "oereb_server.__version__"}
 [tool.setuptools.packages.find]
 where = ["src/"]
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "httpx>=0.28.1",
     "jsonschema>=4.23.0",
     "pylint>=3.2.7",
