@@ -178,7 +178,7 @@ def complex_extract_parcel():
 
 @pytest.fixture(scope="module")
 def cors_header_name():
-    return "access-control-allow-origin"
+    return "Access-Control-Allow-Origin"
 
 
 @pytest.fixture(scope="session")
