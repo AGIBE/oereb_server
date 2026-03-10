@@ -18,8 +18,8 @@ test_async:
     uv run pytest tests\test_concurrent_extracts_async.py --env=dev
 
 printup:
-    cd C:\Daten\prog\apache-tomcat-9.0.62\bin && startup.bat
+    cd /d C:\Daten\prog\apache-tomcat-9.0.62\bin && startup.bat
     
 printdown:
-    cd C:\Daten\prog\apache-tomcat-9.0.62\bin && shutdown.bat
+    cd /d C:\Daten\prog\apache-tomcat-9.0.62\bin && shutdown.bat
     
