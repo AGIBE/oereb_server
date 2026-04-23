@@ -25,6 +25,7 @@ def main(global_config, **settings):
     config.add_route("version", "/version")
     config.add_route("status", "/status")
     config.add_route("legend", "/legend")
+    config.add_route("legend_topic", "/legend_topic")
     config.add_route("home", "/")
     config.scan()
     config.add_subscriber(add_cors_headers_response_callback, NewRequest)

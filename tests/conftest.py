@@ -150,7 +150,14 @@ def random_egrids(db_connection_string, app_schema_name):
             cur.execute(sql)
             return [egrid[0] for egrid in cur.fetchall()]
 
-
+@pytest.fixture(scope="module")        
+def topic_codes(db_connection_string, app_schema_name):
+    with psycopg2.connect(db_connection_string) as conn:
+        with conn.cursor() as cur:
+            sql = "select code from oereb_server.theme t where t.sub_code is null order by t.extract_index asc"
+            cur.execute(sql)
+            return [topic[0] for topic in cur.fetchall()]
+        
 def pytest_addoption(parser):
     parser.addoption(
         "--env",
