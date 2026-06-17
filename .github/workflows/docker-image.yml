@@ -3,7 +3,10 @@ name: Docker-Image erstellen
 on:
   workflow_dispatch:
     inputs:
-      tag: '3.5.0'
+      tag:
+        description: "Versions-Tag"
+        required: true
+        type: text
 
 jobs:
 
