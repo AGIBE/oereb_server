@@ -44,4 +44,7 @@ jobs:
       run: podman-compose --help
 
     - name: podman-compose starten
-      run: podman-compose up -d
+      run: podman-compose up
+
+    - name: podman läuft
+      run: podman ps
