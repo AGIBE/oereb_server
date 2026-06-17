@@ -3,14 +3,6 @@ services:
   oereb_server:
     container_name: oereb-server
     image: ghcr.io/agibe/oereb_server:3.5.0
-    deploy:
-        resources:
-          limits:
-            cpus: '1'
-            memory: 6G
-          reservations:
-            cpus: '1'
-            memory: 6G
     depends_on:
       - oereb_server_db
       - oereb_server_print
