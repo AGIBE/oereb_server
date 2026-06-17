@@ -6,7 +6,7 @@ on:
       tag:
         description: "Versions-Tag"
         required: true
-        type: text
+        type: string
 
 jobs:
 
@@ -26,3 +26,9 @@ jobs:
 
     - name: Image taggen
       run: podman image tag oereb_server:${{ inputs.tag }} ghcr.io/agibe/oereb_server:${{ inputs.tag }}
+
+    - name: Registry anmelden
+      run: echo "${{ secrets.GHCR_TOKEN }}" | podman login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: Image pushen
+      run: podman image push ghcr.io/agibe/oereb_server:${{ inputs.tag }}
