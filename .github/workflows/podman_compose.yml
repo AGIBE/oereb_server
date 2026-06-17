@@ -13,5 +13,8 @@ jobs:
     - name: Code auschecken
       uses: actions/checkout@v4
 
+    - name: podman-compose installieren
+      run: pip install podman-compose
+
     - name: Podman da
       run: podman-compose --help
