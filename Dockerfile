@@ -16,6 +16,9 @@ RUN uv sync --frozen --no-dev --no-cache
 
 FROM debian:trixie-slim
 
+LABEL org.opencontainers.image.source=https://github.com/AGIBE/oereb_server
+LABEL org.opencontainers.image.description="ÖREB-Server Kanton Bern"
+
 RUN apt-get update && apt-get -y upgrade && \
 	DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
 	libgeos-c1v5 libpq5 gosu tini && \
