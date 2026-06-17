@@ -35,7 +35,7 @@ services:
       - GUNICORN_MAX_REQUESTS=${OEREB_SERVER_GUNICORN_MAX_REQUESTS}
   oereb_server_db:
     container_name: oereb-server-db
-    image: oereb_server_db:2026_06_18
+    image: ghcr.io/agibe/oereb_server_db:2026_06_18
     ports:
       - "5432:5432"
     environment:

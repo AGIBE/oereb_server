@@ -16,5 +16,8 @@ jobs:
     - name: podman-compose installieren
       run: pip install podman-compose
 
-    - name: Podman da
+    - name: Podman da?
       run: podman-compose --help
+
+    - name: podman-compose starten
+      run: podman-compose up -d
