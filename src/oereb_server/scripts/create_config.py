@@ -1,12 +1,16 @@
-# -*- coding: utf-8 -*-
-from mako.template import Template
-import codecs
+"""Modul für die Erstellung der verschiedenen Config-Files"""
+
 import os
+from mako.template import Template
 
 
 def run_create_config():
+    """Erstellt auf Basis von Umgebungsvariablen das Config-File des ÖREB-Servers (oereb_server.yml)
+    sowie das ini-File für die Webapplikation (oereb_server.ini)
+    """
+
     # Alle Umgebungsvariablen in einen Dictionary abfüllen
-    env_vars = [
+    expected_environment_variables = [
         "POSTGRES_DATABASE",
         "POSTGRES_HOST",
         "POSTGRES_PASSWORD",
@@ -19,27 +23,28 @@ def run_create_config():
         "POSTGRES_LOGGER_SCHEMA",
         "POSTGRES_LOGGER_TABLE",
         "INI_LEVEL",
+        "LOG_LEVEL",
     ]
-    vars = {}
+    found_environment_variables = {}
     level = ""
-    for env_var in env_vars:
-        vars[env_var] = os.environ[env_var]
+    for env_var in expected_environment_variables:
+        found_environment_variables[env_var] = os.environ[env_var]
 
     # pyramid_oereb_standard.yml schreiben
-    template = Template(filename="oereb_server.mako")
-    rendered_config = template.render(**vars)
+    yml_template = Template(filename="oereb_server.mako")
+    rendered_yml_config = yml_template.render(**found_environment_variables)
 
-    with codecs.open("oereb_server.yml", "w", "utf-8") as config_file:
-        config_file.write(rendered_config)
+    with open("oereb_server.yml", "w", encoding="utf-8") as config_file:
+        config_file.write(rendered_yml_config)
 
     # ini-File schreiben (production oder development)
-    level = vars["INI_LEVEL"]
+    level = found_environment_variables["INI_LEVEL"]
 
-    template2 = Template(filename=level + ".mako")
-    rendered_config2 = template2.render(**vars)
+    ini_template = Template(filename=f"{level}.mako")
+    rendered_ini_config = ini_template.render(**found_environment_variables)
 
-    with codecs.open(level + ".ini", "w", "utf-8") as ini_file:
-        ini_file.write(rendered_config2)
+    with open("oereb_server.ini", "w", encoding="utf-8") as ini_file:
+        ini_file.write(rendered_ini_config)
 
 
 if __name__ == "__main__":

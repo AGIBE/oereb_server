@@ -37,7 +37,7 @@ keys = console, sqlalchemylogger
 keys = generic
 
 [logger_root]
-level = WARN
+level = ${LOG_LEVEL}
 handlers = console
 
 [logger_json]

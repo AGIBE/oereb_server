@@ -22,6 +22,7 @@ test
 *.code-workspace
 .vscode/*
 oereb_server.yml
+oereb_server.ini
 development.ini
 production.ini
 *.log

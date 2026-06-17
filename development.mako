@@ -50,7 +50,7 @@ keys = console, sqlalchemylogger
 keys = generic
 
 [logger_root]
-level = DEBUG
+level = ${LOG_LEVEL}
 handlers = console
 
 [logger_json]
