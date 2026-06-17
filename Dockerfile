@@ -1,4 +1,4 @@
-FROM debian:trixie-slim as builder
+FROM debian:trixie-slim AS builder
 
 COPY --from=ghcr.io/astral-sh/uv:0.11.21 /uv /bin/uv
 
