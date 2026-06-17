@@ -15,6 +15,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag oereb_server:${{ inputs.tag }}
+    - name: Code auschecken
+      uses: actions/checkout@v4
+
+    - name: Podman-Version checken
+      run: podman --version
+
+    - name: Image bauen
+      run: podman build -t oereb_server:${{ inputs.tag }} .
+
+    - name: Image taggen
+      run: podman image tag oereb_server:${{ inputs.tag }} ghcr.io/agibe/oereb_server:${{ inputs.tag }}
