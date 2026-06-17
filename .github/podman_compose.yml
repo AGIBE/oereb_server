@@ -1,0 +1,17 @@
+name: podman-compose ausführen
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Code auschecken
+      uses: actions/checkout@v4
+
+    - name: Podman da
+      run: podman-compose --help
