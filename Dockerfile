@@ -6,6 +6,8 @@ WORKDIR /usr/src/oereb_server
 
 ENV UV_COMPILE_BYTECODE=1
 
+ENV UV_PYTHON_INSTALL_DIR=/usr/src/python
+
 RUN apt-get update && apt-get -y upgrade && \
 	DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
 	libgeos-c1v5 libpq5 build-essential libgeos-dev libpq-dev
@@ -30,6 +32,7 @@ RUN groupadd oereb && useradd -g oereb oerebrunner
 WORKDIR /usr/src/oereb_server
 
 COPY --from=builder --chown=oerebrunner:oereb /usr/src/oereb_server /usr/src/oereb_server
+COPY --from=builder --chown=oerebrunner:oereb /usr/src/python /usr/src/python
 
 RUN chmod +x run_oereb_server_gunicorn.sh
 
