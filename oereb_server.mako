@@ -214,7 +214,9 @@ oereb_server:
         de: Amt für Geoinformation
         fr: Office de l'information géographique
     # An online link to web presentation of your office. For instance: https://www.geo.bl.ch/
-    office_at_web: https://www.be.ch/oerebk
+    office_at_web:
+        de: https://www.be.ch/oerebk
+        fr: https://www.be.ch/crdppf
     # The street name of the address of your office. For instance: Mühlemattstrasse
     street: Reiterstrasse
     # The street number of the address of your office. For instance: 36
