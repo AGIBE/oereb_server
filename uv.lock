@@ -1,6 +1,6 @@
 version = 1
-revision = 3
-requires-python = "==3.12.13"
+revision = 5
+requires-python = "==3.12.15"
 
 [[package]]
 name = "alembic"
@@ -522,16 +522,16 @@ requires-dist = [
     { name = "image", specifier = "==1.5.33" },
     { name = "mako-render", specifier = "==0.1.0" },
     { name = "pyaml-env", specifier = "==1.2.2" },
-    { name = "pypdf", specifier = "==6.10.2" },
+    { name = "pypdf", specifier = "==6.15.0" },
     { name = "pyramid", specifier = "==2.1" },
     { name = "pyramid-debugtoolbar", specifier = "==4.12.1" },
-    { name = "pyramid-oereb", specifier = "==2.5.9" },
+    { name = "pyramid-oereb", specifier = "==2.6.0" },
     { name = "pyreproj", specifier = "==3.0.0" },
     { name = "qrcode", specifier = "==8.2" },
     { name = "requests", specifier = "==2.33.1" },
     { name = "shapely", specifier = "==2.1.2" },
     { name = "sqlalchemy", specifier = "==2.0.49" },
-    { name = "urllib3", specifier = "==2.6.3" },
+    { name = "urllib3", specifier = "==2.7.0" },
     { name = "waitress", specifier = "==3.0.2" },
 ]
 
@@ -691,11 +691,11 @@ wheels = [
 
 [[package]]
 name = "pypdf"
-version = "6.10.2"
+version = "6.15.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/7b/3f/9f2167401c2e94833ca3b69535bad89e533b5de75fefe4197a2c224baec2/pypdf-6.10.2.tar.gz", hash = "sha256:7d09ce108eff6bf67465d461b6ef352dcb8d84f7a91befc02f904455c6eea11d", size = 5315679, upload-time = "2026-04-15T16:37:36.978Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/17/17/ee75a92718ec7212de831e71454d702225aa5e474a805cce169806044453/pypdf-6.15.0.tar.gz", hash = "sha256:d39c4d955a76409284a905e2d65b40076d77ab76129e0faaeeb6612403ecfc79", size = 6993794, upload-time = "2026-08-06T13:06:49.929Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0c/d6/1d5c60cc17bbdf37c1552d9c03862fc6d32c5836732a0415b2d637edc2d0/pypdf-6.10.2-py3-none-any.whl", hash = "sha256:aa53be9826655b51c96741e5d7983ca224d898ac0a77896e64636810517624aa", size = 336308, upload-time = "2026-04-15T16:37:34.851Z" },
+    { url = "https://files.pythonhosted.org/packages/af/72/ce3067ac31e214a66388159f8462ddb8c13dd00170f24d555a1f1ae8ee91/pypdf-6.15.0-py3-none-any.whl", hash = "sha256:14e001d6504822cb1ca9c7ed9a69bccb320f59b320730f55af804361abe4d5ee", size = 378123, upload-time = "2026-08-06T13:06:47.709Z" },
 ]
 
 [[package]]
@@ -767,14 +767,14 @@ wheels = [
 
 [[package]]
 name = "pyramid-oereb"
-version = "2.5.9"
+version = "2.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "setuptools" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/57/b0/539bb3aaf303c7673d421798e076bffb0ae72facfdeceb27816c5ba097eb/pyramid_oereb-2.5.9.tar.gz", hash = "sha256:67e41f690f33eb690030f060f3419fc958924251edacf9cc3a24d8434bd2b7d6", size = 143064, upload-time = "2026-06-09T10:12:45.873Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b4/fd/1b6235dcee19bfb52b95a0452c3aebb8beb3e13c29c0f0088f817a138e2f/pyramid_oereb-2.6.0.tar.gz", hash = "sha256:7631b6d3bdd50dbe16925d19179f1be261e18b340ffeea0e64add22d92bc98fe", size = 144542, upload-time = "2026-09-30T08:03:07.335Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/98/dc/3d9d64cd4b95ad7bcd3afffac212791a501dae53a23de8ebd789c4fa1f82/pyramid_oereb-2.5.9-py3-none-any.whl", hash = "sha256:e34cc56208f65d105b6fecfae165736456c3afe868356efd8b9f0d8fd9df92e4", size = 285278, upload-time = "2026-06-09T10:12:43.121Z" },
+    { url = "https://files.pythonhosted.org/packages/b9/07/5f613e798c16650c653c4540dbfe63ca00078078cb6b704e42730710e499/pyramid_oereb-2.6.0-py3-none-any.whl", hash = "sha256:0a5e4e38161b26f0fff44aaa05acbd3c4d804c2a2033cd8fd5ec9df125e03413", size = 286152, upload-time = "2026-09-30T08:03:05.057Z" },
 ]
 
 [[package]]
@@ -1099,11 +1099,11 @@ wheels = [
 
 [[package]]
 name = "urllib3"
-version = "2.6.3"
+version = "2.7.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/c7/24/5f1b3bdffd70275f6661c76461e25f024d5a38a46f04aaca912426a2b1d3/urllib3-2.6.3.tar.gz", hash = "sha256:1b62b6884944a57dbe321509ab94fd4d3b307075e0c2eae991ac71ee15ad38ed", size = 435556, upload-time = "2026-01-07T16:24:43.925Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/53/0c/06f8b233b8fd13b9e5ee11424ef85419ba0d8ba0b3138bf360be2ff56953/urllib3-2.7.0.tar.gz", hash = "sha256:231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c", size = 433602, upload-time = "2026-05-07T16:13:18.596Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/39/08/aaaad47bc4e9dc8c725e68f9d04865dbcb2052843ff09c97b08904852d84/urllib3-2.6.3-py3-none-any.whl", hash = "sha256:bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4", size = 131584, upload-time = "2026-01-07T16:24:42.685Z" },
+    { url = "https://files.pythonhosted.org/packages/7f/3e/5db95bcf282c52709639744ca2a8b149baccf648e39c8cc87553df9eae0c/urllib3-2.7.0-py3-none-any.whl", hash = "sha256:9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897", size = 131087, upload-time = "2026-05-07T16:13:17.151Z" },
 ]
 
 [[package]]
