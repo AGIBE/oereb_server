@@ -36,12 +36,14 @@ getegrid_combos_json_multiple = [
     "json/?EN=2608774.5,1192170.6",
     "json/?GNSS=46.88060,7.55375",
     "json/?POSTALCODE=3110&LOCALISATION=Hunzigenallee&NUMBER=1",
+    "json/?POSTALCODE=2560&LOCALISATION=Turmweg",
 ]
 
 getegrid_combos_xml_multiple = [
     "xml/?EN=2608774.5,1192170.6",
     "xml/?GNSS=46.88060,7.55375",
     "xml/?POSTALCODE=3110&LOCALISATION=Hunzigenallee&NUMBER=1",
+    "xml/?POSTALCODE=2560&LOCALISATION=Turmweg",
 ]
 
 getegrid_combos_xml_valid = getegrid_combos_xml_single + getegrid_combos_xml_multiple
