@@ -12,7 +12,7 @@ run: printup
     uv run python run_oereb_server_waitress_local.py
 
 test env:
-    uv run pytest tests --env={{env}}
+    uv run pytest --env={{env}}
 
 test_concurrent env:
     uv run pytest tests\test_concurrent_extracts.py --env={{env}}

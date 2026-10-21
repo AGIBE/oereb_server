@@ -53,6 +53,19 @@ where = ["src/"]
 dev = [
     "jsonschema>=4.23.0",
     "pylint>=3.2.7",
-    "pytest>=8.3.3",
+    "pytest==9.1.1",
     "xmlschema>=3.4.2",
+]
+
+[tool.pytest.ini_options]
+verbosity_subtests = "auto"
+testpaths = [
+    "tests",
+]
+addopts = "-ra --durations=0"
+strict_xfail = true
+console_output_style = "progress"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
 ]

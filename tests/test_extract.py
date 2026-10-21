@@ -17,7 +17,7 @@ def test_largest_area_extract_pdf(running_server_instance, largest_area_parcel):
     assert res.status_code == 200
 
 
-@pytest.mark.xfail(
+@pytest.mark.skip(
     reason="Seit den Gewässerschutzbereichen gibt es keine Parzellen ohne ÖREBs mehr."
 )
 def test_parcel_without_plr_json(running_server_instance, egrid_without_plr):
@@ -80,7 +80,7 @@ def test_invalid_egrid(running_server_instance):
     assert res.status_code == 204
 
 
-def test_extract_pdf_url_scheme(running_server_instance, egrid_with_some_plr):
+def test_extract_pdf_url_scheme(running_server_instance, egrid_with_some_plr, environment):
     # oereb_server übergibt im JSON die URL auf sich selber.
     # Da oereb_server hinter einem Reverse Proxy läuft, weiss
     # er aber nichts von https und nimmt immer "nur" http.
@@ -95,17 +95,21 @@ def test_extract_pdf_url_scheme(running_server_instance, egrid_with_some_plr):
     res = requests.get(extract_url)
     json = res.json()
     url_logo = json["attributes"]["CantonalLogoRef"]
-    assert url_logo.lower().startswith("https://")
+    if environment == 'dev':
+        assert url_logo.lower().startswith("http://")
+    else:
+        assert url_logo.lower().startswith("https://")
 
 
-def test_random_egrids(running_server_instance, random_egrids):
+def test_random_egrids(running_server_instance, random_egrids, subtests):
     for egrid in random_egrids:
-        extract_url_json = running_server_instance + "/extract/json/?egrid=" + egrid
-        extract_url_pdf = running_server_instance + "/extract/pdf/?egrid=" + egrid
-        res_json = requests.get(extract_url_json)
-        res_pdf = requests.get(extract_url_pdf)
-        assert res_json.status_code == 200
-        assert res_pdf.status_code == 200
+        with subtests.test(msg="Teste zufälligen EGRID", egrid=egrid):
+            extract_url_json = running_server_instance + "/extract/json/?egrid=" + egrid
+            extract_url_pdf = running_server_instance + "/extract/pdf/?egrid=" + egrid
+            res_json = requests.get(extract_url_json)
+            res_pdf = requests.get(extract_url_pdf)
+            assert res_json.status_code == 200
+            assert res_pdf.status_code == 200
 
 
 def test_extract_url_valid_egrid(running_server_instance, egrid_with_some_plr):

@@ -1,3 +1,4 @@
+import pytest
 import requests
 
 
@@ -16,10 +17,14 @@ def test_config_valid(config):
     assert schema_name == "oereb_server"
 
 
-def test_debugtoolbar(running_server_instance):
+def test_debugtoolbar(running_server_instance, environment):
     debugtoolbar_url = running_server_instance + "/_debug_toolbar/"
     res = requests.get(debugtoolbar_url)
-    assert res.status_code == 404
+
+    if environment == 'dev':
+        assert res.status_code == 200
+    else:
+        assert res.status_code == 404
 
 
 def test_woredirect(running_server_instance, egrid_with_some_plr):
