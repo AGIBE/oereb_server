@@ -14,8 +14,8 @@ run: printup
 test env:
     uv run pytest tests --env={{env}}
 
-test_async:
-    uv run pytest tests\test_concurrent_extracts_async.py --env=dev
+test_concurrent env:
+    uv run pytest tests\test_concurrent_extracts.py --env={{env}}
 
 printup:
     cd /d C:\Daten\prog\apache-tomcat-11.0.22\bin && startup.bat
