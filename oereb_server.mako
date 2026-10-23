@@ -836,7 +836,7 @@ oereb_server:
           extract_code: Hint
 
     - code: ch.BE.RegionaleNutzungsplanung
-      geometry_type: MULTIPOLYGON
+      geometry_type: GEOMETRYCOLLECTION
       # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
       # and not as calculation errors (false trues) due to topological imperfections
       thresholds:
@@ -897,7 +897,7 @@ oereb_server:
           extract_code: Hint
 
     - code: ch.BE.KantonaleNutzungsplanung
-      geometry_type: MULTIPOLYGON
+      geometry_type: GEOMETRYCOLLECTION
       # Define the minmal area and length for public law restrictions that should be considered as 'true' restrictions
       # and not as calculation errors (false trues) due to topological imperfections
       thresholds:
@@ -2264,7 +2264,7 @@ oereb_server:
           extract_code: Hint
 
     - code: ch.Waldabstandslinien
-      geometry_type: LINESTRING
+      geometry_type: GEOMETRYCOLLECTION
       thresholds:
         length:
           limit: 1.0
@@ -2323,7 +2323,7 @@ oereb_server:
           extract_code: Hint
 
     - code: ch.BE.RegionaleWaldabstandslinien
-      geometry_type: LINESTRING
+      geometry_type: GEOMETRYCOLLECTION
       thresholds:
         length:
           limit: 1.0
@@ -2382,7 +2382,7 @@ oereb_server:
           extract_code: Hint
 
     - code: ch.BE.KantonaleWaldabstandslinien
-      geometry_type: LINESTRING
+      geometry_type: GEOMETRYCOLLECTION
       thresholds:
         length:
           limit: 1.0
