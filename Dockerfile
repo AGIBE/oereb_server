@@ -1,6 +1,6 @@
 FROM debian:trixie-slim AS builder
 
-COPY --from=ghcr.io/astral-sh/uv:0.13.0 /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.13.6 /uv /bin/uv
 
 WORKDIR /usr/src/oereb_server
 
