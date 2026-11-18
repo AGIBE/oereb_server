@@ -46,7 +46,7 @@ def legend(request):
     # Die Gemeinde-Legenden gibt es auf der Test-Stufe nicht. Daher
     # kann immer auf die produktive URL umgeleitet werden.
     legend_url = (
-        "https://oerebfiles.apps.be.ch/legenden/gemeinden/{}/{}_{}.html".format(
+        "https://oerebfiles.apps.be.ch/legenden/gemeinden/{}/{}_npl_{}.html".format(
             mode, bfsnr, language
         )
     )
